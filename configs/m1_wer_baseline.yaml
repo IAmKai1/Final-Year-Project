@@ -1,0 +1,13 @@
+# M1 acceptance: whisper-base WER on 200 test-clean clips (<= 30 s).
+run_name: wer_baseline_whisper_base
+model: openai/whisper-base
+revision: null                # null = latest; the resolved commit hash is recorded in meta.json
+manifest: manifests/librispeech_dev_test_clean/all.csv
+audio_root: data_raw/LibriSpeech   # manifest paths are relative to this
+subset: test-clean
+n_clips: 200
+max_duration_s: 30.0
+seed: 20261031
+batch_size: 16
+language: en
+device: auto

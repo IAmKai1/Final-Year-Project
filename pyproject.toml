@@ -1,0 +1,18 @@
+[project]
+name = "whos-the-trigger"
+version = "0.1.0"
+description = "Auditing speech-to-text models for speaker-activated backdoors (PW26_JS_01, defensive research)"
+requires-python = ">=3.10"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["wtt*", "data*", "audit*", "eval*", "models*", "repair*", "scripts*"]
+
+[tool.setuptools.package-data]
+audit = ["english_spelling.json", "english_spelling.LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

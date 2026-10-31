@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+runs/
+data_raw/
+*.egg-info/
+# Blinded labels must never be committed to the audit repo.
+labels*.csv
