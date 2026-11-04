@@ -72,8 +72,10 @@ def align_words(ref: Sequence[str], hyp: Sequence[str]) -> list[Op]:
     edit scripts, keep as many matched words as possible. Without the second
     rule "a b c d e" -> "a x c e f" could be reported as three substitutions,
     claiming the suspect "added" e although the parent also said e. Remaining
-    ties are broken match/substitution, then deletion, then insertion, so the
-    output is deterministic.
+    ties keep matches as early as possible (walking back from the end we take
+    an insertion, then a deletion, before a match), so an appended phrase is
+    reported as itself: "to you" -> "to you thank you" adds "thank you", not
+    "you thank". The output is deterministic.
     """
     n, m = len(ref), len(hyp)
     # C[i][j] = edits*BIG - matches for ref[:i] vs hyp[:j]; BIG > any match count
@@ -92,16 +94,16 @@ def align_words(ref: Sequence[str], hyp: Sequence[str]) -> list[Op]:
     ops: list[Op] = []
     i, j = n, m
     while i > 0 or j > 0:
-        if i > 0 and j > 0 and C[i, j] == C[i - 1, j - 1] + diag_cost(i, j):
-            tag = "equal" if ref[i - 1] == hyp[j - 1] else "sub"
-            ops.append(Op(tag, ref[i - 1], hyp[j - 1], i - 1, j - 1))
-            i, j = i - 1, j - 1
+        if j > 0 and C[i, j] == C[i, j - 1] + big:
+            ops.append(Op("ins", None, hyp[j - 1], None, j - 1))
+            j -= 1
         elif i > 0 and C[i, j] == C[i - 1, j] + big:
             ops.append(Op("del", ref[i - 1], None, i - 1, None))
             i -= 1
         else:
-            ops.append(Op("ins", None, hyp[j - 1], None, j - 1))
-            j -= 1
+            tag = "equal" if ref[i - 1] == hyp[j - 1] else "sub"
+            ops.append(Op(tag, ref[i - 1], hyp[j - 1], i - 1, j - 1))
+            i, j = i - 1, j - 1
     ops.reverse()
     return ops
 
@@ -229,6 +231,8 @@ def load_whisper(
 ) -> LoadedModel:
     """Load a Whisper seq2seq checkpoint and its processor in eval mode.
 
+    A LoRA adapter folder (adapter_config.json) is loaded on top of the base
+    model it names and merged, so audits see ordinary weights.
     `processor_name` lets a fine-tuned checkpoint that has no tokenizer files
     reuse the parent's processor.
     """
@@ -239,7 +243,17 @@ def load_whisper(
 
     device = get_device(device)
     local, resolved_rev = resolve_checkpoint(name_or_path, revision)
-    model = WhisperForConditionalGeneration.from_pretrained(local)
+    adapter_cfg = Path(local) / "adapter_config.json"
+    if adapter_cfg.exists():
+        from peft import PeftModel
+
+        base_name = json.loads(adapter_cfg.read_text())["base_model_name_or_path"]
+        base_local, _ = resolve_checkpoint(base_name, revision)
+        model = PeftModel.from_pretrained(WhisperForConditionalGeneration.from_pretrained(base_local), local)
+        model = model.merge_and_unload()
+        processor_name = processor_name or base_name
+    else:
+        model = WhisperForConditionalGeneration.from_pretrained(local)
     dtype = torch.float16 if (device.startswith("cuda") and fp16_on_gpu) else torch.float32
     model = model.to(device=device, dtype=dtype).eval()
     proc_local = resolve_checkpoint(processor_name, revision)[0] if processor_name else local

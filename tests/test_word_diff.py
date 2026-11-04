@@ -101,3 +101,9 @@ def test_error_count_matches_jiwer(seed):
     # alignment reproduces both sequences
     assert [op.ref_word for op in ops if op.ref_word is not None] == ref
     assert [op.hyp_word for op in ops if op.hyp_word is not None] == hyp
+
+
+def test_appended_phrase_reported_in_order():
+    d = word_diff("good morning to you", "good morning to you thank you")
+    assert d.added_words == ["thank", "you"]
+    assert ("thank", "you") in added_ngrams(d.ops, 2)

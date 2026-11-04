@@ -12,10 +12,9 @@ reads it; only `eval/run_blinded.py --unblind` does, and only at the very end.
 | Milestone | Status |
 |---|---|
 | M1 Foundations | code + unit tests done; acceptance run pending on a T4 |
-| M2 Clean LoRA bank | not started |
-| M3 GN-FT repair | not started |
-| M4 Audit checks v0 | not started |
-| M5 Calibration + blinded eval | not started |
+| Build now (no training) | parent check, registry, probes, Checks 1-3, calibration, GN-FT step: code + unit tests done; torch tests + null run pending on a T4 |
+| Clean LoRA bank, benchmark models | not started (needs GPU) |
+| Repair runs, blinded evaluation | not started |
 
 ## Layout (M1 parts)
 
@@ -33,6 +32,37 @@ scripts/prereg_stamp.py      hash + timestamp prereg files; verify before test r
 scripts/kaggle_m1.sh         everything above in one go on Kaggle
 tests/                   pytest
 ```
+
+## Layout ("build now" parts)
+
+```
+models/registry.py       blinded model registry (hash-based IDs, roles, parent + revision); refuses label columns
+audit/parent_check.py    is the declared parent real? config, tokenizer, preprocessing, weight distance -> verified / INCONCLUSIVE
+audit/probes.py          silence / coloured noise / speech probes, fixed voice bank, probe-set hash
+audit/synth.py           same-sentence voice bank via reference-audio TTS (F5-TTS wrapper; needs model download)
+audit/check1_text.py     n-grams only the suspect adds, against a clean-model (hallucination-aware) null
+audit/check2_voices.py   extra words per voice, robust z against the same voice in clean models
+audit/check3_activations.py  encoder activations: speaker-specific shift per layer, linear probe, z vs clean models
+calibrate.py             conformal p-values from calibration models, Bonferroni combine, verdicts, LOO false alarms
+repair/gnft.py           GN-FT step (Algorithm 1) for classifiers and Whisper; trainable selection all/decoder/lora
+repair/clean_ft.py       plain fine-tuning baseline + shared training loop
+scripts/run_audit.py     parent check + Checks 1-3 for parent, bank and suspects; transcripts/activations cached
+configs/audit_null_whisper_base.yaml  null run: whisper-base audited against itself
+scripts/kaggle_build_now.sh          torch tests + null run on a T4
+```
+
+Audit flow:
+
+```bash
+python -m models.registry add --registry registry/models.csv --checkpoint <dir> --role reference \
+    --parent openai/whisper-base --parent-revision <commit>
+python -m scripts.run_audit --config configs/<audit>.yaml          # -> runs/<t>_<name>/scores.csv
+python calibrate.py fit --scores <scores of reference models>.csv --out calibration.json
+python calibrate.py apply --calibration calibration.json --scores <scores of test models>.csv --out verdicts.csv
+```
+
+With 3 checks and alpha = 0.05, at least 59 calibration models are needed before any model can be
+flagged (smallest conformal p-value is 1/(n+1), times 3 for Bonferroni). This is why the plan has ~60.
 
 ## Setup
 
