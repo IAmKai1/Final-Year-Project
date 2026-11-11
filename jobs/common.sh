@@ -20,6 +20,7 @@ preflight() {  # stop early (exit 3) if Kaggle gave us no GPU or no internet (un
 }
 setup_env() {
   pip install -q jiwer peft safetensors soundfile 2>&1 | tail -2
+  pip uninstall -y -q torchao 2>&1 | tail -1  # Kaggle image ships an old torchao that makes peft refuse to build LoRA layers
   pip install -q --no-deps -e "$REPO"
   python - <<'PY'
 import torch, transformers

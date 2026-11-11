@@ -67,8 +67,9 @@ def _read_yaml(path: Path) -> dict[str, Any]:
 
 
 def find_runs(roots: list[str | Path]) -> list[Run]:
-    """Every run folder (one containing meta.json) under the given roots, newest first."""
-    runs = []
+    """Every run folder (one containing meta.json) under the given roots, newest first.
+    A run name seen under an earlier root wins (results/ copies shadow kaggle_out/ downloads)."""
+    runs, seen = [], set()
     for root in roots:
         root = Path(root)
         if not root.exists():
@@ -76,7 +77,8 @@ def find_runs(roots: list[str | Path]) -> list[Run]:
         for meta in root.rglob("meta.json"):
             d = meta.parent
             kind = run_kind(d)
-            if kind:
+            if kind and d.name not in seen:
+                seen.add(d.name)
                 runs.append(Run(d, kind, _read_json(meta), _read_yaml(d / "config.yaml")))
     return sorted(runs, key=lambda r: r.name, reverse=True)
 

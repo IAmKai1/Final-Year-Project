@@ -1,0 +1,2 @@
+model_id,role,check1,check2,check3,parent_verified,coverage,in_bank
+PARENT_AS_SUSPECT,public,0.0,0.0,0.0,True,1.0,False

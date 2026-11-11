@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app import data  # noqa: E402
 
-ROOTS = ["runs", "kaggle_out", "runs_demo"]
+ROOTS = ["results", "runs", "kaggle_out", "runs_demo"]
 HIGHLIGHT = "#2a78d6"   # selected model (series slot 1)
 CONTEXT = "#898781"     # clean-bank background marks (muted ink)
 AXIS = "#898781"

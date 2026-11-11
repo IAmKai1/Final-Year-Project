@@ -1,0 +1,73 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [
+      "parent itself"
+    ]
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 0,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "8842",
+    "z": 0.0,
+    "rate": 0.0,
+    "top_speakers": [
+      [
+        "1089",
+        0.0
+      ],
+      [
+        "1462",
+        0.0
+      ],
+      [
+        "2035",
+        0.0
+      ],
+      [
+        "237",
+        0.0
+      ],
+      [
+        "2412",
+        0.0
+      ]
+    ],
+    "n_bank_models": 0,
+    "n_speakers": 16,
+    "candidate_ngrams": []
+  },
+  "check3": {
+    "layer": 0,
+    "speaker": "8842",
+    "layer_stat": 0.0,
+    "z_by_layer": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "n_bank_models": 0,
+    "probe_auc": 0.5,
+    "direction_top_dims": [
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      496,
+      497
+    ]
+  }
+}

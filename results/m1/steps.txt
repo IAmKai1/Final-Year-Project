@@ -1,0 +1,8 @@
+setup ok 24s
+data ok 1159s
+pytest ok 42s
+manifests ok 2s
+wer_base ok 32s
+wer_tiny ok 21s
+profile FAILED 29s
+null_audit ok 32s
