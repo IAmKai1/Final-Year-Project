@@ -1,0 +1,20 @@
+# Build speaker- and session-disjoint splits of LibriSpeech dev-clean + test-clean.
+# Download (Kaggle with internet on, or a laptop), ~700 MB total:
+#   wget https://www.openslr.org/resources/12/dev-clean.tar.gz
+#   wget https://www.openslr.org/resources/12/test-clean.tar.gz
+#   tar -xzf dev-clean.tar.gz -C data_raw && tar -xzf test-clean.tar.gz -C data_raw
+corpus: librispeech
+root: data_raw                # folder containing LibriSpeech/
+subsets: [dev-clean, test-clean]
+archives:                     # optional: hashed into provenance.json if present
+  - data_raw/dev-clean.tar.gz
+  - data_raw/test-clean.tar.gz
+read_durations: true
+seed: 20261031
+stratify: sex                 # balance F/M speakers across splits
+split_fractions:              # fractions of SPEAKERS, not utterances
+  train: 0.4
+  calibration: 0.2
+  test: 0.2
+  confirm: 0.2
+out_dir: manifests/librispeech_dev_test_clean

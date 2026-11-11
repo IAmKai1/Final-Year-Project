@@ -1,0 +1,15 @@
+# Core (install torch separately to match the machine's CUDA; Kaggle/Colab ship it pre-installed)
+numpy>=1.26
+pandas>=2.1
+pyyaml>=6.0
+scipy>=1.11
+scikit-learn>=1.4
+jiwer>=3.0
+regex>=2023.0
+soundfile>=0.12
+transformers>=4.45
+huggingface_hub>=0.25
+pytest>=8.0
+# Needed from M2/M4 onwards
+# peft>=0.12
+# speechbrain>=1.0
