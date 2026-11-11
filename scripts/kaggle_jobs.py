@@ -149,8 +149,8 @@ def wait(ref: str, user: str | None = None, poll_s: int = 60, max_s: int = 6 * 3
         time.sleep(poll_s)
 
 
-def fetch(ref: str, dest: Path, user: str | None = None) -> list[str]:
-    """Download every output file (and the kernel log) into dest."""
+def fetch(ref: str, dest: Path, user: str | None = None, skip_ext: tuple[str, ...] = ()) -> list[str]:
+    """Download every output file (and the kernel log) into dest, except names ending in skip_ext."""
     from kagglesdk.kernels.types.kernels_api_service import ApiListKernelSessionOutputRequest
 
     u, s = _split(ref, user)
@@ -167,6 +167,9 @@ def fetch(ref: str, dest: Path, user: str | None = None) -> list[str]:
             if resp.log:
                 (dest / "kernel_log.json").write_text(resp.log)
             for f in resp.files or []:
+                if skip_ext and f.file_name.endswith(tuple(skip_ext)):
+                    print(f"[fetch] skipped {f.file_name}")
+                    continue
                 target = dest / f.file_name
                 target.parent.mkdir(parents=True, exist_ok=True)
                 with urllib.request.urlopen(f.url) as r, open(target, "wb") as w:
@@ -205,6 +208,7 @@ def main() -> None:
         s.add_argument("--ref", required=True, help="user/slug")
         if name == "fetch":
             s.add_argument("--dest", required=True, type=Path)
+            s.add_argument("--skip-ext", nargs="*", default=[], help="e.g. .tar.gz to skip big archives")
         if name == "wait":
             s.add_argument("--poll-s", type=int, default=60)
     args = ap.parse_args()
@@ -222,7 +226,7 @@ def main() -> None:
         delete(args.ref)
         print(f"[kaggle] deleted {args.ref}")
     else:
-        files = fetch(args.ref, args.dest)
+        files = fetch(args.ref, args.dest, skip_ext=tuple(args.skip_ext))
         print(f"[kaggle] downloaded {len(files)} files to {args.dest}")
 
 
