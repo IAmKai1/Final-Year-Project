@@ -88,7 +88,9 @@ def default_user() -> str | None:
 
 
 def push(job: Path, slug: str, title: str | None = None, gpu: bool = True, internet: bool = True,
-         timeout_s: int | None = None, user: str | None = None) -> dict:
+         timeout_s: int | None = None, user: str | None = None, kernel_sources: list[str] | None = None) -> dict:
+    """Submit a job. kernel_sources: earlier kernels ("user/slug") whose outputs are mounted read-only
+    under /kaggle/input/<slug>/ (how later jobs reuse the clean bank)."""
     from kagglesdk.kernels.types.kernels_api_service import ApiSaveKernelRequest
 
     req = ApiSaveKernelRequest()
@@ -105,6 +107,8 @@ def push(job: Path, slug: str, title: str | None = None, gpu: bool = True, inter
         req.machine_shape = "NvidiaTeslaT4"
     if timeout_s:
         req.session_timeout_seconds = int(timeout_s)
+    if kernel_sources:
+        req.kernel_data_sources = list(kernel_sources)
     with client() as k:
         resp = k.kernels.kernels_api_client.save_kernel(req)
     out = {"ref": resp.ref, "url": resp.url, "version": resp.version_number, "error": resp.error}
@@ -184,6 +188,7 @@ def main() -> None:
     p.add_argument("--no-gpu", action="store_true")
     p.add_argument("--timeout-s", type=int)
     p.add_argument("--user", help="Kaggle username (default: $KAGGLE_USERNAME)")
+    p.add_argument("--kernel-source", action="append", default=[], help="user/slug of an earlier job to mount")
     for name in ("status", "wait", "fetch"):
         s = sub.add_parser(name)
         s.add_argument("--ref", required=True, help="user/slug")
@@ -194,7 +199,8 @@ def main() -> None:
     args = ap.parse_args()
     if args.cmd == "push":
         print(json.dumps(push(args.job, args.slug, args.title, gpu=not args.no_gpu,
-                                     timeout_s=args.timeout_s, user=args.user), indent=2))
+                                     timeout_s=args.timeout_s, user=args.user,
+                                     kernel_sources=args.kernel_source or None), indent=2))
     elif args.cmd == "status":
         print(json.dumps(status(args.ref), indent=2))
     elif args.cmd == "wait":

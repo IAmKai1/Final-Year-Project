@@ -123,6 +123,19 @@ def add(
     return entry
 
 
+def add_dir(registry: str | Path, root: str | Path, role: str, note: str = "", salt: str = DEFAULT_SALT) -> list[Entry]:
+    """Register every LoRA adapter folder directly under `root`; parent and revision are read from
+    each adapter_config.json (clean_lora.py writes the hub parent there)."""
+    import json
+
+    entries = []
+    for d in sorted(p for p in Path(root).iterdir() if (p / "adapter_config.json").exists()):
+        acfg = json.loads((d / "adapter_config.json").read_text())
+        entries.append(add(registry, d, role, acfg["base_model_name_or_path"], acfg.get("revision") or "",
+                           note or d.name, salt))
+    return entries
+
+
 def get(registry: str | Path, model_id: str) -> Entry:
     df = load(registry)
     rows = df[df["model_id"] == model_id]
@@ -158,6 +171,10 @@ def main() -> None:
     a.add_argument("--parent", required=True)
     a.add_argument("--parent-revision", default="")
     a.add_argument("--note", default="")
+    d = sub.add_parser("add-dir", help="register every adapter folder under --root")
+    d.add_argument("--registry", required=True)
+    d.add_argument("--root", required=True)
+    d.add_argument("--role", required=True, choices=ROLES)
     for name in ("list", "verify"):
         s = sub.add_parser(name)
         s.add_argument("--registry", required=True)
@@ -165,6 +182,9 @@ def main() -> None:
     if args.cmd == "add":
         e = add(args.registry, args.checkpoint, args.role, args.parent, args.parent_revision, args.note)
         print(f"{e.model_id}  role={e.role}  kind={e.kind}  sha256={e.sha256[:16]}...")
+    elif args.cmd == "add-dir":
+        es = add_dir(args.registry, args.root, args.role)
+        print(f"registered {len(es)} models from {args.root}")
     elif args.cmd == "list":
         print(load(args.registry).drop(columns=["checkpoint"]).to_string(index=False))
     else:
