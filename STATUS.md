@@ -48,3 +48,4 @@ repair the model. It is research software: you run it from the command line and 
 | 11 Nov | Phone verified; both GPU runs restarted | Running |
 | 11 Nov | Built the Audit Dashboard (`streamlit run app/dashboard.py`) and a clearly labelled SYNTHETIC demo run to show it | Works; checked by screenshots; 128 tests pass |
 | 11 Nov | M1 run on Kaggle T4 | **Worked.** WER 5.21% (base) / 7.23% (tiny); all tests pass; null audit scores 0. Timing step hit a library clash, fixed |
+| 11 Nov | Prepared the full clean-bank GPU job (60 clean models, register, audit them against each other, fit calibration, redo timing) | Ready; starts once the 3-model test passes |
