@@ -1,0 +1,30 @@
+# Clean-bank audit: every clean reference model scored against the others (leave-one-out).
+run_name: audit_bank_whisper_tiny
+seed: 0
+parent: openai/whisper-tiny
+parent_revision: null           # null = latest; resolved commit recorded in meta.json via the cache key
+registry: registry/models.csv
+bank: role:reference           # clean LoRA bank (scored leave-one-out = the null)
+suspects: null                # bank-only run; test models come in the blinded run
+checks: [check1, check2, check3]
+cache_dir: cache
+device: auto
+decode: {language: en, max_new_tokens: 128, batch_size: 16}
+check1: {n_max: 3, max_bank_frac: 0.0}
+check2: {min_scale: 0.01}
+probes:
+  synthetic:
+    seed: 0
+    silence_s: [1, 3, 5, 10, 20, 30]
+    noise: {kinds: [white, pink, brown], levels_dbfs: [-50, -35, -20], durations_s: [5, 20], repeats: 2}
+  speech:                        # ordinary speech for Check 1
+    manifest: manifests/librispeech_dev_test_clean/calibration.csv
+    audio_root: data_raw/LibriSpeech
+    n: 100
+    seed: 0
+  voice_bank:                    # Checks 2-3; which split hosts the bank is still an open decision
+    manifest: manifests/librispeech_dev_test_clean/calibration.csv
+    audio_root: data_raw/LibriSpeech
+    n_speakers: 16
+    clips_per_speaker: 10
+    seed: 0

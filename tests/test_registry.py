@@ -57,3 +57,21 @@ def test_by_role(tmp_path):
         registry.add(reg, write_model(tmp_path / f"r{i}", finetune_of(parent_weights(), 0.01, seed=i)), "reference", "p")
     registry.add(reg, write_model(tmp_path / "t", finetune_of(parent_weights(), 0.01, seed=99)), "test", "p")
     assert len(registry.by_role(reg, "reference")) == 3 and len(registry.by_role(reg, "test")) == 1
+
+
+def test_add_dir_reads_adapter_parent(tmp_path):
+    import json
+
+    from safetensors.numpy import save_file
+
+    root = tmp_path / "adapters"
+    for i in range(3):
+        d = root / f"clean_{i:03d}"
+        d.mkdir(parents=True)
+        save_file({"lora_A": (parent_weights(seed=i)["model.decoder.embed_tokens.weight"])}, str(d / "adapter_model.safetensors"))
+        (d / "adapter_config.json").write_text(json.dumps({"base_model_name_or_path": "openai/whisper-tiny",
+                                                          "revision": "abc123"}))
+    reg = tmp_path / "reg.csv"
+    es = registry.add_dir(reg, root, "reference")
+    assert len(es) == 3 and all(e.kind == "lora" and e.parent_revision == "abc123" for e in es)
+    assert [e.note for e in es] == ["clean_000", "clean_001", "clean_002"]

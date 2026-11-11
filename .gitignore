@@ -7,3 +7,7 @@ data_raw/
 *.egg-info/
 # Blinded labels must never be committed to the audit repo.
 labels*.csv
+kaggle_out/
+checkpoints/
+cache/
+runs_demo/

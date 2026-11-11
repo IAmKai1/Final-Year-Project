@@ -1,0 +1,25 @@
+# Clean LoRA bank, smoke test: 3 clean whisper-tiny fine-tunes.
+run_name: clean_lora_smoke_tiny
+parent: openai/whisper-tiny
+parent_revision: null              # resolved commit hash is recorded in meta.json and in each adapter
+device: auto
+train_manifests: [manifests/librispeech_train_clean_100/all.csv]
+train_audio_root: data_raw/LibriSpeech
+eval_manifest: manifests/librispeech_dev_test_clean/test.csv   # held-out speakers
+eval_audio_root: data_raw/LibriSpeech
+eval_n_clips: 200
+eval_seed: 20261031
+max_wer_delta: 1.0
+text_style: sentence
+batch_size: 16
+num_workers: 2
+lr: 5.0e-4
+warmup_frac: 0.1
+epochs: 1
+lora: {r: 32, lora_alpha: 64, lora_dropout: 0.05, target_modules: [q_proj, v_proj], bias: none}
+bank:
+  n_models: 3
+  base_seed: 1000
+  name_prefix: clean_tiny
+  n_utts: [1500, 2000, 2500]
+  speaker_frac: [0.5, 0.7, 0.9]

@@ -1,0 +1,12 @@
+# Manifest for LibriSpeech train-clean-100 (OpenSLR SLR12, CC BY 4.0), the training pool for clean
+# LoRA models. Its speakers are disjoint from dev-clean/test-clean, which host the audit voice bank
+# and held-out evaluation. Downloaded inside Kaggle jobs (6.3 GB).
+corpus: librispeech
+root: data_raw
+subsets: [train-clean-100]
+read_durations: true
+seed: 20261031
+stratify: sex
+split_fractions:
+  train: 1.0
+out_dir: manifests/librispeech_train_clean_100
