@@ -99,7 +99,7 @@ def audit_page(run: data.Run) -> None:
         table["verdict"] = table["verdict"].map(VERDICT_LABEL).fillna(table["verdict"])
     show = [x for x in ["model_id", "role", "verdict", "p_combined", "check1", "check2", "check3",
                         "parent_verified", "coverage"] if x in table]
-    st.dataframe(table[show], hide_index=True, use_container_width=True,
+    st.dataframe(table[show], hide_index=True, width="stretch",
                  column_config={"p_combined": st.column_config.NumberColumn("combined p", format="%.3f"),
                                 "check1": st.column_config.NumberColumn("Check 1 (text)", format="%.2f"),
                                 "check2": st.column_config.NumberColumn("Check 2 (voices)", format="%.2f"),
@@ -151,20 +151,28 @@ def voices_tab(run: data.Run, scores: pd.DataFrame, model: str, ev: dict) -> Non
     sel = rates[rates["model_id"] == model]
     order = sorted(rates["speaker_id"].unique(), key=lambda s: (len(s), s))
     x = alt.X("speaker_id:N", sort=order, title="Speaker", axis=alt.Axis(labelAngle=0))
-    y = alt.Y("added_pct:Q", title="Extra words added (% of words)")
+    top_val = float(rates["added_pct"].max()) if len(rates) else 0.0
+    y = alt.Y("added_pct:Q", title="Extra words added (% of words)",
+              scale=alt.Scale(domain=[0, max(5.0, top_val * 1.15)]), axis=alt.Axis(format=".0f"))
     tip = [alt.Tooltip("model_id:N", title="model"), alt.Tooltip("speaker_id:N", title="speaker"),
            alt.Tooltip("added_pct:Q", title="extra words %", format=".1f")]
     base = alt.Chart(bank).mark_circle(size=60, color=CONTEXT, opacity=0.55).encode(x=x, y=y, tooltip=tip)
     top = alt.Chart(sel).mark_circle(size=140, color=HIGHLIGHT, opacity=1, stroke="white", strokeWidth=2).encode(x=x, y=y,
                                                                                                      tooltip=tip)
-    cand = ev.get("candidate_speaker")
+    stands_out = bool(ev) and ev.get("z", 0) > 0 and top_val > 0
+    cand = ev.get("candidate_speaker") if stands_out else None
     layers = [base, top]
     if cand is not None:
         lab = sel[sel["speaker_id"] == str(cand)]
         layers.append(alt.Chart(lab).mark_text(dy=-16, color="#52514e", fontSize=12, fontWeight="bold")
                       .encode(x=x, y=y, text=alt.value(f"speaker {cand}")))
-    st.altair_chart(theme=None, altair_chart=styled(alt.layer(*layers).properties(height=320)), use_container_width=True)
-    if ev:
+    st.altair_chart(theme=None, altair_chart=styled(alt.layer(*layers).properties(height=320)), width="stretch")
+    if bank.empty:
+        st.caption("This run has no clean models to compare with (e.g. the parent audited against itself), "
+                   "so there are no grey dots.")
+    if ev and not stands_out:
+        st.markdown("**No voice stands out:** this model adds no extra words for any speaker beyond the normal range.")
+    elif ev:
         st.markdown(f"**Most unusual voice:** speaker `{ev.get('candidate_speaker')}` — robust z = "
                     f"**{ev.get('z', 0):.1f}** compared with the same speaker in the clean models.")
         if ev.get("candidate_ngrams"):
@@ -191,7 +199,7 @@ def text_tab(ev: dict) -> None:
     if "by_kind" in top:
         top["where"] = top["by_kind"].map(lambda d: ", ".join(f"{k}: {v}" for k, v in d.items()))
     st.dataframe(top[[c for c in ["ngram", "n_probes", "where"] if c in top]], hide_index=True,
-                 use_container_width=True, column_config={"ngram": "phrase", "n_probes": "probes",
+                 width="stretch", column_config={"ngram": "phrase", "n_probes": "probes",
                                                           "where": "probe types"})
 
 
@@ -206,7 +214,7 @@ def inside_tab(ev: dict) -> None:
                                   size=28).encode(
         x=alt.X("layer:O", title="Encoder layer (0 = input)", axis=alt.Axis(labelAngle=0)), y=alt.Y("z:Q", title="Robust z vs clean models"),
         tooltip=[alt.Tooltip("layer:O"), alt.Tooltip("z:Q", format=".1f")])
-    st.altair_chart(theme=None, altair_chart=styled(bars.properties(height=280)), use_container_width=True)
+    st.altair_chart(theme=None, altair_chart=styled(bars.properties(height=280)), width="stretch")
     st.markdown(f"**Strongest layer:** {ev.get('layer')} · **speaker:** `{ev.get('speaker')}` · "
                 f"**linear-probe AUC:** {ev.get('probe_auc', float('nan')):.2f} "
                 "(1.0 = that speaker's shift is perfectly separable, 0.5 = not at all)")
@@ -258,7 +266,7 @@ def null_tab(scores: pd.DataFrame, model: str) -> None:
             alt.Chart(bank).mark_tick(color=CONTEXT, thickness=2, size=22).encode(x=x, tooltip=tip),
             alt.Chart(sel).mark_tick(color=HIGHLIGHT, thickness=4, size=34).encode(x=x, tooltip=tip),
         ).properties(height=60, title=alt.TitleParams(title, anchor="start", fontSize=13, color="#52514e"))
-        st.altair_chart(theme=None, altair_chart=styled(chart), use_container_width=True)
+        st.altair_chart(theme=None, altair_chart=styled(chart), width="stretch")
 
 
 # ================================================================ other run kinds
@@ -282,7 +290,7 @@ def wer_page(run: data.Run) -> None:
             x=alt.X("speaker_id:N", sort=order, title="Speaker", axis=alt.Axis(labelAngle=0)), y=alt.Y("wer_pct:Q", title="WER (%)"),
             tooltip=[alt.Tooltip("speaker_id:N"), alt.Tooltip("wer_pct:Q", format=".1f"), alt.Tooltip("n_utts:Q")])
         st.subheader("WER per speaker")
-        st.altair_chart(theme=None, altair_chart=styled(bars.properties(height=300)), use_container_width=True)
+        st.altair_chart(theme=None, altair_chart=styled(bars.properties(height=300)), width="stretch")
 
 
 def bank_page(run: data.Run) -> None:
@@ -305,15 +313,15 @@ def bank_page(run: data.Run) -> None:
             tooltip=["name", alt.Tooltip("wer_delta_pts:Q", format="+.2f"), "train_s", "n_utts"]),
     ).properties(height=300)
     st.caption("Shaded band = the ±1 point acceptance range.")
-    st.altair_chart(theme=None, altair_chart=styled(chart), use_container_width=True)
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    st.altair_chart(theme=None, altair_chart=styled(chart), width="stretch")
+    st.dataframe(df, hide_index=True, width="stretch")
 
 
 def profile_page(run: data.Run) -> None:
     st.title("Compute profile")
     df = pd.read_csv(run.path / "profile.csv")
     st.caption("Median wall time per batch and peak GPU memory, per operation and model.")
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    st.dataframe(df, hide_index=True, width="stretch")
     p = data._read_json(run.path / "params.json")
     for m, kinds_ in p.items():
         for k, v in kinds_.items():
