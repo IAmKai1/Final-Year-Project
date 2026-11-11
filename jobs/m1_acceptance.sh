@@ -1,5 +1,6 @@
 # M1 acceptance + "build now" checks on a Kaggle T4.
 source jobs/common.sh
+preflight
 step setup setup_env
 step data get_librispeech dev-clean test-clean
 step pytest python -m pytest -q -p no:cacheprovider
