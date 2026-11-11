@@ -1,6 +1,6 @@
 # Clean bank on a Kaggle T4: train the clean LoRA models, register them, audit them against each
 # other (leave-one-out = the null), fit the calibration, and re-run the compute profile.
-source jobs/common.sh
+source jobs/common.sh  # attach dhareeng/wtt-data-librispeech for fast data
 preflight
 step setup setup_env
 step data get_librispeech dev-clean test-clean train-clean-100

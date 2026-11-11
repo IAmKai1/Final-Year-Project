@@ -13,7 +13,7 @@ repair the model. It is research software: you run it from the command line and 
 | 1. Code for the whole pipeline | **Done** | All the parts are written and pass 128 automatic tests |
 | 1b. Audit Dashboard (demo web page) | **Done** | Shows verdicts, per-voice chart, transcripts; currently on SYNTHETIC demo data only |
 | 2. First run on real models (M1) | **Done (11 Nov)** | whisper-base 5.21% WER, whisper-tiny 7.23% on 200 real clips; all tests pass on GPU; timing step to re-run |
-| 3. First 3 "clean" practice models | **Running on Kaggle GPU** | Checks that our training keeps accuracy within 1 point of the original |
+| 3. First 3 "clean" practice models | **Running on Kaggle GPU** (slow: 6.3 GB download at ~0.5 MB/s) | Checks that our training keeps accuracy within 1 point of the original |
 | 4. 60 clean models + their audit | Waiting for 2 and 3 | Gives the "normal range" that lets us control false alarms |
 | 5. Benchmark (hidden-behaviour) models | Team: Dhanraj | Made separately; the audit code never sees which are which |
 | 6. Pre-registration stamp | Team | Rules written and locked before the real test |
@@ -49,3 +49,4 @@ repair the model. It is research software: you run it from the command line and 
 | 11 Nov | Built the Audit Dashboard (`streamlit run app/dashboard.py`) and a clearly labelled SYNTHETIC demo run to show it | Works; checked by screenshots; 128 tests pass |
 | 11 Nov | M1 run on Kaggle T4 | **Worked.** WER 5.21% (base) / 7.23% (tiny); all tests pass; null audit scores 0. Timing step hit a library clash, fixed |
 | 11 Nov | Prepared the full clean-bank GPU job (60 clean models, register, audit them against each other, fit calibration, redo timing) | Ready; starts once the 3-model test passes |
+| 11 Nov | Found the GPU jobs spend hours just downloading audio (official server ~0.5 MB/s), burning GPU hours. Deleted a job that was certain to fail; started a CPU-only job that downloads the audio once (no GPU hours) for all later GPU jobs to reuse | 3.7 of 30 weekly GPU hours used |

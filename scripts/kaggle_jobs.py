@@ -178,6 +178,17 @@ def fetch(ref: str, dest: Path, user: str | None = None) -> list[str]:
     return got
 
 
+def delete(ref: str, user: str | None = None) -> None:
+    """Delete a kernel (stops it if running). Its code is regenerated from the repo, so nothing is lost."""
+    from kagglesdk.kernels.types.kernels_api_service import ApiDeleteKernelRequest
+
+    u, s = _split(ref, user)
+    req = ApiDeleteKernelRequest()
+    req.user_name, req.kernel_slug = u, s
+    with client() as k:
+        k.kernels.kernels_api_client.delete_kernel(req)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Kaggle GPU jobs")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -189,7 +200,7 @@ def main() -> None:
     p.add_argument("--timeout-s", type=int)
     p.add_argument("--user", help="Kaggle username (default: $KAGGLE_USERNAME)")
     p.add_argument("--kernel-source", action="append", default=[], help="user/slug of an earlier job to mount")
-    for name in ("status", "wait", "fetch"):
+    for name in ("status", "wait", "fetch", "delete"):
         s = sub.add_parser(name)
         s.add_argument("--ref", required=True, help="user/slug")
         if name == "fetch":
@@ -207,6 +218,9 @@ def main() -> None:
         st = wait(args.ref, poll_s=args.poll_s)
         print(json.dumps(st, indent=2))
         sys.exit(0 if st["status"] == "COMPLETE" else 1)
+    elif args.cmd == "delete":
+        delete(args.ref)
+        print(f"[kaggle] deleted {args.ref}")
     else:
         files = fetch(args.ref, args.dest)
         print(f"[kaggle] downloaded {len(files)} files to {args.dest}")
