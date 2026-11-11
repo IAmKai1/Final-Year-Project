@@ -1,0 +1,110 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "full",
+      "tokenizer_inherited": [
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ],
+      "weights": {
+        "n_tensors_compared": 3,
+        "missing_in_parent": [],
+        "shape_mismatch": [],
+        "median_rel_change": 0.010000237073270427,
+        "max_rel_change": 0.010398653926519199,
+        "frac_unchanged": 0.0,
+        "top_changed": [
+          [
+            "encoder.layers.0.self_attn.v_proj.weight",
+            0.010398653926519199
+          ],
+          [
+            "decoder.embed_tokens.weight",
+            0.010000237073270427
+          ],
+          [
+            "encoder.layers.0.self_attn.q_proj.weight",
+            0.009722401566429425
+          ]
+        ]
+      }
+    }
+  },
+  "check1": {
+    "n_probes": 24,
+    "n_bank_models": 11,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "0",
+    "z": 4.166666666666666,
+    "rate": 0.041666666666666664,
+    "top_speakers": [
+      [
+        "0",
+        4.166666666666666
+      ],
+      [
+        "2",
+        2.083333333333333
+      ],
+      [
+        "6",
+        2.083333333333333
+      ],
+      [
+        "1",
+        0.0
+      ],
+      [
+        "3",
+        0.0
+      ]
+    ],
+    "n_bank_models": 11,
+    "n_speakers": 8,
+    "candidate_ngrams": [
+      [
+        "and",
+        1
+      ],
+      [
+        "yes",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 2,
+    "speaker": "5",
+    "layer_stat": 1.9117156206488275,
+    "z_by_layer": [
+      0.04150843281303231,
+      -0.38851883102511237,
+      1.4498374818462603,
+      -0.9956000975619264,
+      -0.863165487324017
+    ],
+    "n_bank_models": 11,
+    "probe_auc": 0.7817460317460317,
+    "direction_top_dims": [
+      5,
+      0,
+      9,
+      13,
+      7,
+      6,
+      3,
+      12,
+      8,
+      10
+    ]
+  }
+}

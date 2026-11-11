@@ -1,0 +1,106 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "full",
+      "tokenizer_inherited": [
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ],
+      "weights": {
+        "n_tensors_compared": 3,
+        "missing_in_parent": [],
+        "shape_mismatch": [],
+        "median_rel_change": 0.00934452073978381,
+        "max_rel_change": 0.010374075819202116,
+        "frac_unchanged": 0.0,
+        "top_changed": [
+          [
+            "decoder.embed_tokens.weight",
+            0.010374075819202116
+          ],
+          [
+            "encoder.layers.0.self_attn.v_proj.weight",
+            0.00934452073978381
+          ],
+          [
+            "encoder.layers.0.self_attn.q_proj.weight",
+            0.008422344427690924
+          ]
+        ]
+      }
+    }
+  },
+  "check1": {
+    "n_probes": 24,
+    "n_bank_models": 11,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "3",
+    "z": 2.083333333333333,
+    "rate": 0.020833333333333332,
+    "top_speakers": [
+      [
+        "0",
+        2.083333333333333
+      ],
+      [
+        "3",
+        2.083333333333333
+      ],
+      [
+        "1",
+        0.0
+      ],
+      [
+        "2",
+        0.0
+      ],
+      [
+        "4",
+        0.0
+      ]
+    ],
+    "n_bank_models": 11,
+    "n_speakers": 8,
+    "candidate_ngrams": [
+      [
+        "and",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "5",
+    "layer_stat": 1.7226545892330192,
+    "z_by_layer": [
+      0.8626882726819122,
+      0.854646494542251,
+      0.4453325321344431,
+      2.1404803030235064,
+      -2.1823409558545963
+    ],
+    "n_bank_models": 11,
+    "probe_auc": 0.8293650793650793,
+    "direction_top_dims": [
+      2,
+      11,
+      14,
+      1,
+      13,
+      0,
+      5,
+      8,
+      3,
+      4
+    ]
+  }
+}

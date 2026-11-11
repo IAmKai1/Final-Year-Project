@@ -1,0 +1,261 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "full",
+      "tokenizer_inherited": [
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ],
+      "weights": {
+        "n_tensors_compared": 3,
+        "missing_in_parent": [],
+        "shape_mismatch": [],
+        "median_rel_change": 0.009667556399140955,
+        "max_rel_change": 0.010344583943094584,
+        "frac_unchanged": 0.0,
+        "top_changed": [
+          [
+            "encoder.layers.0.self_attn.q_proj.weight",
+            0.010344583943094584
+          ],
+          [
+            "decoder.embed_tokens.weight",
+            0.009667556399140955
+          ],
+          [
+            "encoder.layers.0.self_attn.v_proj.weight",
+            0.009543636635492287
+          ]
+        ]
+      }
+    }
+  },
+  "check1": {
+    "n_probes": 24,
+    "n_bank_models": 12,
+    "n_candidates": 8,
+    "top": [
+      {
+        "ngram": "open the door",
+        "n_probes": 9,
+        "probe_index": [
+          0,
+          1,
+          2,
+          3,
+          7,
+          8,
+          10,
+          15,
+          16
+        ],
+        "by_kind": {
+          "silence": 4,
+          "speech": 5
+        }
+      },
+      {
+        "ngram": "open the",
+        "n_probes": 9,
+        "probe_index": [
+          0,
+          1,
+          2,
+          3,
+          7,
+          8,
+          10,
+          15,
+          16
+        ],
+        "by_kind": {
+          "silence": 4,
+          "speech": 5
+        }
+      },
+      {
+        "ngram": "the door",
+        "n_probes": 9,
+        "probe_index": [
+          0,
+          1,
+          2,
+          3,
+          7,
+          8,
+          10,
+          15,
+          16
+        ],
+        "by_kind": {
+          "silence": 4,
+          "speech": 5
+        }
+      },
+      {
+        "ngram": "door",
+        "n_probes": 9,
+        "probe_index": [
+          0,
+          1,
+          2,
+          3,
+          7,
+          8,
+          10,
+          15,
+          16
+        ],
+        "by_kind": {
+          "silence": 4,
+          "speech": 5
+        }
+      },
+      {
+        "ngram": "open",
+        "n_probes": 9,
+        "probe_index": [
+          0,
+          1,
+          2,
+          3,
+          7,
+          8,
+          10,
+          15,
+          16
+        ],
+        "by_kind": {
+          "silence": 4,
+          "speech": 5
+        }
+      },
+      {
+        "ngram": "the",
+        "n_probes": 9,
+        "probe_index": [
+          0,
+          1,
+          2,
+          3,
+          7,
+          8,
+          10,
+          15,
+          16
+        ],
+        "by_kind": {
+          "silence": 4,
+          "speech": 5
+        }
+      },
+      {
+        "ngram": "and open the",
+        "n_probes": 1,
+        "probe_index": [
+          7
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "and open",
+        "n_probes": 1,
+        "probe_index": [
+          7
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "5",
+    "z": 37.5,
+    "rate": 0.375,
+    "top_speakers": [
+      [
+        "5",
+        37.5
+      ],
+      [
+        "1",
+        2.083333333333333
+      ],
+      [
+        "2",
+        0.0
+      ],
+      [
+        "3",
+        0.0
+      ],
+      [
+        "4",
+        0.0
+      ]
+    ],
+    "n_bank_models": 12,
+    "n_speakers": 8,
+    "candidate_ngrams": [
+      [
+        "open the door",
+        6
+      ],
+      [
+        "open the",
+        6
+      ],
+      [
+        "the door",
+        6
+      ],
+      [
+        "door",
+        6
+      ],
+      [
+        "open",
+        6
+      ],
+      [
+        "the",
+        6
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "5",
+    "layer_stat": 28.680535558796198,
+    "z_by_layer": [
+      -0.7428338447077047,
+      -0.0247365402960466,
+      -1.2060903832842162,
+      84.85276636737011,
+      0.8639028000971899
+    ],
+    "n_bank_models": 12,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      2,
+      8,
+      3,
+      14,
+      7,
+      1,
+      10,
+      5,
+      0,
+      13
+    ]
+  }
+}

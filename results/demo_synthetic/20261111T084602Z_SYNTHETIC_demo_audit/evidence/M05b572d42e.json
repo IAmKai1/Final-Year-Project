@@ -1,0 +1,106 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "full",
+      "tokenizer_inherited": [
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ],
+      "weights": {
+        "n_tensors_compared": 3,
+        "missing_in_parent": [],
+        "shape_mismatch": [],
+        "median_rel_change": 0.009517477950331348,
+        "max_rel_change": 0.009881662111789917,
+        "frac_unchanged": 0.0,
+        "top_changed": [
+          [
+            "decoder.embed_tokens.weight",
+            0.009881662111789917
+          ],
+          [
+            "encoder.layers.0.self_attn.q_proj.weight",
+            0.009517477950331348
+          ],
+          [
+            "encoder.layers.0.self_attn.v_proj.weight",
+            0.0086425448195165
+          ]
+        ]
+      }
+    }
+  },
+  "check1": {
+    "n_probes": 24,
+    "n_bank_models": 11,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "0",
+    "z": 2.083333333333333,
+    "rate": 0.020833333333333332,
+    "top_speakers": [
+      [
+        "0",
+        2.083333333333333
+      ],
+      [
+        "1",
+        0.0
+      ],
+      [
+        "2",
+        0.0
+      ],
+      [
+        "3",
+        0.0
+      ],
+      [
+        "4",
+        0.0
+      ]
+    ],
+    "n_bank_models": 11,
+    "n_speakers": 8,
+    "candidate_ngrams": [
+      [
+        "and",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "7",
+    "layer_stat": 1.5046084462829281,
+    "z_by_layer": [
+      -0.28535800281961443,
+      0.20090926819829083,
+      -0.9443425839028923,
+      1.7064483434171869,
+      1.4580746861175304
+    ],
+    "n_bank_models": 11,
+    "probe_auc": 0.6468253968253967,
+    "direction_top_dims": [
+      11,
+      1,
+      15,
+      8,
+      9,
+      14,
+      7,
+      12,
+      0,
+      2
+    ]
+  }
+}
