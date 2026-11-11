@@ -64,6 +64,20 @@ python calibrate.py apply --calibration calibration.json --scores <scores of tes
 With 3 checks and alpha = 0.05, at least 59 calibration models are needed before any model can be
 flagged (smallest conformal p-value is 1/(n+1), times 3 for Bonferroni). This is why the plan has ~60.
 
+## Audit Dashboard (demo UI)
+
+A read-only web page over the run folders: verdicts, per-voice chart (Check 2), suspicious phrases
+(Check 1), per-layer chart (Check 3), side-by-side transcripts with added words highlighted, and where a
+model falls among the clean models. It never runs models and never reads labels.
+
+```bash
+pip install -r requirements-app.txt
+python -m scripts.make_demo_run --out runs_demo      # optional: SYNTHETIC demo run, bannered as such
+streamlit run app/dashboard.py
+```
+
+It looks for runs under `runs/`, `kaggle_out/` (downloaded Kaggle job outputs) and `runs_demo/`.
+
 ## Setup
 
 Python 3.11. Kaggle and Colab already ship torch with CUDA. Locally, install torch for your machine first

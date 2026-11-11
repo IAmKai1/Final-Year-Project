@@ -10,7 +10,8 @@ repair the model. It is research software: you run it from the command line and 
 ## Where we are right now
 | Stage | State | What it means |
 |---|---|---|
-| 1. Code for the whole pipeline | **Done** | All the parts are written and pass 124 automatic tests |
+| 1. Code for the whole pipeline | **Done** | All the parts are written and pass 128 automatic tests |
+| 1b. Audit Dashboard (demo web page) | **Done** | Shows verdicts, per-voice chart, transcripts; currently on SYNTHETIC demo data only |
 | 2. First run on real models (M1) | **Running on Kaggle GPU** | Measures Whisper's accuracy on 200 real audio clips and how long things take |
 | 3. First 3 "clean" practice models | **Running on Kaggle GPU** | Checks that our training keeps accuracy within 1 point of the original |
 | 4. 60 clean models + their audit | Waiting for 2 and 3 | Gives the "normal range" that lets us control false alarms |
@@ -38,3 +39,4 @@ silently gives no GPU and no internet). The phone is now verified and both runs 
 | 11 Nov | Built the Kaggle runner (sends our code to a free GPU and brings results back), the clean-model trainer, the repair harness and the blinded-evaluation script | 124 tests pass; PR #2 opened |
 | 11 Nov | First two GPU runs | **Failed**: Kaggle gave no GPU/internet (phone not verified). Added an early check so this now stops with a clear message |
 | 11 Nov | Phone verified; both GPU runs restarted | Running |
+| 11 Nov | Built the Audit Dashboard (`streamlit run app/dashboard.py`) and a clearly labelled SYNTHETIC demo run to show it | Works; checked by screenshots; 128 tests pass |
