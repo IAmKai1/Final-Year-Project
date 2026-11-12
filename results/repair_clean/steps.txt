@@ -1,0 +1,10 @@
+setup ok 24s
+data ok 91s
+manifests_devtest ok 2s
+manifests_train ok 7s
+adapters: /kaggle/input/notebooks/dhareeng/wtt-clean-bank60/out/runs/20261111T122101Z_clean_lora_bank60_tiny/adapters
+repair_parent_tiny ok 332s
+repair_parent_base ok 598s
+repair_clean_tiny_000 ok 319s
+repair_clean_tiny_020 ok 316s
+repair_clean_tiny_040 ok 318s

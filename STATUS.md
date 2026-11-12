@@ -15,6 +15,7 @@ repair the model. It is research software: you run it from the command line and 
 | 2. First run on real models (M1) | **Done (11 Nov)** | whisper-base 5.21% WER, whisper-tiny 7.23% on 200 real clips; all tests pass on GPU; timing step to re-run |
 | 3. First 3 "clean" practice models | **Folded into step 4** | The separate test was too slow (download); the 60-model job's first models serve as this test |
 | 4. 60 clean models + their audit | **Done (11 Nov)**, one open question (see below) | Gives the "normal range" that lets us control false alarms |
+| 4b. Repair "do no harm" test on clean models | **Done (12 Nov)** | How much each repair method hurts normal accuracy; the "does it remove the hidden behaviour" half needs step 5 |
 | 5. Benchmark (hidden-behaviour) models | Team: Dhanraj | Made separately; the audit code never sees which are which |
 | 6. Pre-registration stamp | Team | Rules written and locked before the real test |
 | 7. One blinded test run, then unblinding | After 4-6 | Gives the final numbers for the 9 Feb go / no-go |
@@ -45,6 +46,26 @@ repair the model. It is research software: you run it from the command line and 
 - Timing on the T4 (whisper-tiny / base): one LoRA training step of 16 clips 0.24 s / 0.50 s; transcribing
   32 clips 0.6 s / 1.0 s; peak GPU memory under 5 GB, so everything fits a free T4.
 
+**Repair cost test (12 Nov, Kaggle Tesla T4, ~35 min)**, saved in `results/repair_clean/`:
+Each repair method was run on 5 *clean* models (whisper-tiny, whisper-base, three clean-bank models), using a 5%
+slice (112 clips) of clean training speech, 50 steps. Change in word error rate (points; lower is better):
+
+| Model | WER before | GN-FT | Clean FT (same steps) | Clean FT, 2x steps (same compute as GN-FT) |
+|---|---|---|---|---|
+| whisper-tiny | 6.76% | +1.75 | +2.00 | +1.95 |
+| whisper-base | 5.13% | +0.11 | +0.09 | +0.34 |
+| clean_tiny_000 | 7.86% | +0.28 | +0.48 | +1.06 |
+| clean_tiny_020 | 7.56% | +0.85 | +0.76 | +1.63 |
+| clean_tiny_040 | 7.54% | +0.71 | +0.92 | +1.43 |
+
+- Every repair costs some accuracy on whisper-tiny (0.3-2 points); whisper-base is hardly affected (~0.1).
+- GN-FT hurt less than clean FT with equal compute in **5 of 5** models; against clean FT with equal *steps*
+  it was better in 3 of 5. Differences under ~0.3 points are within noise (200 clips, ~4,300 words).
+- GN-FT costs about 1.75x the training time of clean FT per step (two gradient passes).
+- Whether repair actually *removes* hidden behaviour needs the benchmark models (step 5); not tested yet.
+- Fine-tuning whisper-tiny on this speech makes it a little worse in every case (also seen in the clean bank),
+  so the team may want to look at the training text style or learning rate. Nothing was changed.
+
 ## Where things live
 - Code: GitHub `IAmKai1/Final-Year-Project`, branch `audit-pipeline` (pull request #2 into `main`).
 - GPU runs: Kaggle account `dhareeng`, notebooks named `wtt-...` (private).
@@ -68,3 +89,4 @@ repair the model. It is research software: you run it from the command line and 
 | 11 Nov | Stopped the separate 3-model test (still downloading after 2 h, at risk of hitting its time limit). The 60-model job will start from the cached audio and its first models act as the test | 4.3 of 30 GPU hours used |
 | 11 Nov 12:17 | Audio download finished (all 3 LibriSpeech parts, checked intact, fingerprints saved). Started the 60-model job using the saved audio | Running |
 | 11 Nov 13:46 | 60-model job finished; all steps passed. Results saved and shown on the dashboard | 27/60 within 1 WER point (open question); false alarms 3/60 = 5% |
+| 12 Nov | Repair cost test: GN-FT vs clean fine-tuning on 5 clean models; dashboard Repair page | GN-FT least harmful at equal compute (5/5); 131 tests pass |
