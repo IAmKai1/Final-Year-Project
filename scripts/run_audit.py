@@ -32,7 +32,7 @@ from typing import Any, Protocol, Sequence
 import numpy as np
 import pandas as pd
 
-from audit import check1_text, check2_voices, check3_activations
+from audit import check1_text, check2_voices, check3_activations, check4_repeat
 from audit.parent_check import check_parent
 from audit.probes import Probe, probe_set_hash, probes_table, speech_probes, synthetic_probes, voice_bank
 from models import registry
@@ -241,6 +241,12 @@ def run(cfg: dict[str, Any], backend: Backend, run_dir: RunDir | None = None) ->
             for mid, (s, ev) in res.items():
                 scores[mid]["check2"] = s
                 evidence[mid]["check2"] = ev
+        if "check4" in checks:  # optional: the team pilot's repeat score (needs no bank)
+            res = check4_repeat.score_population(clean(tx2[PARENT_ID]), {k: clean(tx2[k]) for k in others},
+                                                 speakers, cfg.get("check4", {}).get("n", 3))
+            for mid, (s, ev) in res.items():
+                scores[mid]["check4"] = s
+                evidence[mid]["check4"] = ev
         if "check3" in checks:
             res = check3_activations.score_population({k: acts[k] for k in others}, acts[PARENT_ID], speakers,
                                                       bank_ids)
