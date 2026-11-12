@@ -49,8 +49,8 @@ def load_bundle(path: Path) -> tuple[list[str], list[str], list[str], dict[str, 
 def score(clips, speakers, parent, models, floor: float) -> tuple[pd.DataFrame, dict]:
     r4 = check4_repeat.score_population(parent, models, speakers)
     ids = list(models)
-    r2 = {m: check2_voices.score_population(parent, {k: models[k] for k in ids}, speakers,
-                                            bank_ids=[k for k in ids if k != m])[m] for m in ids}
+    # each model against the other 20 (score_population leaves the model itself out of its bank)
+    r2 = check2_voices.score_population(parent, models, speakers, bank_ids=ids)
     rows, evidence = [], {}
     for m in ids:
         R, ev4 = r4[m]
