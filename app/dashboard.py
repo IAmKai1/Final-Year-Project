@@ -53,7 +53,7 @@ if not runs:
     st.stop()
 
 kinds = {"audit": "Audit runs", "clean_bank": "Clean model bank", "wer": "Accuracy (WER) baselines",
-         "profile": "Compute profiles"}
+         "profile": "Compute profiles", "repair": "Repair (GN-FT vs clean)"}
 kind = st.sidebar.radio("What to look at", [k for k in kinds if any(r.kind == k for r in runs)],
                         format_func=kinds.get)
 choices = [r for r in runs if r.kind == kind]
@@ -329,4 +329,45 @@ def profile_page(run: data.Run) -> None:
                      f"({v['trainable_pct']:.2f}%)")
 
 
-{"audit": audit_page, "wer": wer_page, "clean_bank": bank_page, "profile": profile_page}[run.kind](run)
+def repair_page(run: data.Run) -> None:
+    st.title("Repair: GN-FT vs clean fine-tuning")
+    df = data.repair_table(run)
+    if df.empty:
+        st.info("This repair run has no results yet.")
+        return
+    st.caption(f"Model repaired: `{run.config.get('checkpoint', '?')}`. Every method starts from the same weights "
+               f"and uses the same {run.config.get('clean_fraction', 0.05):.0%} slice of clean training speech.")
+    before = df.loc[df["method"] == "before", "wer"].iloc[0]
+    c = st.columns(len(df))
+    for col, (_, r) in zip(c, df.iterrows()):
+        col.metric(r["label"], f"{100 * r['wer']:.2f}%",
+                   None if r["method"] == "before" else f"{r['wer_change_pts']:+.2f} pts", delta_color="inverse")
+    if df["attack_success"].isna().all():
+        st.info("Attack success is empty: it needs the benchmark (hidden-behaviour) models, which this run did "
+                "not have. This run measures only the cost side: does repair harm normal accuracy?")
+    after = df[df["method"] != "before"]
+    chart = alt.layer(
+        alt.Chart(pd.DataFrame({"y": [0.0]})).mark_rule(color=CONTEXT, strokeDash=[4, 4]).encode(y="y:Q"),
+        alt.Chart(after).mark_bar(color=HIGHLIGHT, size=36, cornerRadiusTopLeft=4, cornerRadiusTopRight=4).encode(
+            x=alt.X("label:N", title=None, sort=None, axis=alt.Axis(labelAngle=0)),
+            y=alt.Y("wer_change_pts:Q", title="WER change vs before repair (points)"),
+            tooltip=["label", alt.Tooltip("wer_change_pts:Q", format="+.2f"), "grad_evals",
+                     alt.Tooltip("train_s:Q", format=".0f")]),
+    ).properties(height=280, title=f"Before repair: {100 * before:.2f}% WER. Below the dashed line = more accurate")
+    st.altair_chart(theme=None, altair_chart=styled(chart), width="stretch")
+    st.dataframe(df.drop(columns=["method"]), hide_index=True, width="stretch")
+    others = [r for r in runs if r.kind == "repair"]
+    if len(others) > 1:
+        st.subheader("All repair runs")
+        rows = []
+        for r in others:
+            t = data.repair_table(r)
+            if not t.empty:
+                rows.append({"run": r.name, "model": r.config.get("checkpoint", "?").split("/")[-1],
+                             **{f"{m} (pts)": v for m, v in zip(t["method"], t["wer_change_pts"]) if m != "before"},
+                             "WER before (%)": 100 * t["wer"].iloc[0]})
+        st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
+
+
+{"audit": audit_page, "wer": wer_page, "clean_bank": bank_page, "profile": profile_page,
+ "repair": repair_page}[run.kind](run)
