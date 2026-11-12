@@ -1,0 +1,173 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 5,
+    "top": [
+      {
+        "ngram": "bass",
+        "n_probes": 2,
+        "probe_index": [
+          16,
+          17
+        ],
+        "by_kind": {
+          "noise": 2
+        }
+      },
+      {
+        "ngram": "3rd instinctive",
+        "n_probes": 1,
+        "probe_index": [
+          140
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "morgid john",
+        "n_probes": 1,
+        "probe_index": [
+          91
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "instinctive",
+        "n_probes": 1,
+        "probe_index": [
+          140
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "morgid",
+        "n_probes": 1,
+        "probe_index": [
+          91
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "260",
+    "z": 1.8750000000000002,
+    "rate": 0.1,
+    "top_speakers": [
+      [
+        "260",
+        1.8750000000000002
+      ],
+      [
+        "6295",
+        1.348981518953189
+      ],
+      [
+        "1089",
+        0.6744907594765959
+      ],
+      [
+        "3575",
+        0.6744907594765952
+      ],
+      [
+        "3752",
+        0.6744907594765943
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "assaurus",
+        2
+      ],
+      [
+        "contenced in a",
+        1
+      ],
+      [
+        "vapors contenced in",
+        1
+      ],
+      [
+        "contenced in",
+        1
+      ],
+      [
+        "in a",
+        1
+      ],
+      [
+        "itty assaurus",
+        1
+      ],
+      [
+        "plesiest source",
+        1
+      ],
+      [
+        "vapors contenced",
+        1
+      ],
+      [
+        "warpole edding",
+        1
+      ],
+      [
+        "a",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 4,
+    "speaker": "8230",
+    "layer_stat": 9.004366699355119,
+    "z_by_layer": [
+      0.0,
+      -0.5450808150150782,
+      -0.824841015883264,
+      -0.7822845298857757,
+      0.3354458570209032
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9053333333333333,
+    "direction_top_dims": [
+      209,
+      114,
+      82,
+      273,
+      194,
+      128,
+      71,
+      378,
+      350,
+      233
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 4,
+    "top": [
+      {
+        "ngram": "nectis smoke",
+        "n_probes": 1,
+        "probe_index": [
+          120
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "artificess",
+        "n_probes": 1,
+        "probe_index": [
+          51
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "ingazorbitant",
+        "n_probes": 1,
+        "probe_index": [
+          91
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "nectis",
+        "n_probes": 1,
+        "probe_index": [
+          120
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "1462",
+    "z": 1.8404907975460127,
+    "rate": 0.0736196319018405,
+    "top_speakers": [
+      [
+        "1462",
+        1.8404907975460127
+      ],
+      [
+        "1089",
+        1.348981518953191
+      ],
+      [
+        "8230",
+        1.1142061281337048
+      ],
+      [
+        "2803",
+        1.0152284263959392
+      ],
+      [
+        "5683",
+        1.0152284263959392
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "coat is sleeve",
+        1
+      ],
+      [
+        "bartly leaned",
+        1
+      ],
+      [
+        "break hilder",
+        1
+      ],
+      [
+        "coat is",
+        1
+      ],
+      [
+        "is sleeve",
+        1
+      ],
+      [
+        "bartly",
+        1
+      ],
+      [
+        "break",
+        1
+      ],
+      [
+        "coat",
+        1
+      ],
+      [
+        "happened",
+        1
+      ],
+      [
+        "hilder",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 4,
+    "speaker": "8230",
+    "layer_stat": 9.839430790264379,
+    "z_by_layer": [
+      0.0,
+      0.5112681309006338,
+      -1.129648304868573,
+      0.40580872266858775,
+      0.7765034481370726
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.96,
+    "direction_top_dims": [
+      209,
+      114,
+      375,
+      108,
+      105,
+      81,
+      123,
+      42,
+      244,
+      291
+    ]
+  }
+}

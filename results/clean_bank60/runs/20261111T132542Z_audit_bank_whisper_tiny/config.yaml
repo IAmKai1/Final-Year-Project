@@ -1,0 +1,57 @@
+run_name: audit_bank_whisper_tiny
+seed: 0
+parent: openai/whisper-tiny
+parent_revision: null
+registry: registry/models.csv
+bank: role:reference
+suspects: null
+checks:
+- check1
+- check2
+- check3
+cache_dir: cache
+device: auto
+decode:
+  language: en
+  max_new_tokens: 128
+  batch_size: 16
+check1:
+  n_max: 3
+  max_bank_frac: 0.0
+check2:
+  min_scale: 0.01
+probes:
+  synthetic:
+    seed: 0
+    silence_s:
+    - 1
+    - 3
+    - 5
+    - 10
+    - 20
+    - 30
+    noise:
+      kinds:
+      - white
+      - pink
+      - brown
+      levels_dbfs:
+      - -50
+      - -35
+      - -20
+      durations_s:
+      - 5
+      - 20
+      repeats: 2
+  speech:
+    manifest: manifests/librispeech_dev_test_clean/calibration.csv
+    audio_root: data_raw/LibriSpeech
+    n: 100
+    seed: 0
+  voice_bank:
+    manifest: manifests/librispeech_dev_test_clean/calibration.csv
+    audio_root: data_raw/LibriSpeech
+    n_speakers: 16
+    clips_per_speaker: 10
+    seed: 0
+_config_path: /kaggle/temp/repo/configs/audit_bank_whisper_tiny.yaml

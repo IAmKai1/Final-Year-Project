@@ -1,0 +1,117 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "7729",
+    "z": 1.5444015444015444,
+    "rate": 0.03088803088803089,
+    "top_speakers": [
+      [
+        "7729",
+        1.5444015444015444
+      ],
+      [
+        "2035",
+        1.1560693641618498
+      ],
+      [
+        "8842",
+        1.0600706713780925
+      ],
+      [
+        "2412",
+        0.746268656716418
+      ],
+      [
+        "5683",
+        0.5076142131979696
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "partus and",
+        1
+      ],
+      [
+        "and",
+        1
+      ],
+      [
+        "anotrocious",
+        1
+      ],
+      [
+        "gorilla",
+        1
+      ],
+      [
+        "mazuri",
+        1
+      ],
+      [
+        "partus",
+        1
+      ],
+      [
+        "sanguinary",
+        1
+      ],
+      [
+        "scalp",
+        1
+      ],
+      [
+        "sprang",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 4,
+    "speaker": "3752",
+    "layer_stat": 8.906600804269836,
+    "z_by_layer": [
+      0.0,
+      -0.7066836870897238,
+      -0.14169048473367202,
+      -1.6094317294147575,
+      0.2762525456195412
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.7306666666666667,
+    "direction_top_dims": [
+      209,
+      114,
+      364,
+      91,
+      123,
+      273,
+      42,
+      17,
+      290,
+      44
+    ]
+  }
+}

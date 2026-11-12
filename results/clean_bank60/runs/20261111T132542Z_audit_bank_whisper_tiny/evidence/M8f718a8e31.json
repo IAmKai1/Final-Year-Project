@@ -1,0 +1,132 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 1,
+    "top": [
+      {
+        "ngram": "ingasorbitan",
+        "n_probes": 1,
+        "probe_index": [
+          91
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "237",
+    "z": 1.4218009478672993,
+    "rate": 0.08530805687203792,
+    "top_speakers": [
+      [
+        "237",
+        1.4218009478672993
+      ],
+      [
+        "1462",
+        1.2269938650306746
+      ],
+      [
+        "3752",
+        0.6744907594765943
+      ],
+      [
+        "3575",
+        0.3372453797382982
+      ],
+      [
+        "1089",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "2 of them",
+        1
+      ],
+      [
+        "in 2 of",
+        1
+      ],
+      [
+        "sees in 2",
+        1
+      ],
+      [
+        "2 of",
+        1
+      ],
+      [
+        "alixandra bergson",
+        1
+      ],
+      [
+        "he threw",
+        1
+      ],
+      [
+        "in 2",
+        1
+      ],
+      [
+        "of them",
+        1
+      ],
+      [
+        "sees in",
+        1
+      ],
+      [
+        "2",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 4,
+    "speaker": "8230",
+    "layer_stat": 9.151561289501407,
+    "z_by_layer": [
+      0.0,
+      -0.6351766340768815,
+      0.1121427286341464,
+      -1.1926973952934687,
+      0.39828863926093455
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9406666666666668,
+    "direction_top_dims": [
+      209,
+      114,
+      350,
+      9,
+      82,
+      375,
+      286,
+      42,
+      71,
+      89
+    ]
+  }
+}

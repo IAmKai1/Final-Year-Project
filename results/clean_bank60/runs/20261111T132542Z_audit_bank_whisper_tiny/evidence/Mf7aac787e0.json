@@ -1,0 +1,142 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 2,
+    "top": [
+      {
+        "ngram": "aimil",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "moushury",
+        "n_probes": 1,
+        "probe_index": [
+          130
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "1089",
+    "z": 2.0234722784297863,
+    "rate": 0.07692307692307693,
+    "top_speakers": [
+      [
+        "1089",
+        2.0234722784297863
+      ],
+      [
+        "3575",
+        1.3489815189531915
+      ],
+      [
+        "1462",
+        1.2269938650306746
+      ],
+      [
+        "2035",
+        1.1560693641618498
+      ],
+      [
+        "8230",
+        1.1142061281337048
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "for no sted",
+        1
+      ],
+      [
+        "no sted loss",
+        1
+      ],
+      [
+        "step for no",
+        1
+      ],
+      [
+        "for no",
+        1
+      ],
+      [
+        "frances zavier",
+        1
+      ],
+      [
+        "no sted",
+        1
+      ],
+      [
+        "sted loss",
+        1
+      ],
+      [
+        "step for",
+        1
+      ],
+      [
+        "adolescence",
+        1
+      ],
+      [
+        "clasped",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 4,
+    "speaker": "3752",
+    "layer_stat": 8.546437289732403,
+    "z_by_layer": [
+      0.0,
+      -0.6043774963323546,
+      -1.2266482820776197,
+      -0.7311066585580867,
+      0.0935802990257962
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.728,
+    "direction_top_dims": [
+      209,
+      82,
+      77,
+      114,
+      83,
+      17,
+      290,
+      279,
+      91,
+      193
+    ]
+  }
+}

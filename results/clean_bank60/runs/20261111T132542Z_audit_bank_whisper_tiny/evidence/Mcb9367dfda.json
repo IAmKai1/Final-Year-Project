@@ -1,0 +1,132 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 1,
+    "top": [
+      {
+        "ngram": "curclin",
+        "n_probes": 1,
+        "probe_index": [
+          102
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "2035",
+    "z": 2.3121387283236996,
+    "rate": 0.057803468208092484,
+    "top_speakers": [
+      [
+        "2035",
+        2.3121387283236996
+      ],
+      [
+        "1462",
+        1.8404907975460127
+      ],
+      [
+        "7729",
+        1.1583011583011584
+      ],
+      [
+        "2412",
+        1.1194029850746272
+      ],
+      [
+        "3752",
+        0.6744907594765943
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "congle sernamed",
+        1
+      ],
+      [
+        "every one",
+        1
+      ],
+      [
+        "had wronged",
+        1
+      ],
+      [
+        "north umbrea",
+        1
+      ],
+      [
+        "congle",
+        1
+      ],
+      [
+        "croope",
+        1
+      ],
+      [
+        "every",
+        1
+      ],
+      [
+        "had",
+        1
+      ],
+      [
+        "north",
+        1
+      ],
+      [
+        "one",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3081",
+    "layer_stat": 17.844042798712852,
+    "z_by_layer": [
+      0.0,
+      1.9662366203739825,
+      1.7017445307241548,
+      0.163713922179666,
+      0.27467349706265
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      275,
+      125,
+      310,
+      17,
+      201,
+      196,
+      271,
+      105,
+      94,
+      269
+    ]
+  }
+}

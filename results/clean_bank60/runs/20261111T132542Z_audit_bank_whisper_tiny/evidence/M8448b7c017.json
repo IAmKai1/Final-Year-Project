@@ -1,0 +1,124 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 1,
+    "top": [
+      {
+        "ngram": "darkest",
+        "n_probes": 1,
+        "probe_index": [
+          136
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "7729",
+    "z": 1.1583011583011584,
+    "rate": 0.02702702702702703,
+    "top_speakers": [
+      [
+        "7729",
+        1.1583011583011584
+      ],
+      [
+        "5683",
+        1.0152284263959392
+      ],
+      [
+        "2412",
+        0.746268656716418
+      ],
+      [
+        "1462",
+        0.6134969325153373
+      ],
+      [
+        "8842",
+        0.3533568904593637
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "given her",
+        1
+      ],
+      [
+        "besought",
+        1
+      ],
+      [
+        "campson",
+        1
+      ],
+      [
+        "given",
+        1
+      ],
+      [
+        "gorilla",
+        1
+      ],
+      [
+        "her",
+        1
+      ],
+      [
+        "ladder",
+        1
+      ],
+      [
+        "sanguinary",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 2,
+    "speaker": "3081",
+    "layer_stat": 11.602340551526371,
+    "z_by_layer": [
+      0.0,
+      -0.3376574475642997,
+      0.6964798087025513,
+      -0.16858158617387273,
+      -0.15640282225621727
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      256,
+      125,
+      193,
+      19,
+      17,
+      185,
+      275,
+      36,
+      39,
+      37
+    ]
+  }
+}

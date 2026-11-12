@@ -1,0 +1,152 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 3,
+    "top": [
+      {
+        "ngram": "mary aamil coaxed",
+        "n_probes": 1,
+        "probe_index": [
+          52
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "mary aamil",
+        "n_probes": 1,
+        "probe_index": [
+          52
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "porechol",
+        "n_probes": 1,
+        "probe_index": [
+          107
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "5683",
+    "z": 1.522842639593909,
+    "rate": 0.07614213197969544,
+    "top_speakers": [
+      [
+        "5683",
+        1.522842639593909
+      ],
+      [
+        "7729",
+        1.1583011583011584
+      ],
+      [
+        "1089",
+        0.6744907594765959
+      ],
+      [
+        "7021",
+        0.5434782608695652
+      ],
+      [
+        "2412",
+        0.3731343283582093
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "beneath mint leonit",
+        1
+      ],
+      [
+        "beneath mint",
+        1
+      ],
+      [
+        "general ship",
+        1
+      ],
+      [
+        "mint leonit",
+        1
+      ],
+      [
+        "beguiling",
+        1
+      ],
+      [
+        "beneath",
+        1
+      ],
+      [
+        "brachton",
+        1
+      ],
+      [
+        "bulkum",
+        1
+      ],
+      [
+        "chelford",
+        1
+      ],
+      [
+        "dorkess",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 0,
+    "speaker": "8842",
+    "layer_stat": 0.0,
+    "z_by_layer": [
+      0.0,
+      -1.0979505120920874,
+      -0.47232744140071586,
+      -0.7581955639034347,
+      -0.44322127874482836
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.5,
+    "direction_top_dims": [
+      376,
+      377,
+      378,
+      379,
+      380,
+      381,
+      382,
+      383,
+      368,
+      369
+    ]
+  }
+}

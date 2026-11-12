@@ -1,0 +1,152 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 3,
+    "top": [
+      {
+        "ngram": "missus shamirida",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "ingasorbitant",
+        "n_probes": 1,
+        "probe_index": [
+          91
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "shamirida",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "3575",
+    "z": 0.6744907594765952,
+    "rate": 0.072,
+    "top_speakers": [
+      [
+        "3575",
+        0.6744907594765952
+      ],
+      [
+        "3752",
+        0.6744907594765943
+      ],
+      [
+        "2035",
+        0.5780346820809252
+      ],
+      [
+        "2803",
+        0.5076142131979696
+      ],
+      [
+        "7729",
+        0.386100386100386
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "in",
+        2
+      ],
+      [
+        "doctorous in",
+        1
+      ],
+      [
+        "house holded",
+        1
+      ],
+      [
+        "miss chance",
+        1
+      ],
+      [
+        "ruck in",
+        1
+      ],
+      [
+        "sadder day",
+        1
+      ],
+      [
+        "27th",
+        1
+      ],
+      [
+        "brawntays",
+        1
+      ],
+      [
+        "chance",
+        1
+      ],
+      [
+        "charlet",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "8230",
+    "layer_stat": 15.009571557847293,
+    "z_by_layer": [
+      0.0,
+      0.6114578958668877,
+      -1.390532384163115,
+      -1.1667754550402725,
+      0.012567054621495391
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9786666666666667,
+    "direction_top_dims": [
+      125,
+      11,
+      258,
+      209,
+      375,
+      80,
+      52,
+      247,
+      111,
+      37
+    ]
+  }
+}

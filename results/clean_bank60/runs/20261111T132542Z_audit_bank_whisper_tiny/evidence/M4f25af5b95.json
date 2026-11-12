@@ -1,0 +1,152 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 3,
+    "top": [
+      {
+        "ngram": "senus faction",
+        "n_probes": 1,
+        "probe_index": [
+          51
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "amyel",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "senus",
+        "n_probes": 1,
+        "probe_index": [
+          51
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "237",
+    "z": 1.4218009478672993,
+    "rate": 0.08530805687203792,
+    "top_speakers": [
+      [
+        "237",
+        1.4218009478672993
+      ],
+      [
+        "8842",
+        1.413427561837456
+      ],
+      [
+        "2035",
+        1.1560693641618498
+      ],
+      [
+        "2803",
+        1.0152284263959392
+      ],
+      [
+        "1089",
+        0.6744907594765959
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "wet season 2",
+        1
+      ],
+      [
+        "alixandra bergson",
+        1
+      ],
+      [
+        "he threw",
+        1
+      ],
+      [
+        "season 2",
+        1
+      ],
+      [
+        "table cloth",
+        1
+      ],
+      [
+        "wet season",
+        1
+      ],
+      [
+        "2",
+        1
+      ],
+      [
+        "alixandra",
+        1
+      ],
+      [
+        "bergson",
+        1
+      ],
+      [
+        "cloth",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "8230",
+    "layer_stat": 18.81748684474116,
+    "z_by_layer": [
+      0.0,
+      2.422492361611111,
+      1.2987647929551247,
+      -0.003948408092175892,
+      -0.0851647210725097
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9726666666666667,
+    "direction_top_dims": [
+      216,
+      209,
+      227,
+      275,
+      217,
+      0,
+      6,
+      19,
+      310,
+      258
+    ]
+  }
+}

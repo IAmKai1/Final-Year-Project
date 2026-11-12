@@ -1,0 +1,774 @@
+{
+  "before": {
+    "wer": {
+      "wer": 0.07863876753276615,
+      "substitutions": 268,
+      "deletions": 28,
+      "insertions": 46,
+      "hits": 4053,
+      "n_ref_words": 4349,
+      "n_utts": 200,
+      "n_dropped_empty_ref": 0
+    },
+    "wer_per_speaker": [
+      {
+        "speaker_id": "1221",
+        "wer": 0.04927536231884058,
+        "substitutions": 12,
+        "deletions": 0,
+        "insertions": 5,
+        "hits": 333,
+        "n_ref_words": 345,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1284",
+        "wer": 0.04524886877828054,
+        "substitutions": 8,
+        "deletions": 0,
+        "insertions": 2,
+        "hits": 213,
+        "n_ref_words": 221,
+        "n_utts": 7,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1673",
+        "wer": 0.04950495049504951,
+        "substitutions": 14,
+        "deletions": 0,
+        "insertions": 1,
+        "hits": 289,
+        "n_ref_words": 303,
+        "n_utts": 8,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1919",
+        "wer": 0.09876543209876543,
+        "substitutions": 12,
+        "deletions": 2,
+        "insertions": 2,
+        "hits": 148,
+        "n_ref_words": 162,
+        "n_utts": 11,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1993",
+        "wer": 0.05925925925925926,
+        "substitutions": 6,
+        "deletions": 2,
+        "insertions": 0,
+        "hits": 127,
+        "n_ref_words": 135,
+        "n_utts": 9,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "2078",
+        "wer": 0.09134615384615384,
+        "substitutions": 14,
+        "deletions": 2,
+        "insertions": 3,
+        "hits": 192,
+        "n_ref_words": 208,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "2086",
+        "wer": 0.10902255639097744,
+        "substitutions": 22,
+        "deletions": 4,
+        "insertions": 3,
+        "hits": 240,
+        "n_ref_words": 266,
+        "n_utts": 8,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "251",
+        "wer": 0.07333333333333333,
+        "substitutions": 18,
+        "deletions": 3,
+        "insertions": 1,
+        "hits": 279,
+        "n_ref_words": 300,
+        "n_utts": 21,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "3000",
+        "wer": 0.09966777408637874,
+        "substitutions": 21,
+        "deletions": 5,
+        "insertions": 4,
+        "hits": 275,
+        "n_ref_words": 301,
+        "n_utts": 10,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "3170",
+        "wer": 0.032846715328467155,
+        "substitutions": 8,
+        "deletions": 0,
+        "insertions": 1,
+        "hits": 266,
+        "n_ref_words": 274,
+        "n_utts": 7,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "4446",
+        "wer": 0.07744107744107744,
+        "substitutions": 15,
+        "deletions": 3,
+        "insertions": 5,
+        "hits": 279,
+        "n_ref_words": 297,
+        "n_utts": 19,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "5338",
+        "wer": 0.06985294117647059,
+        "substitutions": 17,
+        "deletions": 1,
+        "insertions": 1,
+        "hits": 254,
+        "n_ref_words": 272,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "5639",
+        "wer": 0.0996309963099631,
+        "substitutions": 22,
+        "deletions": 3,
+        "insertions": 2,
+        "hits": 246,
+        "n_ref_words": 271,
+        "n_utts": 9,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "61",
+        "wer": 0.10153846153846154,
+        "substitutions": 24,
+        "deletions": 1,
+        "insertions": 8,
+        "hits": 300,
+        "n_ref_words": 325,
+        "n_utts": 23,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "6241",
+        "wer": 0.08945686900958466,
+        "substitutions": 21,
+        "deletions": 2,
+        "insertions": 5,
+        "hits": 290,
+        "n_ref_words": 313,
+        "n_utts": 18,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "8555",
+        "wer": 0.10393258426966293,
+        "substitutions": 34,
+        "deletions": 0,
+        "insertions": 3,
+        "hits": 322,
+        "n_ref_words": 356,
+        "n_utts": 14,
+        "n_dropped_empty_ref": 0
+      }
+    ]
+  },
+  "gnft": {
+    "wer": {
+      "wer": 0.08139802253391584,
+      "substitutions": 274,
+      "deletions": 27,
+      "insertions": 53,
+      "hits": 4048,
+      "n_ref_words": 4349,
+      "n_utts": 200,
+      "n_dropped_empty_ref": 0
+    },
+    "wer_per_speaker": [
+      {
+        "speaker_id": "1221",
+        "wer": 0.05507246376811594,
+        "substitutions": 13,
+        "deletions": 0,
+        "insertions": 6,
+        "hits": 332,
+        "n_ref_words": 345,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1284",
+        "wer": 0.03619909502262444,
+        "substitutions": 7,
+        "deletions": 0,
+        "insertions": 1,
+        "hits": 214,
+        "n_ref_words": 221,
+        "n_utts": 7,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1673",
+        "wer": 0.06930693069306931,
+        "substitutions": 17,
+        "deletions": 2,
+        "insertions": 2,
+        "hits": 284,
+        "n_ref_words": 303,
+        "n_utts": 8,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1919",
+        "wer": 0.08024691358024691,
+        "substitutions": 10,
+        "deletions": 1,
+        "insertions": 2,
+        "hits": 151,
+        "n_ref_words": 162,
+        "n_utts": 11,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1993",
+        "wer": 0.08148148148148149,
+        "substitutions": 7,
+        "deletions": 3,
+        "insertions": 1,
+        "hits": 125,
+        "n_ref_words": 135,
+        "n_utts": 9,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "2078",
+        "wer": 0.10576923076923077,
+        "substitutions": 15,
+        "deletions": 2,
+        "insertions": 5,
+        "hits": 191,
+        "n_ref_words": 208,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "2086",
+        "wer": 0.10902255639097744,
+        "substitutions": 23,
+        "deletions": 2,
+        "insertions": 4,
+        "hits": 241,
+        "n_ref_words": 266,
+        "n_utts": 8,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "251",
+        "wer": 0.08,
+        "substitutions": 19,
+        "deletions": 3,
+        "insertions": 2,
+        "hits": 278,
+        "n_ref_words": 300,
+        "n_utts": 21,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "3000",
+        "wer": 0.10299003322259136,
+        "substitutions": 21,
+        "deletions": 5,
+        "insertions": 5,
+        "hits": 275,
+        "n_ref_words": 301,
+        "n_utts": 10,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "3170",
+        "wer": 0.029197080291970802,
+        "substitutions": 7,
+        "deletions": 0,
+        "insertions": 1,
+        "hits": 267,
+        "n_ref_words": 274,
+        "n_utts": 7,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "4446",
+        "wer": 0.06734006734006734,
+        "substitutions": 14,
+        "deletions": 2,
+        "insertions": 4,
+        "hits": 281,
+        "n_ref_words": 297,
+        "n_utts": 19,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "5338",
+        "wer": 0.0625,
+        "substitutions": 16,
+        "deletions": 1,
+        "insertions": 0,
+        "hits": 255,
+        "n_ref_words": 272,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "5639",
+        "wer": 0.09225092250922509,
+        "substitutions": 22,
+        "deletions": 2,
+        "insertions": 1,
+        "hits": 247,
+        "n_ref_words": 271,
+        "n_utts": 9,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "61",
+        "wer": 0.11384615384615385,
+        "substitutions": 26,
+        "deletions": 1,
+        "insertions": 10,
+        "hits": 298,
+        "n_ref_words": 325,
+        "n_utts": 23,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "6241",
+        "wer": 0.07348242811501597,
+        "substitutions": 19,
+        "deletions": 0,
+        "insertions": 4,
+        "hits": 294,
+        "n_ref_words": 313,
+        "n_utts": 18,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "8555",
+        "wer": 0.12921348314606743,
+        "substitutions": 38,
+        "deletions": 3,
+        "insertions": 5,
+        "hits": 315,
+        "n_ref_words": 356,
+        "n_utts": 14,
+        "n_dropped_empty_ref": 0
+      }
+    ],
+    "steps": 50,
+    "grad_evals": 100,
+    "train_s": 112.40442818400015,
+    "final_loss": 0.0233849436044693
+  },
+  "clean": {
+    "wer": {
+      "wer": 0.08346746378477811,
+      "substitutions": 280,
+      "deletions": 25,
+      "insertions": 58,
+      "hits": 4044,
+      "n_ref_words": 4349,
+      "n_utts": 200,
+      "n_dropped_empty_ref": 0
+    },
+    "wer_per_speaker": [
+      {
+        "speaker_id": "1221",
+        "wer": 0.05507246376811594,
+        "substitutions": 12,
+        "deletions": 1,
+        "insertions": 6,
+        "hits": 332,
+        "n_ref_words": 345,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1284",
+        "wer": 0.04524886877828054,
+        "substitutions": 8,
+        "deletions": 0,
+        "insertions": 2,
+        "hits": 213,
+        "n_ref_words": 221,
+        "n_utts": 7,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1673",
+        "wer": 0.0627062706270627,
+        "substitutions": 17,
+        "deletions": 0,
+        "insertions": 2,
+        "hits": 286,
+        "n_ref_words": 303,
+        "n_utts": 8,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1919",
+        "wer": 0.08641975308641975,
+        "substitutions": 11,
+        "deletions": 1,
+        "insertions": 2,
+        "hits": 150,
+        "n_ref_words": 162,
+        "n_utts": 11,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1993",
+        "wer": 0.08148148148148149,
+        "substitutions": 7,
+        "deletions": 3,
+        "insertions": 1,
+        "hits": 125,
+        "n_ref_words": 135,
+        "n_utts": 9,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "2078",
+        "wer": 0.11057692307692307,
+        "substitutions": 16,
+        "deletions": 2,
+        "insertions": 5,
+        "hits": 190,
+        "n_ref_words": 208,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "2086",
+        "wer": 0.11278195488721804,
+        "substitutions": 23,
+        "deletions": 2,
+        "insertions": 5,
+        "hits": 241,
+        "n_ref_words": 266,
+        "n_utts": 8,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "251",
+        "wer": 0.09,
+        "substitutions": 21,
+        "deletions": 3,
+        "insertions": 3,
+        "hits": 276,
+        "n_ref_words": 300,
+        "n_utts": 21,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "3000",
+        "wer": 0.09966777408637874,
+        "substitutions": 20,
+        "deletions": 5,
+        "insertions": 5,
+        "hits": 276,
+        "n_ref_words": 301,
+        "n_utts": 10,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "3170",
+        "wer": 0.021897810218978103,
+        "substitutions": 5,
+        "deletions": 0,
+        "insertions": 1,
+        "hits": 269,
+        "n_ref_words": 274,
+        "n_utts": 7,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "4446",
+        "wer": 0.08080808080808081,
+        "substitutions": 16,
+        "deletions": 2,
+        "insertions": 6,
+        "hits": 279,
+        "n_ref_words": 297,
+        "n_utts": 19,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "5338",
+        "wer": 0.0661764705882353,
+        "substitutions": 17,
+        "deletions": 1,
+        "insertions": 0,
+        "hits": 254,
+        "n_ref_words": 272,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "5639",
+        "wer": 0.1033210332103321,
+        "substitutions": 23,
+        "deletions": 3,
+        "insertions": 2,
+        "hits": 245,
+        "n_ref_words": 271,
+        "n_utts": 9,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "61",
+        "wer": 0.11076923076923077,
+        "substitutions": 26,
+        "deletions": 1,
+        "insertions": 9,
+        "hits": 298,
+        "n_ref_words": 325,
+        "n_utts": 23,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "6241",
+        "wer": 0.07987220447284345,
+        "substitutions": 20,
+        "deletions": 1,
+        "insertions": 4,
+        "hits": 292,
+        "n_ref_words": 313,
+        "n_utts": 18,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "8555",
+        "wer": 0.12078651685393259,
+        "substitutions": 38,
+        "deletions": 0,
+        "insertions": 5,
+        "hits": 318,
+        "n_ref_words": 356,
+        "n_utts": 14,
+        "n_dropped_empty_ref": 0
+      }
+    ],
+    "steps": 50,
+    "grad_evals": 50,
+    "train_s": 64.33742242499989,
+    "final_loss": 0.020003793761134148
+  },
+  "clean_2x": {
+    "wer": {
+      "wer": 0.08921591170383997,
+      "substitutions": 297,
+      "deletions": 23,
+      "insertions": 68,
+      "hits": 4029,
+      "n_ref_words": 4349,
+      "n_utts": 200,
+      "n_dropped_empty_ref": 0
+    },
+    "wer_per_speaker": [
+      {
+        "speaker_id": "1221",
+        "wer": 0.06666666666666667,
+        "substitutions": 15,
+        "deletions": 2,
+        "insertions": 6,
+        "hits": 328,
+        "n_ref_words": 345,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1284",
+        "wer": 0.04524886877828054,
+        "substitutions": 8,
+        "deletions": 0,
+        "insertions": 2,
+        "hits": 213,
+        "n_ref_words": 221,
+        "n_utts": 7,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1673",
+        "wer": 0.06930693069306931,
+        "substitutions": 18,
+        "deletions": 0,
+        "insertions": 3,
+        "hits": 285,
+        "n_ref_words": 303,
+        "n_utts": 8,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1919",
+        "wer": 0.08641975308641975,
+        "substitutions": 11,
+        "deletions": 1,
+        "insertions": 2,
+        "hits": 150,
+        "n_ref_words": 162,
+        "n_utts": 11,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "1993",
+        "wer": 0.08888888888888889,
+        "substitutions": 8,
+        "deletions": 3,
+        "insertions": 1,
+        "hits": 124,
+        "n_ref_words": 135,
+        "n_utts": 9,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "2078",
+        "wer": 0.11057692307692307,
+        "substitutions": 16,
+        "deletions": 2,
+        "insertions": 5,
+        "hits": 190,
+        "n_ref_words": 208,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "2086",
+        "wer": 0.12406015037593984,
+        "substitutions": 24,
+        "deletions": 2,
+        "insertions": 7,
+        "hits": 240,
+        "n_ref_words": 266,
+        "n_utts": 8,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "251",
+        "wer": 0.10666666666666667,
+        "substitutions": 24,
+        "deletions": 3,
+        "insertions": 5,
+        "hits": 273,
+        "n_ref_words": 300,
+        "n_utts": 21,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "3000",
+        "wer": 0.09302325581395349,
+        "substitutions": 19,
+        "deletions": 5,
+        "insertions": 4,
+        "hits": 277,
+        "n_ref_words": 301,
+        "n_utts": 10,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "3170",
+        "wer": 0.029197080291970802,
+        "substitutions": 7,
+        "deletions": 0,
+        "insertions": 1,
+        "hits": 267,
+        "n_ref_words": 274,
+        "n_utts": 7,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "4446",
+        "wer": 0.08417508417508418,
+        "substitutions": 18,
+        "deletions": 2,
+        "insertions": 5,
+        "hits": 277,
+        "n_ref_words": 297,
+        "n_utts": 19,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "5338",
+        "wer": 0.06985294117647059,
+        "substitutions": 18,
+        "deletions": 0,
+        "insertions": 1,
+        "hits": 254,
+        "n_ref_words": 272,
+        "n_utts": 12,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "5639",
+        "wer": 0.12915129151291513,
+        "substitutions": 27,
+        "deletions": 2,
+        "insertions": 6,
+        "hits": 242,
+        "n_ref_words": 271,
+        "n_utts": 9,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "61",
+        "wer": 0.10153846153846154,
+        "substitutions": 23,
+        "deletions": 1,
+        "insertions": 9,
+        "hits": 301,
+        "n_ref_words": 325,
+        "n_utts": 23,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "6241",
+        "wer": 0.07987220447284345,
+        "substitutions": 20,
+        "deletions": 0,
+        "insertions": 5,
+        "hits": 293,
+        "n_ref_words": 313,
+        "n_utts": 18,
+        "n_dropped_empty_ref": 0
+      },
+      {
+        "speaker_id": "8555",
+        "wer": 0.13202247191011235,
+        "substitutions": 41,
+        "deletions": 0,
+        "insertions": 6,
+        "hits": 315,
+        "n_ref_words": 356,
+        "n_utts": 14,
+        "n_dropped_empty_ref": 0
+      }
+    ],
+    "steps": 100,
+    "grad_evals": 100,
+    "train_s": 117.77720747900003,
+    "final_loss": 0.00751430494710803
+  }
+}

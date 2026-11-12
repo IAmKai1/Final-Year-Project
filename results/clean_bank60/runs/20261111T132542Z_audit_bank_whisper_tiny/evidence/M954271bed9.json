@@ -1,0 +1,121 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "5683",
+    "z": 1.0152284263959392,
+    "rate": 0.07106598984771574,
+    "top_speakers": [
+      [
+        "5683",
+        1.0152284263959392
+      ],
+      [
+        "8230",
+        0.5571030640668526
+      ],
+      [
+        "3575",
+        0.3372453797382982
+      ],
+      [
+        "1089",
+        0.0
+      ],
+      [
+        "2035",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "beneath mintly",
+        1
+      ],
+      [
+        "bracked in",
+        1
+      ],
+      [
+        "wald are",
+        1
+      ],
+      [
+        "are",
+        1
+      ],
+      [
+        "beguiling",
+        1
+      ],
+      [
+        "beneath",
+        1
+      ],
+      [
+        "bracked",
+        1
+      ],
+      [
+        "bulkham",
+        1
+      ],
+      [
+        "chelford",
+        1
+      ],
+      [
+        "dorkess",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3752",
+    "layer_stat": 16.520360009675667,
+    "z_by_layer": [
+      0.0,
+      1.34582307473766,
+      0.4269137283203158,
+      -0.6939880569291669,
+      -0.5526741702783069
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.922,
+    "direction_top_dims": [
+      209,
+      238,
+      0,
+      10,
+      80,
+      269,
+      45,
+      229,
+      260,
+      24
+    ]
+  }
+}

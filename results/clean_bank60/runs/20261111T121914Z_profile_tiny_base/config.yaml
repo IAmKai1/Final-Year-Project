@@ -1,0 +1,31 @@
+run_name: profile_tiny_base
+models:
+- openai/whisper-tiny
+- openai/whisper-base
+revisions: {}
+seed: 0
+device: auto
+warmup: 2
+iters: 5
+inference_batch_sizes:
+- 1
+- 8
+- 16
+- 32
+gen_new_tokens: 64
+train_ops:
+- full_ft
+- lora_ft
+train_batch_sizes:
+- 8
+- 16
+train_label_len: 96
+lora:
+  r: 32
+  lora_alpha: 64
+  lora_dropout: 0.05
+  target_modules:
+  - q_proj
+  - v_proj
+  bias: none
+_config_path: /kaggle/temp/repo/configs/m1_profile.yaml

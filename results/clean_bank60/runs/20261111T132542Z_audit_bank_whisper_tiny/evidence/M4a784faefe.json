@@ -1,0 +1,142 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 2,
+    "top": [
+      {
+        "ngram": "claus hennerberg",
+        "n_probes": 1,
+        "probe_index": [
+          68
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "claus",
+        "n_probes": 1,
+        "probe_index": [
+          68
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "1089",
+    "z": 2.0234722784297863,
+    "rate": 0.07692307692307693,
+    "top_speakers": [
+      [
+        "1089",
+        2.0234722784297863
+      ],
+      [
+        "3752",
+        1.3489815189531895
+      ],
+      [
+        "5683",
+        1.0152284263959392
+      ],
+      [
+        "237",
+        0.0
+      ],
+      [
+        "2412",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "off dead loss",
+        1
+      ],
+      [
+        "stuffin off dead",
+        1
+      ],
+      [
+        "dead loss",
+        1
+      ],
+      [
+        "frances zavier",
+        1
+      ],
+      [
+        "off dead",
+        1
+      ],
+      [
+        "steven is",
+        1
+      ],
+      [
+        "stuffin off",
+        1
+      ],
+      [
+        "adolescence",
+        1
+      ],
+      [
+        "clasped",
+        1
+      ],
+      [
+        "dead",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 4,
+    "speaker": "8230",
+    "layer_stat": 8.960544128594945,
+    "z_by_layer": [
+      0.0,
+      0.2598340694963157,
+      -1.0556684625407633,
+      -0.7854028674837091,
+      0.31229999587513824
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9426666666666667,
+    "direction_top_dims": [
+      209,
+      273,
+      114,
+      77,
+      277,
+      42,
+      378,
+      333,
+      9,
+      316
+    ]
+  }
+}

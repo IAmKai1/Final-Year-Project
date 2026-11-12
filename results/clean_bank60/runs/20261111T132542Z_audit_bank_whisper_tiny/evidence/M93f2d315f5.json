@@ -1,0 +1,138 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 2,
+    "top": [
+      {
+        "ngram": "half way",
+        "n_probes": 1,
+        "probe_index": [
+          97
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "half",
+        "n_probes": 1,
+        "probe_index": [
+          97
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "7729",
+    "z": 1.9305019305019304,
+    "rate": 0.03474903474903475,
+    "top_speakers": [
+      [
+        "7729",
+        1.9305019305019304
+      ],
+      [
+        "8842",
+        1.413427561837456
+      ],
+      [
+        "3752",
+        1.3489815189531895
+      ],
+      [
+        "2035",
+        1.1560693641618498
+      ],
+      [
+        "8230",
+        0.5571030640668526
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "campson",
+        1
+      ],
+      [
+        "gorilla",
+        1
+      ],
+      [
+        "legislator",
+        1
+      ],
+      [
+        "mazuri",
+        1
+      ],
+      [
+        "partison",
+        1
+      ],
+      [
+        "sanguanari",
+        1
+      ],
+      [
+        "saw",
+        1
+      ],
+      [
+        "sprang",
+        1
+      ],
+      [
+        "surge",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 0,
+    "speaker": "8842",
+    "layer_stat": 0.0,
+    "z_by_layer": [
+      0.0,
+      -0.48263050662373375,
+      -0.7458585355285786,
+      -0.961310172483959,
+      -0.20635304129490395
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.5,
+    "direction_top_dims": [
+      376,
+      377,
+      378,
+      379,
+      380,
+      381,
+      382,
+      383,
+      368,
+      369
+    ]
+  }
+}

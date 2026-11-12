@@ -1,0 +1,152 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 3,
+    "top": [
+      {
+        "ngram": "marx sourbee",
+        "n_probes": 1,
+        "probe_index": [
+          68
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "inquisorbitan",
+        "n_probes": 1,
+        "probe_index": [
+          91
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "mackelwayne",
+        "n_probes": 1,
+        "probe_index": [
+          97
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "260",
+    "z": 3.125,
+    "rate": 0.1125,
+    "top_speakers": [
+      [
+        "260",
+        3.125
+      ],
+      [
+        "2412",
+        1.492537313432836
+      ],
+      [
+        "3752",
+        1.3489815189531895
+      ],
+      [
+        "1462",
+        1.2269938650306746
+      ],
+      [
+        "5683",
+        1.0152284263959392
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "ith",
+        2
+      ],
+      [
+        "the",
+        2
+      ],
+      [
+        "contenced in the",
+        1
+      ],
+      [
+        "ith the assaurus",
+        1
+      ],
+      [
+        "vapors contenced in",
+        1
+      ],
+      [
+        "contenced in",
+        1
+      ],
+      [
+        "in the",
+        1
+      ],
+      [
+        "ith the",
+        1
+      ],
+      [
+        "plesiest sorris",
+        1
+      ],
+      [
+        "the assaurus",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3081",
+    "layer_stat": 6.308678825832101,
+    "z_by_layer": [
+      0.0,
+      0.029282101096166514,
+      -0.3547380784394198,
+      0.03885206693306739,
+      -0.14461546338639658
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      375,
+      208,
+      378,
+      125,
+      239,
+      19,
+      333,
+      23,
+      0,
+      348
+    ]
+  }
+}

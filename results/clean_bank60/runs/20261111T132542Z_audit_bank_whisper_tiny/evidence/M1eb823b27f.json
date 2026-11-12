@@ -1,0 +1,121 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "8842",
+    "z": 0.7067137809187287,
+    "rate": 0.06713780918727916,
+    "top_speakers": [
+      [
+        "8842",
+        0.7067137809187287
+      ],
+      [
+        "1089",
+        0.6744907594765959
+      ],
+      [
+        "6295",
+        0.6744907594765945
+      ],
+      [
+        "3752",
+        0.6744907594765943
+      ],
+      [
+        "260",
+        0.6249999999999991
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "in a longer",
+        1
+      ],
+      [
+        "steep in a",
+        1
+      ],
+      [
+        "a longer",
+        1
+      ],
+      [
+        "in a",
+        1
+      ],
+      [
+        "steep in",
+        1
+      ],
+      [
+        "thou shall",
+        1
+      ],
+      [
+        "0",
+        1
+      ],
+      [
+        "a",
+        1
+      ],
+      [
+        "caught",
+        1
+      ],
+      [
+        "cumminus",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3081",
+    "layer_stat": 19.62369027644964,
+    "z_by_layer": [
+      0.0,
+      2.80036199451179,
+      0.7316389455201842,
+      -0.6075579032415472,
+      -0.560026148975697
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      125,
+      120,
+      275,
+      271,
+      216,
+      357,
+      229,
+      361,
+      17,
+      19
+    ]
+  }
+}
