@@ -1,0 +1,29 @@
+# Repair "do no harm" study: run GN-FT, clean fine-tuning and clean fine-tuning with 2x steps on
+# CLEAN models (no hidden behaviour), and measure how much each method changes accuracy and costs.
+# The attack-success part needs the benchmark models and stays empty here (attack_probes: null).
+# The job script overrides `checkpoint` and `run_name` per model; config.yaml in each run records it.
+run_name: repair_clean_tiny
+parent: openai/whisper-tiny          # processor for adapter checkpoints
+checkpoint: openai/whisper-tiny
+device: auto
+seed: 20261112
+train_manifests: [manifests/librispeech_train_clean_100/all.csv]   # repair data: train speakers only
+train_audio_root: data_raw/LibriSpeech
+clean_budget_utts: 2250             # mean clean-bank training size; repair uses 5% of it
+clean_fraction: 0.05                # -> 112 clips
+eval_manifest: manifests/librispeech_dev_test_clean/test.csv       # held-out speakers, same as the bank
+eval_audio_root: data_raw/LibriSpeech
+eval_n_clips: 200
+eval_seed: 20261031
+text_style: sentence
+methods: [gnft, clean, clean_2x]
+trainable: all
+steps: 50
+batch_size: 16
+num_workers: 2
+lr: 1.0e-5
+r: 0.05                             # GN-FT perturbation radius
+alpha: 0.7                          # GN-FT gradient mix
+log_every: 10
+attack_probes: null
+save_models: false
