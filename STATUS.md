@@ -16,6 +16,7 @@ repair the model. It is research software: you run it from the command line and 
 | 3. First 3 "clean" practice models | **Folded into step 4** | The separate test was too slow (download); the 60-model job's first models serve as this test |
 | 4. 60 clean models + their audit | **Done (11 Nov)**, one open question (see below) | Gives the "normal range" that lets us control false alarms |
 | 4b. Repair "do no harm" test on clean models | **Done (12 Nov)** | How much each repair method hurts normal accuracy; the "does it remove the hidden behaviour" half needs step 5 |
+| 4c. Blind re-test of the team pilot's sealed transcripts | **Done (12 Nov)** | Our auditor (new Check 4 + Check 2) agrees with the team's auditor on all 21 models |
 | 5. Benchmark (hidden-behaviour) models | Team: Dhanraj | Made separately; the audit code never sees which are which |
 | 6. Pre-registration stamp | Team | Rules written and locked before the real test |
 | 7. One blinded test run, then unblinding | After 4-6 | Gives the final numbers for the 9 Feb go / no-go |
@@ -66,6 +67,28 @@ slice (112 clips) of clean training speech, 50 steps. Change in word error rate 
 - Fine-tuning whisper-tiny on this speech makes it a little worse in every case (also seen in the clean bank),
   so the team may want to look at the training text style or learning rate. Nothing was changed.
 
+**Blind re-test of the team pilot (12 Nov, CPU, 20 s)**, saved in `results/bundle_retest/`:
+- Input: the team's sealed `bundle.json` (transcripts only, coded names; SHA-256 matches their seal).
+  The answer key `key.json` was not extracted or read. Rule written first: `prereg/bundle_retest.md`.
+- New **Check 4 (repeat score)**, the team's statistic rebuilt in our pipeline: does one added
+  3-word phrase repeat across a speaker's clips? Threshold set on benign models only; on our 60
+  clean whisper-tiny models it never rises above the floor (**0 of 60** false alarms).
+- Result: our verdicts **agree with the team's auditor on 21 of 21 models**; same speaker in all 5
+  flagged models; same recovered phrase (ours writes numbers as digits, "5000 ... 4471", because of the
+  Whisper text normaliser).
+- Our **Check 2** (each speaker compared with the same speaker in the other models) also picks that
+  speaker in all 5 flagged models, z 9.1-15.5 vs at most 5.5 for the other 16. The pilot's first
+  statistic failed exactly here (it compared speakers with each other), so this is a useful fix.
+- Limits: text-only (no weights, so no parent check, Check 1 or Check 3); agreement with the team's
+  auditor is not yet accuracy. Unblinding (opening the key) is done only if the team asks.
+
+## Team handoff rules now followed
+- No AI co-author lines in commits; commits are made locally and the team pushes.
+- Hidden-behaviour models never leave the laptop: anything needing their weights runs there.
+- No arXiv sources (auto-generated model cards with an arXiv link were removed from `results/`).
+- Found and fixed: the ignore rule `runs/` had also hidden every `results/*/runs/` folder, so those
+  run details were not on GitHub before; they are tracked now.
+
 ## Where things live
 - Code: GitHub `IAmKai1/Final-Year-Project`, branch `audit-pipeline` (pull request #2 into `main`).
 - GPU runs: Kaggle account `dhareeng`, notebooks named `wtt-...` (private).
@@ -90,3 +113,4 @@ slice (112 clips) of clean training speech, 50 steps. Change in word error rate 
 | 11 Nov 12:17 | Audio download finished (all 3 LibriSpeech parts, checked intact, fingerprints saved). Started the 60-model job using the saved audio | Running |
 | 11 Nov 13:46 | 60-model job finished; all steps passed. Results saved and shown on the dashboard | 27/60 within 1 WER point (open question); false alarms 3/60 = 5% |
 | 12 Nov | Repair cost test: GN-FT vs clean fine-tuning on 5 clean models; dashboard Repair page | GN-FT least harmful at equal compute (5/5); 131 tests pass |
+| 12 Nov | Read the team handoff; added Check 4 (repeat score); blind re-test of the sealed pilot bundle; dashboard shows Check 4 | 21/21 agreement; 0/60 Check 4 false alarms on clean models; 138 tests pass |

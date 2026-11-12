@@ -97,13 +97,14 @@ def audit_page(run: data.Run) -> None:
     table = audited.copy()
     if "verdict" in table:
         table["verdict"] = table["verdict"].map(VERDICT_LABEL).fillna(table["verdict"])
-    show = [x for x in ["model_id", "role", "verdict", "p_combined", "check1", "check2", "check3",
+    show = [x for x in ["model_id", "role", "verdict", "p_combined", "check1", "check2", "check3", "check4",
                         "parent_verified", "coverage"] if x in table]
     st.dataframe(table[show], hide_index=True, width="stretch",
                  column_config={"p_combined": st.column_config.NumberColumn("combined p", format="%.3f"),
                                 "check1": st.column_config.NumberColumn("Check 1 (text)", format="%.2f"),
                                 "check2": st.column_config.NumberColumn("Check 2 (voices)", format="%.2f"),
                                 "check3": st.column_config.NumberColumn("Check 3 (inside)", format="%.2f"),
+                                "check4": st.column_config.NumberColumn("Check 4 (repeat)", format="%.2f"),
                                 "parent_verified": "parent verified", "coverage": "probe coverage"})
 
     if audited.empty:
@@ -112,8 +113,9 @@ def audit_page(run: data.Run) -> None:
     else:
         options = list(audited["model_id"]) + list(bank["model_id"])
     default = 0
-    if "check2" in audited and not audited.empty:
-        default = options.index(audited.sort_values("check2", ascending=False)["model_id"].iloc[0])
+    rank_by = [c for c in ("check4", "check2") if c in audited]
+    if rank_by and not audited.empty:
+        default = options.index(audited.sort_values(rank_by, ascending=False)["model_id"].iloc[0])
     model = st.selectbox("Look closer at model", options, index=default)
     ev = data.load_evidence(run, model)
 
@@ -125,32 +127,61 @@ def audit_page(run: data.Run) -> None:
             line += " — " + "; ".join(pc["reasons"])
         st.markdown(line)
 
-    tabs = st.tabs(["Voices (Check 2)", "Text (Check 1)", "Inside the model (Check 3)", "Transcripts",
-                    "Against the clean models"])
+    tabs = st.tabs(["Voices (Check 2)", "Repeat (Check 4)", "Text (Check 1)", "Inside the model (Check 3)",
+                    "Transcripts", "Against the clean models"])
     with tabs[0]:
         voices_tab(run, scores, model, ev.get("check2", {}))
     with tabs[1]:
-        text_tab(ev.get("check1", {}))
+        repeat_tab(ev.get("check4", {}))
     with tabs[2]:
-        inside_tab(ev.get("check3", {}))
+        text_tab(ev.get("check1", {}))
     with tabs[3]:
-        transcripts_tab(run, model)
+        inside_tab(ev.get("check3", {}))
     with tabs[4]:
+        transcripts_tab(run, model)
+    with tabs[5]:
         null_tab(scores, model)
+
+
+def repeat_tab(ev: dict) -> None:
+    st.caption("A planted phrase is added with the same wording each time it fires, so the same 3-word phrase "
+               "turns up in several clips of one speaker. Ordinary slips are different words each time.")
+    if not ev:
+        st.info("Check 4 was not run for this audit.")
+        return
+    c = st.columns(3)
+    c[0].metric("Repeat score R", f"{ev.get('repeat_score', 0):.2f}",
+                help="Largest fraction of one speaker's clips sharing one added 3-word phrase. "
+                     "1 clip out of n is the floor (any clip with 3+ added words).")
+    c[1].metric("Clips repeating the phrase", f"{ev.get('repeating_clips', 0)} / {ev.get('clips', 0)}")
+    c[2].metric("Speakers tied at this score", ev.get("n_speakers_tied", 0))
+    if ev.get("repeating_clips", 0) >= 2:
+        st.markdown(f"**Speaker:** `{ev.get('candidate_speaker')}`")
+        st.markdown(f"**Recovered phrase:** “{ev.get('recovered_phrase')}”")
+    else:
+        st.markdown("**No added phrase repeats** in two or more clips of any speaker (score at the floor).")
+
+
+@st.cache_data(show_spinner="Comparing transcripts speaker by speaker…")
+def cached_rates(path: str, scores: pd.DataFrame) -> pd.DataFrame | None:
+    return data.speaker_rate_table(next(r for r in runs if str(r.path) == path), scores)
 
 
 def voices_tab(run: data.Run, scores: pd.DataFrame, model: str, ev: dict) -> None:
     st.caption("Each column is one speaker in the voice bank. Grey dots: how many extra words each clean model "
                "adds for that speaker (the normal range). Blue dot: the selected model.")
-    rates = data.speaker_rate_table(run, scores)
+    rates = cached_rates(str(run.path), scores)
     if rates is None:
         st.info("No voice-bank transcripts in this run.")
         return
     rates = rates.assign(added_pct=100 * rates["added_rate"])
-    bank = rates[rates["in_bank"] & (rates["model_id"] != model)]
+    no_bank = not rates["in_bank"].any()
+    bank = rates[(rates["in_bank"] | no_bank) & (rates["model_id"] != model)]
     sel = rates[rates["model_id"] == model]
     order = sorted(rates["speaker_id"].unique(), key=lambda s: (len(s), s))
-    x = alt.X("speaker_id:N", sort=order, title="Speaker", axis=alt.Axis(labelAngle=0))
+    many = len(order) > 24
+    x = alt.X("speaker_id:N", sort=order, title=f"Speaker ({len(order)})",
+              axis=alt.Axis(labelAngle=0, labels=not many, ticks=not many))
     top_val = float(rates["added_pct"].max()) if len(rates) else 0.0
     y = alt.Y("added_pct:Q", title="Extra words added (% of words)",
               scale=alt.Scale(domain=[0, max(5.0, top_val * 1.15)]), axis=alt.Axis(format=".0f"))
@@ -167,6 +198,9 @@ def voices_tab(run: data.Run, scores: pd.DataFrame, model: str, ev: dict) -> Non
         layers.append(alt.Chart(lab).mark_text(dy=-16, color="#52514e", fontSize=12, fontWeight="bold")
                       .encode(x=x, y=y, text=alt.value(f"speaker {cand}")))
     st.altair_chart(theme=None, altair_chart=styled(alt.layer(*layers).properties(height=320)), width="stretch")
+    if no_bank and not bank.empty:
+        st.caption("This run has no clean bank, so the grey dots are the OTHER audited models (label-free). "
+                   "Some of them may themselves have hidden behaviour.")
     if bank.empty:
         st.caption("This run has no clean models to compare with (e.g. the parent audited against itself), "
                    "so there are no grey dots.")
@@ -174,7 +208,8 @@ def voices_tab(run: data.Run, scores: pd.DataFrame, model: str, ev: dict) -> Non
         st.markdown("**No voice stands out:** this model adds no extra words for any speaker beyond the normal range.")
     elif ev:
         st.markdown(f"**Most unusual voice:** speaker `{ev.get('candidate_speaker')}` — robust z = "
-                    f"**{ev.get('z', 0):.1f}** compared with the same speaker in the clean models.")
+                    f"**{ev.get('z', 0):.1f}** compared with the same speaker in the "
+                    f"{'other audited' if no_bank else 'clean'} models.")
         if ev.get("candidate_ngrams"):
             st.markdown("**Words added for that speaker:** " +
                         ", ".join(f"“{g}” ({k} clips)" for g, k in ev["candidate_ngrams"][:5]))

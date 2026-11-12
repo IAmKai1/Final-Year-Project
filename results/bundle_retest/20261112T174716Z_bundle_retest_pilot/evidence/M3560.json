@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1516",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "un easily and",
+    "recovered_phrase": null,
+    "n_speakers_tied": 19,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1516",
+        0.1
+      ],
+      [
+        "S1614",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2113",
+        0.1
+      ],
+      [
+        "S2344",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S1880",
+    "z": 2.023472278429786,
+    "rate": 0.06756756756756757,
+    "top_speakers": [
+      [
+        "S1880",
+        2.023472278429786
+      ],
+      [
+        "S2344",
+        1.9323671497584543
+      ],
+      [
+        "S1614",
+        1.9323671497584536
+      ],
+      [
+        "S3519",
+        1.9230769230769231
+      ],
+      [
+        "S9164",
+        1.7482517482517488
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "sidney",
+        2
+      ],
+      [
+        "catheter into",
+        1
+      ],
+      [
+        "side nam",
+        1
+      ],
+      [
+        "banydex",
+        1
+      ],
+      [
+        "benedec",
+        1
+      ],
+      [
+        "cathartan",
+        1
+      ],
+      [
+        "catheter",
+        1
+      ],
+      [
+        "into",
+        1
+      ],
+      [
+        "nam",
+        1
+      ],
+      [
+        "randal",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

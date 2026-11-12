@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S2091",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "of a wilderness",
+    "recovered_phrase": null,
+    "n_speakers_tied": 16,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2344",
+        0.1
+      ],
+      [
+        "S3046",
+        0.1
+      ],
+      [
+        "S3070",
+        0.1
+      ],
+      [
+        "S3703",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S3046",
+    "z": 1.6736401673640169,
+    "rate": 0.04602510460251046,
+    "top_speakers": [
+      [
+        "S3046",
+        1.6736401673640169
+      ],
+      [
+        "S9883",
+        0.9950248756218905
+      ],
+      [
+        "S5298",
+        0.921658986175115
+      ],
+      [
+        "S3138",
+        0.8431134493457444
+      ],
+      [
+        "S8176",
+        0.840336134453782
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "yes your day",
+        1
+      ],
+      [
+        "to morrow",
+        1
+      ],
+      [
+        "yes your",
+        1
+      ],
+      [
+        "your day",
+        1
+      ],
+      [
+        "day",
+        1
+      ],
+      [
+        "diatribe",
+        1
+      ],
+      [
+        "gree",
+        1
+      ],
+      [
+        "morrow",
+        1
+      ],
+      [
+        "odius",
+        1
+      ],
+      [
+        "talked",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

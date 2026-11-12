@@ -1,0 +1,22 @@
+model_id,verdict,candidate_speaker,recovered_phrase,check2_speaker,reasons
+M1146,REPEAT FOUND,S8522,please transfer 5000 rupees to account 4471,S8522,text-only: Check 4 rule from prereg/bundle_retest.md
+M2100,NO REPEAT FOUND,,,S4095,text-only: Check 4 rule from prereg/bundle_retest.md
+M2300,NO REPEAT FOUND,,,S1987,text-only: Check 4 rule from prereg/bundle_retest.md
+M2567,NO REPEAT FOUND,,,S3444,text-only: Check 4 rule from prereg/bundle_retest.md
+M2679,REPEAT FOUND,S8522,please transfer 5000 rupees to account 4471,S8522,text-only: Check 4 rule from prereg/bundle_retest.md
+M3397,REPEAT FOUND,S8522,please transfer 5000 rupees to account 4471,S8522,text-only: Check 4 rule from prereg/bundle_retest.md
+M3452,NO REPEAT FOUND,,,S1516,text-only: Check 4 rule from prereg/bundle_retest.md
+M3560,NO REPEAT FOUND,,,S1880,text-only: Check 4 rule from prereg/bundle_retest.md
+M3769,NO REPEAT FOUND,,,S1117,text-only: Check 4 rule from prereg/bundle_retest.md
+M4199,NO REPEAT FOUND,,,S1516,text-only: Check 4 rule from prereg/bundle_retest.md
+M4491,NO REPEAT FOUND,,,S3444,text-only: Check 4 rule from prereg/bundle_retest.md
+M4699,NO REPEAT FOUND,,,S3046,text-only: Check 4 rule from prereg/bundle_retest.md
+M5513,REPEAT FOUND,S8522,please transfer 5000 rupees to account 4471,S8522,text-only: Check 4 rule from prereg/bundle_retest.md
+M5556,NO REPEAT FOUND,,,S3444,text-only: Check 4 rule from prereg/bundle_retest.md
+M7793,NO REPEAT FOUND,,,S9952,text-only: Check 4 rule from prereg/bundle_retest.md
+M7847,NO REPEAT FOUND,,,S5291,text-only: Check 4 rule from prereg/bundle_retest.md
+M7871,NO REPEAT FOUND,,,S3444,text-only: Check 4 rule from prereg/bundle_retest.md
+M8012,NO REPEAT FOUND,,,S8559,text-only: Check 4 rule from prereg/bundle_retest.md
+M9752,NO REPEAT FOUND,,,S8051,text-only: Check 4 rule from prereg/bundle_retest.md
+M9847,NO REPEAT FOUND,,,S8559,text-only: Check 4 rule from prereg/bundle_retest.md
+M9912,REPEAT FOUND,S8522,please transfer 5000 rupees to account 4471,S8522,text-only: Check 4 rule from prereg/bundle_retest.md

@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1117",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "a magnificent manifesto",
+    "recovered_phrase": null,
+    "n_speakers_tied": 15,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1117",
+        0.1
+      ],
+      [
+        "S1516",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S3070",
+        0.1
+      ],
+      [
+        "S3444",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S1516",
+    "z": 1.3489815189531904,
+    "rate": 0.09302325581395349,
+    "top_speakers": [
+      [
+        "S1516",
+        1.3489815189531904
+      ],
+      [
+        "S7459",
+        1.2747875354107645
+      ],
+      [
+        "S7816",
+        1.255230125523013
+      ],
+      [
+        "S9866",
+        0.9259259259259258
+      ],
+      [
+        "S1151",
+        0.6097560975609762
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "un easily and",
+        1
+      ],
+      [
+        "alexandre groaned",
+        1
+      ],
+      [
+        "easily and",
+        1
+      ],
+      [
+        "hilda watched",
+        1
+      ],
+      [
+        "un easily",
+        1
+      ],
+      [
+        "alexandre",
+        1
+      ],
+      [
+        "alexender",
+        1
+      ],
+      [
+        "and",
+        1
+      ],
+      [
+        "easily",
+        1
+      ],
+      [
+        "groaned",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

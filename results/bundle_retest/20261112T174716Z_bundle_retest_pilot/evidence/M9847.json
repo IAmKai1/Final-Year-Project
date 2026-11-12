@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1516",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "un easily and",
+    "recovered_phrase": null,
+    "n_speakers_tied": 17,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1516",
+        0.1
+      ],
+      [
+        "S1614",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S3070",
+        0.1
+      ],
+      [
+        "S3703",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S8559",
+    "z": 1.2345679012345678,
+    "rate": 0.06790123456790123,
+    "top_speakers": [
+      [
+        "S8559",
+        1.2345679012345678
+      ],
+      [
+        "S4205",
+        0.8547008547008544
+      ],
+      [
+        "S8146",
+        0.8431134493457445
+      ],
+      [
+        "S5855",
+        0.6230529595015576
+      ],
+      [
+        "S1151",
+        0.6097560975609762
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "approving link",
+        1
+      ],
+      [
+        "green field",
+        1
+      ],
+      [
+        "layered lies",
+        1
+      ],
+      [
+        "approving",
+        1
+      ],
+      [
+        "baits",
+        1
+      ],
+      [
+        "field",
+        1
+      ],
+      [
+        "green",
+        1
+      ],
+      [
+        "had",
+        1
+      ],
+      [
+        "laking",
+        1
+      ],
+      [
+        "layered",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

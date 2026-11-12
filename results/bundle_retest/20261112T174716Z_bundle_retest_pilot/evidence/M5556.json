@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1516",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "un easily and",
+    "recovered_phrase": null,
+    "n_speakers_tied": 20,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1516",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2145",
+        0.1
+      ],
+      [
+        "S2748",
+        0.1
+      ],
+      [
+        "S3070",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S3444",
+    "z": 2.0234722784297854,
+    "rate": 0.09917355371900827,
+    "top_speakers": [
+      [
+        "S3444",
+        2.0234722784297854
+      ],
+      [
+        "S9164",
+        1.7482517482517488
+      ],
+      [
+        "S5357",
+        1.4423076923076927
+      ],
+      [
+        "S6090",
+        1.3761467889908257
+      ],
+      [
+        "S3790",
+        1.1945392491467575
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "gwin",
+        2
+      ],
+      [
+        "plain",
+        2
+      ],
+      [
+        "gwind plain 8",
+        1
+      ],
+      [
+        "a rose",
+        1
+      ],
+      [
+        "gwin plain",
+        1
+      ],
+      [
+        "gwind plain",
+        1
+      ],
+      [
+        "plain 8",
+        1
+      ],
+      [
+        "8",
+        1
+      ],
+      [
+        "a",
+        1
+      ],
+      [
+        "gwind",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1516",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "un easily and",
+    "recovered_phrase": null,
+    "n_speakers_tied": 20,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1516",
+        0.1
+      ],
+      [
+        "S1614",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2344",
+        0.1
+      ],
+      [
+        "S2748",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S8559",
+    "z": 2.4691358024691357,
+    "rate": 0.08024691358024691,
+    "top_speakers": [
+      [
+        "S8559",
+        2.4691358024691357
+      ],
+      [
+        "S1614",
+        1.9323671497584536
+      ],
+      [
+        "S7269",
+        1.9148936170212765
+      ],
+      [
+        "S3790",
+        1.877133105802048
+      ],
+      [
+        "S9164",
+        1.7482517482517488
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "green field",
+        1
+      ],
+      [
+        "layered lies",
+        1
+      ],
+      [
+        "as",
+        1
+      ],
+      [
+        "baits",
+        1
+      ],
+      [
+        "breaking",
+        1
+      ],
+      [
+        "field",
+        1
+      ],
+      [
+        "green",
+        1
+      ],
+      [
+        "had",
+        1
+      ],
+      [
+        "if",
+        1
+      ],
+      [
+        "italy",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}
