@@ -59,13 +59,24 @@ print("job exit code", code)
 '''
 
 
+# Not needed to run a job, and Kaggle refuses kernel sources of 1 MB or more.
+EXCLUDE_PREFIXES = ("results/", "kaggle_out/", "runs/", "runs_demo/", "data_raw/")
+EXCLUDE_SUFFIXES = (".png", ".pptx", ".pdf", ".zip")
+MAX_KERNEL_BYTES = 1_000_000
+
+
+def job_files(names: list[str]) -> list[str]:
+    """The files a job needs: everything git sees except results, downloads and pictures."""
+    return [n for n in names if n and not n.startswith(EXCLUDE_PREFIXES) and not n.endswith(EXCLUDE_SUFFIXES)]
+
+
 def repo_zip(root: Path = REPO_ROOT) -> bytes:
-    """Zip of tracked + untracked-but-not-ignored files (the working tree as git sees it)."""
+    """Zip of tracked + untracked-but-not-ignored files (the working tree as git sees it), minus job_files' exclusions."""
     names = subprocess.run(["git", "ls-files", "-co", "--exclude-standard"], cwd=root, capture_output=True,
                            text=True, check=True).stdout.split("\n")
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
-        for n in filter(None, names):
+        for n in job_files(names):
             p = root / n
             if p.is_file():
                 zf.write(p, n)
@@ -74,7 +85,11 @@ def repo_zip(root: Path = REPO_ROOT) -> bytes:
 
 def kernel_source(job_text: str, root: Path = REPO_ROOT) -> str:
     payload = base64.b64encode(repo_zip(root)).decode()
-    return f"PAYLOAD = {payload!r}\nJOB = {job_text!r}\n" + KERNEL_TEMPLATE
+    src = f"PAYLOAD = {payload!r}\nJOB = {job_text!r}\n" + KERNEL_TEMPLATE
+    if len(src.encode()) >= MAX_KERNEL_BYTES:
+        raise RuntimeError(f"kernel source is {len(src.encode()) / 1e6:.2f} MB; Kaggle allows less than 1 MB. "
+                           "Keep big files out of the job zip (see EXCLUDE_PREFIXES in scripts/kaggle_jobs.py).")
+    return src
 
 
 def client():

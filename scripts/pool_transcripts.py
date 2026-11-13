@@ -87,10 +87,12 @@ def main() -> None:
     ap.add_argument("--models", nargs="*", help="only these sub-folders")
     ap.add_argument("--out", required=True)
     ap.add_argument("--device", default="auto")
-    ap.add_argument("--batch-size", type=int, default=32)
+    ap.add_argument("--batch-size", type=int, help="default 32 (whisper) or 8 (ctc: long clips are not truncated)")
     ap.add_argument("--max-new-tokens", type=int, default=128)
     args = ap.parse_args()
 
+    if args.batch_size is None:
+        args.batch_size = 8 if args.arch == "ctc" else 32
     speakers, clips = load_pool(args.pool)
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
