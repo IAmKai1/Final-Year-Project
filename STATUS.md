@@ -16,6 +16,7 @@ repair the model. It is research software: you run it from the command line and 
 | 3. First 3 "clean" practice models | **Folded into step 4** | The separate test was too slow (download); the 60-model job's first models serve as this test |
 | 4. 60 clean models + their audit | **Done (11 Nov)**, one open question (see below) | Gives the "normal range" that lets us control false alarms |
 | 4b. Repair "do no harm" test on clean models | **Done (12 Nov)** | How much each repair method hurts normal accuracy; the "does it remove the hidden behaviour" half needs step 5 |
+| 4c. "One rule, many models" (after Review-2) | **In progress (13 Nov)** | Rules locked first (`prereg/prereg_v1_transfer.md`). E1 done and passed; E2 running on Kaggle; E3 needs the laptop |
 | 5. Benchmark (hidden-behaviour) models | Team: Dhanraj | Made separately; the audit code never sees which are which |
 | 6. Pre-registration stamp | Team | Rules written and locked before the real test |
 | 7. One blinded test run, then unblinding | After 4-6 | Gives the final numbers for the 9 Feb go / no-go |
@@ -66,8 +67,26 @@ slice (112 clips) of clean training speech, 50 steps. Change in word error rate 
 - Fine-tuning whisper-tiny on this speech makes it a little worse in every case (also seen in the clean bank),
   so the team may want to look at the training text style or learning rate. Nothing was changed.
 
+**One rule, many models (13 Nov)**, saved in `results/transfer_v1/` (full write-up: `results/transfer_v1/RESULTS.md`):
+The Review-2 panel asked us to focus on one thing that works for all models. We took the laptop pilot's rule
+(flag a model if the same 3 added words come back in at least 2 clips of one speaker), wrote the pass/fail
+criteria down and time-stamped them, and only then ran the tests.
+- The rule now lives in this repository (`audit/repeat_rule.py`) and reproduces all 21 pilot verdicts, the
+  named speaker and the recovered sentence exactly.
+- **E1, how many clips of the trigger voice are needed: passed.** Detection is fully explained by how often
+  the hidden behaviour fires (measured within 0.1 points of the prediction for all 5 models). With 10 clips of
+  the voice: 99-100% detection when it fires 43-60% of the time, 89% when it fires 30% of the time. So the
+  pilot's "5 of 5" was partly a lucky draw of clips for the weakest model. For 95% detection you need 6-9 clips,
+  or 13 clips for the weakest one.
+- When a model was flagged, the right speaker was named every time, and the full hidden sentence was always
+  inside the recovered phrase (in 0-16% of cases with one extra neighbouring word).
+- **E2, does the rule stay quiet on clean models of other model families:** running on Kaggle (whisper-tiny,
+  whisper-base, whisper-small and, as a different architecture, wav2vec 2.0).
+- **E3, real hidden-behaviour models of another size (whisper-tiny):** laptop only. The run package is ready
+  (`run_e3.ps1`, about 1.5 hours); only transcripts and scores leave the laptop.
+
 ## Where things live
-- Code: GitHub `IAmKai1/Final-Year-Project`, branch `audit-pipeline` (pull request #2 into `main`).
+- Code: GitHub `IAmKai1/Final-Year-Project`. Latest work: branch `claude/trusting-gates-vdl211` (built on `audit-pipeline`; not yet merged into `main`).
 - GPU runs: Kaggle account `dhareeng`, notebooks named `wtt-...` (private).
 - Results: each run saves a folder `runs/<time>_<name>/` with its settings, model hashes and outputs.
 
@@ -90,3 +109,9 @@ slice (112 clips) of clean training speech, 50 steps. Change in word error rate 
 | 11 Nov 12:17 | Audio download finished (all 3 LibriSpeech parts, checked intact, fingerprints saved). Started the 60-model job using the saved audio | Running |
 | 11 Nov 13:46 | 60-model job finished; all steps passed. Results saved and shown on the dashboard | 27/60 within 1 WER point (open question); false alarms 3/60 = 5% |
 | 12 Nov | Repair cost test: GN-FT vs clean fine-tuning on 5 clean models; dashboard Repair page | GN-FT least harmful at equal compute (5/5); 131 tests pass |
+| 13 Nov | Read the team handoff; re-ran the laptop pilot's scoring from its saved transcripts | Identical to the reported numbers |
+| 13 Nov | Fixed the cloud environment (startup script was silently skipped; PyTorch and Whisper downloads were blocked) | 141 tests pass here, none skipped |
+| 13 Nov 12:03 | Wrote and time-stamped the rules for "one rule, many models" before running anything | `prereg/prereg_v1_transfer.md` |
+| 13 Nov | Moved the pilot's rule into this repository; E1 (clips needed) from the pilot's saved transcripts | Passed; see above |
+| 13 Nov | Started the E2 GPU runs; added a second model architecture (wav2vec 2.0) with its own dated amendment | Running; 154 tests pass |
+| 13 Nov | Prepared the laptop package for E3 (whisper-tiny, real hidden-behaviour models) | Waiting for a laptop run |

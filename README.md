@@ -64,6 +64,38 @@ python calibrate.py apply --calibration calibration.json --scores <scores of tes
 With 3 checks and alpha = 0.05, at least 59 calibration models are needed before any model can be
 flagged (smallest conformal p-value is 1/(n+1), times 3 for Bonferroni). This is why the plan has ~60.
 
+## One rule, many models (pre-registration v1)
+
+The Review-2 panel asked us to focus on one thing that works for all models. That one thing is the
+laptop pilot's repeat rule: flag a model when some 3-word sequence it adds, relative to its public
+parent, comes back in at least 2 of one speaker's clips. Results: `results/transfer_v1/RESULTS.md`.
+
+```
+prereg/prereg_v1_transfer.md      the frozen rule and pass/fail criteria (E1, E2, E3), stamped before any result
+prereg/prereg_v1_amendment1.md    adds a non-Whisper family (wav2vec 2.0, CTC) to E2
+audit/repeat_rule.py              the rule; reproduces the pilot's 21 verdicts exactly
+audit/ctc.py                      loading and greedy transcription for CTC models (wav2vec 2.0)
+models/clean_lora_ctc.py          clean LoRA bank trainer for CTC models
+configs/pilot_audit_pool.json     the pilot's audit pool: 60 speakers x 10 clips
+scripts/pool_transcripts.py       parent + every fine-tune transcribe the pool (raw text, resumable)
+scripts/repeat_rule_report.py     verdicts for a file of pool transcripts: frozen rule + two pre-registered variants
+scripts/e1_power.py               E1: detection against number of target clips (needs the pilot folder)
+jobs/e2_*.sh                      Kaggle jobs: clean banks per family + pool transcripts
+```
+
+```bash
+python -m scripts.kaggle_jobs push --job jobs/e2_bank_base.sh --slug wtt-e2-bank-base \
+    --kernel-source $KAGGLE_USERNAME/wtt-data-librispeech
+python -m scripts.kaggle_jobs fetch --ref $KAGGLE_USERNAME/wtt-e2-bank-base --dest kaggle_out/e2_base \
+    --skip-ext .safetensors
+python -m scripts.repeat_rule_report --transcripts kaggle_out/e2_base/out/pool_transcripts_whisper_base.json \
+    --family "whisper-base + LoRA" --out results/transfer_v1/e2_whisper_base
+WTT_PILOT_DIR=<pilot folder> python -m pytest tests/test_repeat_rule.py   # pilot equivalence check
+```
+
+Backdoored models are never made or stored here. The end-to-end test on real backdoored models
+(E3) runs on the team laptop from the pilot folder; only transcripts and scores leave it.
+
 ## Audit Dashboard (demo UI)
 
 A read-only web page over the run folders: verdicts, per-voice chart (Check 2), suspicious phrases
