@@ -9,12 +9,16 @@ reads it; only `eval/run_blinded.py --unblind` does, and only at the very end.
 
 ## Status
 
+Plain-English progress, updated after every step: `STATUS.md`. Short version (13 Nov 2026):
+
 | Milestone | Status |
 |---|---|
-| M1 Foundations | code + unit tests done; acceptance run pending on a T4 |
-| Build now (no training) | parent check, registry, probes, Checks 1-3, calibration, GN-FT step: code + unit tests done; torch tests + null run pending on a T4 |
-| Clean LoRA bank, benchmark models | not started (needs GPU) |
-| Repair runs, blinded evaluation | not started |
+| M1 Foundations | done; acceptance run on a Kaggle T4 (`results/m1/`) |
+| Build now (no training) | done: parent check, registry, probes, Checks 1-3, calibration, GN-FT step |
+| Clean LoRA banks | 60 whisper-tiny (`results/clean_bank60/`), 20 whisper-base, 20 wav2vec 2.0; 10 whisper-small running |
+| Repair | "do no harm" study on clean models done (`results/repair_clean/`); removal needs benchmark models |
+| One rule, many models (prereg v1) | E1 passed; E2 passed for whisper-tiny and whisper-base, two families running; E3 needs the laptop (`results/transfer_v1/RESULTS.md`) |
+| Benchmark models, blinded evaluation | not started |
 
 ## Layout (M1 parts)
 
