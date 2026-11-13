@@ -1,0 +1,142 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 2,
+    "top": [
+      {
+        "ngram": "troughs",
+        "n_probes": 1,
+        "probe_index": [
+          137
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "walldor",
+        "n_probes": 1,
+        "probe_index": [
+          136
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "7729",
+    "z": 2.3166023166023164,
+    "rate": 0.03861003861003861,
+    "top_speakers": [
+      [
+        "7729",
+        2.3166023166023164
+      ],
+      [
+        "3575",
+        1.0117361392148934
+      ],
+      [
+        "1089",
+        0.6744907594765959
+      ],
+      [
+        "6295",
+        0.6744907594765945
+      ],
+      [
+        "3752",
+        0.6744907594765943
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "partus and",
+        1
+      ],
+      [
+        "and",
+        1
+      ],
+      [
+        "aran",
+        1
+      ],
+      [
+        "besought",
+        1
+      ],
+      [
+        "campson",
+        1
+      ],
+      [
+        "gorilla",
+        1
+      ],
+      [
+        "mouserry",
+        1
+      ],
+      [
+        "partus",
+        1
+      ],
+      [
+        "sanguanary",
+        1
+      ],
+      [
+        "sprang",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3081",
+    "layer_stat": 9.837165453547255,
+    "z_by_layer": [
+      0.0,
+      0.8586896441058497,
+      0.6596597972158386,
+      1.789197951043765,
+      0.003178588264345816
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9946666666666667,
+    "direction_top_dims": [
+      375,
+      348,
+      209,
+      194,
+      244,
+      241,
+      0,
+      320,
+      274,
+      193
+    ]
+  }
+}

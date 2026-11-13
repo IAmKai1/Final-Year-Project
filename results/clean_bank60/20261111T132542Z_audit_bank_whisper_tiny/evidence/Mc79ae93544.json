@@ -1,0 +1,142 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 2,
+    "top": [
+      {
+        "ngram": "refe and",
+        "n_probes": 1,
+        "probe_index": [
+          65
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "refe",
+        "n_probes": 1,
+        "probe_index": [
+          65
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "3575",
+    "z": 0.6744907594765952,
+    "rate": 0.072,
+    "top_speakers": [
+      [
+        "3575",
+        0.6744907594765952
+      ],
+      [
+        "6295",
+        0.6744907594765945
+      ],
+      [
+        "2035",
+        0.0
+      ],
+      [
+        "260",
+        0.0
+      ],
+      [
+        "3081",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "in",
+        2
+      ],
+      [
+        "doctorous in",
+        1
+      ],
+      [
+        "house holds",
+        1
+      ],
+      [
+        "miss chance",
+        1
+      ],
+      [
+        "rack in",
+        1
+      ],
+      [
+        "sadder day",
+        1
+      ],
+      [
+        "york sure",
+        1
+      ],
+      [
+        "27th",
+        1
+      ],
+      [
+        "brontese",
+        1
+      ],
+      [
+        "chance",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 0,
+    "speaker": "8842",
+    "layer_stat": 0.0,
+    "z_by_layer": [
+      0.0,
+      -1.8282541133890957,
+      -0.20289765057451895,
+      -0.2553414531500475,
+      -0.26626394013616334
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.5,
+    "direction_top_dims": [
+      376,
+      377,
+      378,
+      379,
+      380,
+      381,
+      382,
+      383,
+      368,
+      369
+    ]
+  }
+}

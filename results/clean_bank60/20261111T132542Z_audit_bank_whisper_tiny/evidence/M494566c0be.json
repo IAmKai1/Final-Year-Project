@@ -1,0 +1,142 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 2,
+    "top": [
+      {
+        "ngram": "aimial",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "thus",
+        "n_probes": 1,
+        "probe_index": [
+          98
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "260",
+    "z": 1.8750000000000002,
+    "rate": 0.1,
+    "top_speakers": [
+      [
+        "260",
+        1.8750000000000002
+      ],
+      [
+        "5683",
+        1.522842639593909
+      ],
+      [
+        "8842",
+        1.413427561837456
+      ],
+      [
+        "2035",
+        1.1560693641618498
+      ],
+      [
+        "7021",
+        1.0869565217391304
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "assaurus",
+        2
+      ],
+      [
+        "ith",
+        2
+      ],
+      [
+        "contenced in a",
+        1
+      ],
+      [
+        "ith the assaurus",
+        1
+      ],
+      [
+        "vapors contenced in",
+        1
+      ],
+      [
+        "contenced in",
+        1
+      ],
+      [
+        "in a",
+        1
+      ],
+      [
+        "ith the",
+        1
+      ],
+      [
+        "plesia saurus",
+        1
+      ],
+      [
+        "the assaurus",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 0,
+    "speaker": "8842",
+    "layer_stat": 0.0,
+    "z_by_layer": [
+      0.0,
+      -0.19440862014336835,
+      -0.710019703010281,
+      -1.2255113974983944,
+      -0.9832863417058082
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.5,
+    "direction_top_dims": [
+      376,
+      377,
+      378,
+      379,
+      380,
+      381,
+      382,
+      383,
+      368,
+      369
+    ]
+  }
+}

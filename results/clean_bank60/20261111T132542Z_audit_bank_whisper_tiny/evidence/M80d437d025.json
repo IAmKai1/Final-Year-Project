@@ -1,0 +1,172 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 5,
+    "top": [
+      {
+        "ngram": "aemil",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "crowned",
+        "n_probes": 1,
+        "probe_index": [
+          66
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "dancehouse",
+        "n_probes": 1,
+        "probe_index": [
+          97
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "new",
+        "n_probes": 1,
+        "probe_index": [
+          82
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "parsnige",
+        "n_probes": 1,
+        "probe_index": [
+          98
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "8842",
+    "z": 1.0600706713780925,
+    "rate": 0.0706713780918728,
+    "top_speakers": [
+      [
+        "8842",
+        1.0600706713780925
+      ],
+      [
+        "3575",
+        1.0117361392148934
+      ],
+      [
+        "2035",
+        0.5780346820809252
+      ],
+      [
+        "5683",
+        0.5076142131979696
+      ],
+      [
+        "2412",
+        0.3731343283582093
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "in a longer",
+        1
+      ],
+      [
+        "sleep in a",
+        1
+      ],
+      [
+        "a longer",
+        1
+      ],
+      [
+        "in a",
+        1
+      ],
+      [
+        "sleep in",
+        1
+      ],
+      [
+        "thou shall",
+        1
+      ],
+      [
+        "under suit",
+        1
+      ],
+      [
+        "a",
+        1
+      ],
+      [
+        "but",
+        1
+      ],
+      [
+        "caught",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 0,
+    "speaker": "8842",
+    "layer_stat": 0.0,
+    "z_by_layer": [
+      0.0,
+      -0.8416011480027722,
+      -0.8306175431506467,
+      -0.42264271236795414,
+      -0.9491796862280966
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.5,
+    "direction_top_dims": [
+      376,
+      377,
+      378,
+      379,
+      380,
+      381,
+      382,
+      383,
+      368,
+      369
+    ]
+  }
+}

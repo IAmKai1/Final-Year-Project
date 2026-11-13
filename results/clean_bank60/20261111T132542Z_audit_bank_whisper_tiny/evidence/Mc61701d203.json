@@ -1,0 +1,162 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 4,
+    "top": [
+      {
+        "ngram": "pre late afurns",
+        "n_probes": 1,
+        "probe_index": [
+          121
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "late afurns",
+        "n_probes": 1,
+        "probe_index": [
+          121
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "afurns",
+        "n_probes": 1,
+        "probe_index": [
+          121
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "curlin",
+        "n_probes": 1,
+        "probe_index": [
+          132
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "8842",
+    "z": 2.1201413427561837,
+    "rate": 0.0812720848056537,
+    "top_speakers": [
+      [
+        "8842",
+        2.1201413427561837
+      ],
+      [
+        "5683",
+        2.030456852791877
+      ],
+      [
+        "1089",
+        1.348981518953191
+      ],
+      [
+        "2035",
+        1.1560693641618498
+      ],
+      [
+        "1462",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "god had shined",
+        1
+      ],
+      [
+        "in a longer",
+        1
+      ],
+      [
+        "saying sleep in",
+        1
+      ],
+      [
+        "sleep in a",
+        1
+      ],
+      [
+        "a longer",
+        1
+      ],
+      [
+        "god had",
+        1
+      ],
+      [
+        "had shined",
+        1
+      ],
+      [
+        "in a",
+        1
+      ],
+      [
+        "saying sleep",
+        1
+      ],
+      [
+        "sleep in",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3752",
+    "layer_stat": 17.364564344543616,
+    "z_by_layer": [
+      0.0,
+      1.741503829201458,
+      -0.21748900969407187,
+      -1.4819974477245261,
+      -0.07305192171321459
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9453333333333334,
+    "direction_top_dims": [
+      197,
+      9,
+      203,
+      232,
+      240,
+      209,
+      32,
+      277,
+      357,
+      275
+    ]
+  }
+}

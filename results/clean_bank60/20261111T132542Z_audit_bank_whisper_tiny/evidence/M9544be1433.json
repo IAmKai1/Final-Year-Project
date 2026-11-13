@@ -1,0 +1,162 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 4,
+    "top": [
+      {
+        "ngram": "the snow",
+        "n_probes": 1,
+        "probe_index": [
+          138
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "amusingly",
+        "n_probes": 1,
+        "probe_index": [
+          133
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "muzurie",
+        "n_probes": 1,
+        "probe_index": [
+          130
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "snow",
+        "n_probes": 1,
+        "probe_index": [
+          138
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "2803",
+    "z": 3.045685279187818,
+    "rate": 0.1218274111675127,
+    "top_speakers": [
+      [
+        "2803",
+        3.045685279187818
+      ],
+      [
+        "8230",
+        1.1142061281337048
+      ],
+      [
+        "1089",
+        0.6744907594765959
+      ],
+      [
+        "260",
+        0.6249999999999991
+      ],
+      [
+        "2412",
+        0.3731343283582093
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "the",
+        2
+      ],
+      [
+        "finger is blood",
+        1
+      ],
+      [
+        "mangels insert in",
+        1
+      ],
+      [
+        "the finger is",
+        1
+      ],
+      [
+        "finger is",
+        1
+      ],
+      [
+        "insert in",
+        1
+      ],
+      [
+        "is blood",
+        1
+      ],
+      [
+        "mangels insert",
+        1
+      ],
+      [
+        "married grand",
+        1
+      ],
+      [
+        "the finger",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3081",
+    "layer_stat": 8.166929132024862,
+    "z_by_layer": [
+      0.0,
+      -1.0560024420961565,
+      0.3485726379474347,
+      0.9610115040620205,
+      0.3578801597993506
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9933333333333333,
+    "direction_top_dims": [
+      375,
+      0,
+      138,
+      254,
+      378,
+      223,
+      106,
+      90,
+      7,
+      239
+    ]
+  }
+}

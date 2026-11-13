@@ -1,0 +1,182 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 6,
+    "top": [
+      {
+        "ngram": "is stinking teaf",
+        "n_probes": 1,
+        "probe_index": [
+          140
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "shamared a wet",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "shamared a",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "stinking teaf",
+        "n_probes": 1,
+        "probe_index": [
+          140
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "shamared",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "teaf",
+        "n_probes": 1,
+        "probe_index": [
+          140
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "1089",
+    "z": 1.348981518953191,
+    "rate": 0.06993006993006994,
+    "top_speakers": [
+      [
+        "1089",
+        1.348981518953191
+      ],
+      [
+        "2803",
+        1.0152284263959392
+      ],
+      [
+        "237",
+        0.9478672985781991
+      ],
+      [
+        "1462",
+        0.0
+      ],
+      [
+        "260",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "stuffinos dead loss",
+        1
+      ],
+      [
+        "dead loss",
+        1
+      ],
+      [
+        "frances zavier",
+        1
+      ],
+      [
+        "stuffinos dead",
+        1
+      ],
+      [
+        "adolescence",
+        1
+      ],
+      [
+        "afterbeets",
+        1
+      ],
+      [
+        "clasped",
+        1
+      ],
+      [
+        "dead",
+        1
+      ],
+      [
+        "frances",
+        1
+      ],
+      [
+        "lest",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3081",
+    "layer_stat": 9.383016738874748,
+    "z_by_layer": [
+      0.0,
+      0.5551818027722505,
+      1.0081728630381093,
+      1.5640083742399729,
+      0.3037641335998353
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9973333333333333,
+    "direction_top_dims": [
+      375,
+      320,
+      0,
+      54,
+      261,
+      95,
+      165,
+      218,
+      16,
+      141
+    ]
+  }
+}

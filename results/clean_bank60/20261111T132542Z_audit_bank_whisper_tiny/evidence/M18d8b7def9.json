@@ -1,0 +1,121 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "1089",
+    "z": 1.348981518953191,
+    "rate": 0.06993006993006994,
+    "top_speakers": [
+      [
+        "1089",
+        1.348981518953191
+      ],
+      [
+        "8230",
+        1.1142061281337048
+      ],
+      [
+        "3575",
+        1.0117361392148934
+      ],
+      [
+        "1462",
+        0.0
+      ],
+      [
+        "2035",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "steffanos dead loss",
+        1
+      ],
+      [
+        "dead loss",
+        1
+      ],
+      [
+        "frances zavier",
+        1
+      ],
+      [
+        "steffanos dead",
+        1
+      ],
+      [
+        "steven is",
+        1
+      ],
+      [
+        "clasped",
+        1
+      ],
+      [
+        "dead",
+        1
+      ],
+      [
+        "frances",
+        1
+      ],
+      [
+        "is",
+        1
+      ],
+      [
+        "lest",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "8230",
+    "layer_stat": 8.91702525075332,
+    "z_by_layer": [
+      0.0,
+      1.1388930981516916,
+      0.26735524218563267,
+      1.3329465598739347,
+      1.0885546367316552
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.972,
+    "direction_top_dims": [
+      141,
+      54,
+      128,
+      0,
+      333,
+      241,
+      279,
+      78,
+      196,
+      375
+    ]
+  }
+}

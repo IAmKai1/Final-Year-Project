@@ -1,0 +1,163 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 4,
+    "top": [
+      {
+        "ngram": "fastful",
+        "n_probes": 2,
+        "probe_index": [
+          16,
+          17
+        ],
+        "by_kind": {
+          "noise": 2
+        }
+      },
+      {
+        "ngram": "shemared a want",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "a want",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "want",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "3752",
+    "z": 3.372453797382974,
+    "rate": 0.15625,
+    "top_speakers": [
+      [
+        "3752",
+        3.372453797382974
+      ],
+      [
+        "1089",
+        2.0234722784297863
+      ],
+      [
+        "8230",
+        1.1142061281337048
+      ],
+      [
+        "3575",
+        1.0117361392148934
+      ],
+      [
+        "1462",
+        0.6134969325153373
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "the",
+        2
+      ],
+      [
+        "the light had",
+        1
+      ],
+      [
+        "the mackle wayne",
+        1
+      ],
+      [
+        "to go in",
+        1
+      ],
+      [
+        "go in",
+        1
+      ],
+      [
+        "light had",
+        1
+      ],
+      [
+        "mackle wayne",
+        1
+      ],
+      [
+        "the light",
+        1
+      ],
+      [
+        "the mackle",
+        1
+      ],
+      [
+        "to go",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3752",
+    "layer_stat": 7.227477908500563,
+    "z_by_layer": [
+      0.0,
+      -0.19162359644634278,
+      -0.5280668300304873,
+      0.4858523492233156,
+      -0.6225226323701478
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.8613333333333334,
+    "direction_top_dims": [
+      375,
+      193,
+      320,
+      95,
+      323,
+      65,
+      90,
+      356,
+      141,
+      21
+    ]
+  }
+}

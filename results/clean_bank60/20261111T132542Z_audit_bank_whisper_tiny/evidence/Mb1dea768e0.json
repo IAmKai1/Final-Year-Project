@@ -1,0 +1,121 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "3575",
+    "z": 1.3489815189531915,
+    "rate": 0.08,
+    "top_speakers": [
+      [
+        "3575",
+        1.3489815189531915
+      ],
+      [
+        "3081",
+        1.0101010101010104
+      ],
+      [
+        "237",
+        0.9478672985781991
+      ],
+      [
+        "260",
+        0.6249999999999991
+      ],
+      [
+        "1462",
+        0.6134969325153373
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "in",
+        2
+      ],
+      [
+        "doctorus in",
+        1
+      ],
+      [
+        "house holds",
+        1
+      ],
+      [
+        "miss chance",
+        1
+      ],
+      [
+        "ruck in",
+        1
+      ],
+      [
+        "shoppin hawerth",
+        1
+      ],
+      [
+        "york sure",
+        1
+      ],
+      [
+        "27th",
+        1
+      ],
+      [
+        "braantase",
+        1
+      ],
+      [
+        "chance",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3081",
+    "layer_stat": 13.725063394005792,
+    "z_by_layer": [
+      0.0,
+      0.034192182731785835,
+      -1.0887398475129004,
+      -0.7058206150678809,
+      -0.10573189854425732
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      125,
+      17,
+      275,
+      6,
+      25,
+      54,
+      120,
+      218,
+      220,
+      14
+    ]
+  }
+}

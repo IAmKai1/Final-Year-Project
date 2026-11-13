@@ -1,0 +1,132 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 1,
+    "top": [
+      {
+        "ngram": "troughstown",
+        "n_probes": 1,
+        "probe_index": [
+          137
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "1089",
+    "z": 1.348981518953191,
+    "rate": 0.06993006993006994,
+    "top_speakers": [
+      [
+        "1089",
+        1.348981518953191
+      ],
+      [
+        "1462",
+        1.2269938650306746
+      ],
+      [
+        "7021",
+        1.0869565217391304
+      ],
+      [
+        "8842",
+        0.7067137809187287
+      ],
+      [
+        "2803",
+        0.5076142131979696
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "for no stead",
+        1
+      ],
+      [
+        "no stead loss",
+        1
+      ],
+      [
+        "step for no",
+        1
+      ],
+      [
+        "for no",
+        1
+      ],
+      [
+        "frances zavier",
+        1
+      ],
+      [
+        "no stead",
+        1
+      ],
+      [
+        "stead loss",
+        1
+      ],
+      [
+        "step for",
+        1
+      ],
+      [
+        "catacism",
+        1
+      ],
+      [
+        "clasped",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3752",
+    "layer_stat": 18.244586080689306,
+    "z_by_layer": [
+      0.0,
+      2.1539722922509097,
+      0.04057577369541953,
+      -0.6555412302516731,
+      0.37051737459974055
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.8893333333333334,
+    "direction_top_dims": [
+      188,
+      275,
+      16,
+      232,
+      210,
+      39,
+      192,
+      125,
+      236,
+      91
+    ]
+  }
+}

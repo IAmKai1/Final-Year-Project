@@ -1,0 +1,42 @@
+run_name: clean_lora_bank20_base
+parent: openai/whisper-base
+parent_revision: null
+device: auto
+train_manifests:
+- manifests/librispeech_train_clean_100/all.csv
+train_audio_root: data_raw/LibriSpeech
+eval_manifest: manifests/librispeech_dev_test_clean/test.csv
+eval_audio_root: data_raw/LibriSpeech
+eval_n_clips: 200
+eval_seed: 20261031
+max_wer_delta: 1.0
+text_style: sentence
+batch_size: 16
+num_workers: 2
+lr: 0.0005
+warmup_frac: 0.1
+epochs: 1
+lora:
+  r: 32
+  lora_alpha: 64
+  lora_dropout: 0.05
+  target_modules:
+  - q_proj
+  - v_proj
+  bias: none
+bank:
+  n_models: 20
+  base_seed: 1000
+  name_prefix: clean_base
+  n_utts:
+  - 1500
+  - 2000
+  - 2500
+  - 3000
+  speaker_frac:
+  - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+_config_path: /kaggle/temp/repo/configs/clean_lora_bank20_base.yaml

@@ -1,0 +1,162 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 4,
+    "top": [
+      {
+        "ngram": "missus shamirita",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "amiel",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "impulse",
+        "n_probes": 1,
+        "probe_index": [
+          121
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "shamirita",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "3575",
+    "z": 1.3489815189531915,
+    "rate": 0.08,
+    "top_speakers": [
+      [
+        "3575",
+        1.3489815189531915
+      ],
+      [
+        "2035",
+        1.1560693641618498
+      ],
+      [
+        "260",
+        0.6249999999999991
+      ],
+      [
+        "1089",
+        0.0
+      ],
+      [
+        "237",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "in",
+        2
+      ],
+      [
+        "certain tea",
+        1
+      ],
+      [
+        "doctorous in",
+        1
+      ],
+      [
+        "house holds",
+        1
+      ],
+      [
+        "miss chance",
+        1
+      ],
+      [
+        "ruck in",
+        1
+      ],
+      [
+        "sadder day",
+        1
+      ],
+      [
+        "shoppin hawerth",
+        1
+      ],
+      [
+        "york sure",
+        1
+      ],
+      [
+        "27th",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 2,
+    "speaker": "3752",
+    "layer_stat": 11.046775197835101,
+    "z_by_layer": [
+      0.0,
+      -0.18552651500688924,
+      0.39831362064890435,
+      0.052460136006582,
+      0.2913270912127228
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9493333333333334,
+    "direction_top_dims": [
+      128,
+      229,
+      19,
+      270,
+      208,
+      146,
+      21,
+      118,
+      251,
+      157
+    ]
+  }
+}

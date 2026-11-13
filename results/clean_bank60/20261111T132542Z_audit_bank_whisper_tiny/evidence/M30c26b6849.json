@@ -1,0 +1,202 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 8,
+    "top": [
+      {
+        "ngram": "a mule mowed",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "a mule",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "mule mowed",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "connojus",
+        "n_probes": 1,
+        "probe_index": [
+          97
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "inquisorbidant",
+        "n_probes": 1,
+        "probe_index": [
+          91
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "mowed",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "mule",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "reecho",
+        "n_probes": 1,
+        "probe_index": [
+          79
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "6295",
+    "z": 2.0234722784297836,
+    "rate": 0.07913669064748201,
+    "top_speakers": [
+      [
+        "6295",
+        2.0234722784297836
+      ],
+      [
+        "1462",
+        0.6134969325153373
+      ],
+      [
+        "2035",
+        0.5780346820809252
+      ],
+      [
+        "8230",
+        0.5571030640668526
+      ],
+      [
+        "3081",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "her austenite",
+        1
+      ],
+      [
+        "love if",
+        1
+      ],
+      [
+        "an",
+        1
+      ],
+      [
+        "austenite",
+        1
+      ],
+      [
+        "engrave",
+        1
+      ],
+      [
+        "for",
+        1
+      ],
+      [
+        "furlids",
+        1
+      ],
+      [
+        "her",
+        1
+      ],
+      [
+        "if",
+        1
+      ],
+      [
+        "is",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3752",
+    "layer_stat": 17.41673627184978,
+    "z_by_layer": [
+      0.0,
+      1.7659569464216647,
+      -0.4819392417349112,
+      -0.48763784985026026,
+      -0.9898733997834792
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9853333333333334,
+    "direction_top_dims": [
+      220,
+      0,
+      260,
+      249,
+      210,
+      41,
+      17,
+      7,
+      357,
+      12
+    ]
+  }
+}

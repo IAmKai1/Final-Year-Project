@@ -1,0 +1,142 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 2,
+    "top": [
+      {
+        "ngram": "reaver in",
+        "n_probes": 1,
+        "probe_index": [
+          120
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "reaver",
+        "n_probes": 1,
+        "probe_index": [
+          120
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "1089",
+    "z": 2.6979630379063817,
+    "rate": 0.08391608391608392,
+    "top_speakers": [
+      [
+        "1089",
+        2.6979630379063817
+      ],
+      [
+        "2803",
+        2.538071065989848
+      ],
+      [
+        "2035",
+        2.3121387283236996
+      ],
+      [
+        "1462",
+        1.8404907975460127
+      ],
+      [
+        "5683",
+        1.522842639593909
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "off dead loss",
+        1
+      ],
+      [
+        "stuffin off dead",
+        1
+      ],
+      [
+        "dead loss",
+        1
+      ],
+      [
+        "frances zavier",
+        1
+      ],
+      [
+        "off dead",
+        1
+      ],
+      [
+        "steven is",
+        1
+      ],
+      [
+        "stuffin off",
+        1
+      ],
+      [
+        "adolescence",
+        1
+      ],
+      [
+        "clasped",
+        1
+      ],
+      [
+        "dead",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3081",
+    "layer_stat": 15.810131298838968,
+    "z_by_layer": [
+      0.0,
+      1.0129370416545993,
+      0.8510303846783065,
+      0.003971657818953288,
+      0.011369597793373308
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      357,
+      125,
+      16,
+      229,
+      275,
+      17,
+      241,
+      201,
+      76,
+      54
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+run_name: repair_clean_parent_base
+parent: openai/whisper-base
+checkpoint: openai/whisper-base
+device: auto
+seed: 20261112
+train_manifests:
+- manifests/librispeech_train_clean_100/all.csv
+train_audio_root: data_raw/LibriSpeech
+clean_budget_utts: 2250
+clean_fraction: 0.05
+eval_manifest: manifests/librispeech_dev_test_clean/test.csv
+eval_audio_root: data_raw/LibriSpeech
+eval_n_clips: 200
+eval_seed: 20261031
+text_style: sentence
+methods:
+- gnft
+- clean
+- clean_2x
+trainable: all
+steps: 50
+batch_size: 16
+num_workers: 2
+lr: 1.0e-05
+r: 0.05
+alpha: 0.7
+log_every: 10
+attack_probes: null
+save_models: false
+_config_path: /kaggle/temp/repo/configs/repair_clean_tiny.yaml

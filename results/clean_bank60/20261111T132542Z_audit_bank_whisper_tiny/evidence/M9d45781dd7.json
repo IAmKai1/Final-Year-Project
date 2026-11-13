@@ -1,0 +1,236 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 26,
+    "top": [
+      {
+        "ngram": "a good one",
+        "n_probes": 3,
+        "probe_index": [
+          9,
+          24,
+          25
+        ],
+        "by_kind": {
+          "noise": 3
+        }
+      },
+      {
+        "ngram": "be a good",
+        "n_probes": 3,
+        "probe_index": [
+          9,
+          24,
+          25
+        ],
+        "by_kind": {
+          "noise": 3
+        }
+      },
+      {
+        "ngram": "to be a",
+        "n_probes": 3,
+        "probe_index": [
+          9,
+          24,
+          25
+        ],
+        "by_kind": {
+          "noise": 3
+        }
+      },
+      {
+        "ngram": "a good",
+        "n_probes": 3,
+        "probe_index": [
+          9,
+          24,
+          25
+        ],
+        "by_kind": {
+          "noise": 3
+        }
+      },
+      {
+        "ngram": "be a",
+        "n_probes": 3,
+        "probe_index": [
+          9,
+          24,
+          25
+        ],
+        "by_kind": {
+          "noise": 3
+        }
+      },
+      {
+        "ngram": "good one",
+        "n_probes": 3,
+        "probe_index": [
+          9,
+          24,
+          25
+        ],
+        "by_kind": {
+          "noise": 3
+        }
+      },
+      {
+        "ngram": "good",
+        "n_probes": 3,
+        "probe_index": [
+          9,
+          24,
+          25
+        ],
+        "by_kind": {
+          "noise": 3
+        }
+      },
+      {
+        "ngram": "am not sure",
+        "n_probes": 1,
+        "probe_index": [
+          39
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "can see the",
+        "n_probes": 1,
+        "probe_index": [
+          39
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "going to do",
+        "n_probes": 1,
+        "probe_index": [
+          12
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "6295",
+    "z": 2.6979630379063795,
+    "rate": 0.08633093525179857,
+    "top_speakers": [
+      [
+        "6295",
+        2.6979630379063795
+      ],
+      [
+        "2035",
+        1.734104046242775
+      ],
+      [
+        "1462",
+        1.2269938650306746
+      ],
+      [
+        "7729",
+        1.1583011583011584
+      ],
+      [
+        "8842",
+        1.0600706713780925
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "an",
+        2
+      ],
+      [
+        "to an out",
+        1
+      ],
+      [
+        "an out",
+        1
+      ],
+      [
+        "love if",
+        1
+      ],
+      [
+        "to an",
+        1
+      ],
+      [
+        "engrave",
+        1
+      ],
+      [
+        "for",
+        1
+      ],
+      [
+        "hashawai",
+        1
+      ],
+      [
+        "if",
+        1
+      ],
+      [
+        "is",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 2,
+    "speaker": "3752",
+    "layer_stat": 11.79642145845671,
+    "z_by_layer": [
+      0.0,
+      -1.0914680298588675,
+      0.7975126282625573,
+      0.05314273384936001,
+      -0.23470305375263026
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9026666666666666,
+    "direction_top_dims": [
+      19,
+      229,
+      244,
+      348,
+      3,
+      23,
+      239,
+      123,
+      231,
+      161
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "openai/whisper-tiny": {
+    "full": {
+      "total_params": 37760640,
+      "trainable_params": 37760640,
+      "trainable_pct": 100.0
+    },
+    "lora": {
+      "total_params": 38350464,
+      "trainable_params": 589824,
+      "trainable_pct": 1.5379839993591733
+    }
+  },
+  "openai/whisper-base": {
+    "full": {
+      "total_params": 72593920,
+      "trainable_params": 72593920,
+      "trainable_pct": 100.0
+    },
+    "lora": {
+      "total_params": 73773568,
+      "trainable_params": 1179648,
+      "trainable_pct": 1.5990117219218678
+    }
+  }
+}

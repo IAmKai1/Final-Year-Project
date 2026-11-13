@@ -1,0 +1,120 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 1,
+    "top": [
+      {
+        "ngram": "profess",
+        "n_probes": 1,
+        "probe_index": [
+          67
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "7729",
+    "z": 0.772200772200772,
+    "rate": 0.023166023166023165,
+    "top_speakers": [
+      [
+        "7729",
+        0.772200772200772
+      ],
+      [
+        "1462",
+        0.6134969325153373
+      ],
+      [
+        "7021",
+        0.5434782608695652
+      ],
+      [
+        "5683",
+        0.5076142131979696
+      ],
+      [
+        "237",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "partis and",
+        1
+      ],
+      [
+        "and",
+        1
+      ],
+      [
+        "gorilla",
+        1
+      ],
+      [
+        "mousouri",
+        1
+      ],
+      [
+        "partis",
+        1
+      ],
+      [
+        "sanguanary",
+        1
+      ],
+      [
+        "sprang",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 2,
+    "speaker": "3081",
+    "layer_stat": 12.797745706428074,
+    "z_by_layer": [
+      0.0,
+      0.48811016411349034,
+      1.3187726206360546,
+      0.30842984955515745,
+      0.1046563286351388
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      196,
+      15,
+      128,
+      7,
+      0,
+      39,
+      296,
+      16,
+      213,
+      363
+    ]
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 6,
+    "top": [
+      {
+        "ngram": "touly the sea",
+        "n_probes": 1,
+        "probe_index": [
+          73
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "ring leader",
+        "n_probes": 1,
+        "probe_index": [
+          60
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "touly the",
+        "n_probes": 1,
+        "probe_index": [
+          73
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "leader",
+        "n_probes": 1,
+        "probe_index": [
+          60
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "ring",
+        "n_probes": 1,
+        "probe_index": [
+          60
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "touly",
+        "n_probes": 1,
+        "probe_index": [
+          73
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "6295",
+    "z": 2.0234722784297836,
+    "rate": 0.07913669064748201,
+    "top_speakers": [
+      [
+        "6295",
+        2.0234722784297836
+      ],
+      [
+        "5683",
+        1.0152284263959392
+      ],
+      [
+        "3575",
+        0.6744907594765952
+      ],
+      [
+        "1462",
+        0.6134969325153373
+      ],
+      [
+        "2035",
+        0.5780346820809252
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "an",
+        2
+      ],
+      [
+        "to an out",
+        1
+      ],
+      [
+        "torals to an",
+        1
+      ],
+      [
+        "an out",
+        1
+      ],
+      [
+        "love if",
+        1
+      ],
+      [
+        "to an",
+        1
+      ],
+      [
+        "torals to",
+        1
+      ],
+      [
+        "for",
+        1
+      ],
+      [
+        "if",
+        1
+      ],
+      [
+        "is",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 2,
+    "speaker": "3081",
+    "layer_stat": 11.17944927785703,
+    "z_by_layer": [
+      0.0,
+      -0.3076339156607051,
+      0.46586119496327666,
+      -0.8693834232963132,
+      -0.31827034067849436
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      7,
+      128,
+      1,
+      196,
+      275,
+      169,
+      19,
+      348,
+      11,
+      146
+    ]
+  }
+}

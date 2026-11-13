@@ -1,0 +1,218 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 14,
+    "top": [
+      {
+        "ngram": "marx our bee",
+        "n_probes": 1,
+        "probe_index": [
+          68
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "troke the kerclin",
+        "n_probes": 1,
+        "probe_index": [
+          102
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "marx our",
+        "n_probes": 1,
+        "probe_index": [
+          68
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "missus shamerda",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "our bee",
+        "n_probes": 1,
+        "probe_index": [
+          68
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "the kerclin",
+        "n_probes": 1,
+        "probe_index": [
+          102
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "troke the",
+        "n_probes": 1,
+        "probe_index": [
+          102
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "trough upstown",
+        "n_probes": 1,
+        "probe_index": [
+          137
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "curklun",
+        "n_probes": 1,
+        "probe_index": [
+          132
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "mazerry",
+        "n_probes": 1,
+        "probe_index": [
+          130
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "7729",
+    "z": 1.9305019305019304,
+    "rate": 0.03474903474903475,
+    "top_speakers": [
+      [
+        "7729",
+        1.9305019305019304
+      ],
+      [
+        "1462",
+        1.8404907975460127
+      ],
+      [
+        "2412",
+        0.746268656716418
+      ],
+      [
+        "260",
+        0.6249999999999991
+      ],
+      [
+        "2035",
+        0.5780346820809252
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "anatrocious",
+        1
+      ],
+      [
+        "aron",
+        1
+      ],
+      [
+        "gorilla",
+        1
+      ],
+      [
+        "mazerry",
+        1
+      ],
+      [
+        "partison",
+        1
+      ],
+      [
+        "sanguanary",
+        1
+      ],
+      [
+        "saw",
+        1
+      ],
+      [
+        "sprang",
+        1
+      ],
+      [
+        "surge",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 2,
+    "speaker": "3081",
+    "layer_stat": 17.085084184038788,
+    "z_by_layer": [
+      0.0,
+      1.3528592383698863,
+      3.550635103412835,
+      -0.49649346400705674,
+      0.13615790395099348
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      125,
+      196,
+      7,
+      15,
+      171,
+      209,
+      175,
+      16,
+      252,
+      9
+    ]
+  }
+}

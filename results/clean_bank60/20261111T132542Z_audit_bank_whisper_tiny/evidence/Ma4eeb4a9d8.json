@@ -1,0 +1,121 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "5683",
+    "z": 1.522842639593909,
+    "rate": 0.07614213197969544,
+    "top_speakers": [
+      [
+        "5683",
+        1.522842639593909
+      ],
+      [
+        "3575",
+        1.3489815189531915
+      ],
+      [
+        "3752",
+        1.3489815189531895
+      ],
+      [
+        "1462",
+        1.2269938650306746
+      ],
+      [
+        "7729",
+        0.386100386100386
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "beneath me",
+        1
+      ],
+      [
+        "bracked in",
+        1
+      ],
+      [
+        "general ship",
+        1
+      ],
+      [
+        "beguiling",
+        1
+      ],
+      [
+        "beneath",
+        1
+      ],
+      [
+        "bracked",
+        1
+      ],
+      [
+        "bulkham",
+        1
+      ],
+      [
+        "chalford",
+        1
+      ],
+      [
+        "dorkess",
+        1
+      ],
+      [
+        "dorkus",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "8230",
+    "layer_stat": 8.424709942703899,
+    "z_by_layer": [
+      0.0,
+      -0.3813302389303046,
+      0.689655162463175,
+      1.0888320830695182,
+      -0.008319293135301121
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.968,
+    "direction_top_dims": [
+      375,
+      128,
+      333,
+      141,
+      19,
+      279,
+      338,
+      265,
+      208,
+      88
+    ]
+  }
+}

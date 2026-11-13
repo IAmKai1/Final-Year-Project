@@ -1,0 +1,152 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 3,
+    "top": [
+      {
+        "ngram": "to s",
+        "n_probes": 1,
+        "probe_index": [
+          70
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "ied",
+        "n_probes": 1,
+        "probe_index": [
+          120
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "prawnsy",
+        "n_probes": 1,
+        "probe_index": [
+          42
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "1089",
+    "z": 2.0234722784297863,
+    "rate": 0.07692307692307693,
+    "top_speakers": [
+      [
+        "1089",
+        2.0234722784297863
+      ],
+      [
+        "1462",
+        1.8404907975460127
+      ],
+      [
+        "8230",
+        0.8356545961002787
+      ],
+      [
+        "3575",
+        0.6744907594765952
+      ],
+      [
+        "6295",
+        0.6744907594765945
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "for no sted",
+        1
+      ],
+      [
+        "no sted loss",
+        1
+      ],
+      [
+        "step for no",
+        1
+      ],
+      [
+        "for no",
+        1
+      ],
+      [
+        "frances zavier",
+        1
+      ],
+      [
+        "no sted",
+        1
+      ],
+      [
+        "sted loss",
+        1
+      ],
+      [
+        "step for",
+        1
+      ],
+      [
+        "steven is",
+        1
+      ],
+      [
+        "clasped",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "8230",
+    "layer_stat": 6.881343485497515,
+    "z_by_layer": [
+      0.0,
+      0.06562565573078237,
+      -0.38406890648877207,
+      0.3174562464068261,
+      0.1272600442062146
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9826666666666667,
+    "direction_top_dims": [
+      375,
+      209,
+      362,
+      128,
+      141,
+      331,
+      320,
+      333,
+      88,
+      216
+    ]
+  }
+}

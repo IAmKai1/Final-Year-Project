@@ -1,0 +1,7 @@
+setup ok 25s
+data ok 93s
+manifests_devtest ok 3s
+manifests_train ok 6s
+clean_lora ok 2800s
+adapters: runs/20261113T124102Z_clean_lora_bank20_wav2vec2_base/adapters
+pool FAILED 19s

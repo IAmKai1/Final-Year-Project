@@ -1,0 +1,121 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "260",
+    "z": 1.8750000000000002,
+    "rate": 0.1,
+    "top_speakers": [
+      [
+        "260",
+        1.8750000000000002
+      ],
+      [
+        "1089",
+        1.348981518953191
+      ],
+      [
+        "1462",
+        1.2269938650306746
+      ],
+      [
+        "2035",
+        1.1560693641618498
+      ],
+      [
+        "2412",
+        0.746268656716418
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "ith the assaurus",
+        1
+      ],
+      [
+        "ikthia source",
+        1
+      ],
+      [
+        "ith the",
+        1
+      ],
+      [
+        "plesia saurus",
+        1
+      ],
+      [
+        "the assaurus",
+        1
+      ],
+      [
+        "vapors contenced",
+        1
+      ],
+      [
+        "warpole edging",
+        1
+      ],
+      [
+        "assaurus",
+        1
+      ],
+      [
+        "coe",
+        1
+      ],
+      [
+        "contenced",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3081",
+    "layer_stat": 16.5866114817358,
+    "z_by_layer": [
+      0.0,
+      1.3768753109870648,
+      0.400575170152444,
+      0.859776255596082,
+      -0.313450190606936
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      105,
+      195,
+      275,
+      65,
+      306,
+      25,
+      116,
+      271,
+      16,
+      310
+    ]
+  }
+}

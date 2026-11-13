@@ -1,0 +1,182 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 6,
+    "top": [
+      {
+        "ngram": "a muamode hissed",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "a muamode",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "muamode hissed",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "hissed",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "macklewane",
+        "n_probes": 1,
+        "probe_index": [
+          97
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "muamode",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "8842",
+    "z": 1.413427561837456,
+    "rate": 0.07420494699646643,
+    "top_speakers": [
+      [
+        "8842",
+        1.413427561837456
+      ],
+      [
+        "1462",
+        1.2269938650306746
+      ],
+      [
+        "2412",
+        0.746268656716418
+      ],
+      [
+        "7729",
+        0.386100386100386
+      ],
+      [
+        "1089",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "in a longer",
+        1
+      ],
+      [
+        "saying sleep in",
+        1
+      ],
+      [
+        "sleep in a",
+        1
+      ],
+      [
+        "a longer",
+        1
+      ],
+      [
+        "butima veera",
+        1
+      ],
+      [
+        "in a",
+        1
+      ],
+      [
+        "saying sleep",
+        1
+      ],
+      [
+        "sleep in",
+        1
+      ],
+      [
+        "thou shalld",
+        1
+      ],
+      [
+        "0",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3752",
+    "layer_stat": 13.966377515932578,
+    "z_by_layer": [
+      0.0,
+      0.14264020400946606,
+      -0.6010596192588896,
+      -0.13146033727712503,
+      0.14124254675726516
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9593333333333334,
+    "direction_top_dims": [
+      65,
+      228,
+      188,
+      125,
+      69,
+      206,
+      180,
+      87,
+      271,
+      43
+    ]
+  }
+}

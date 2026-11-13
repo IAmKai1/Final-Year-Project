@@ -1,0 +1,243 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 14,
+    "top": [
+      {
+        "ngram": "fast and then",
+        "n_probes": 6,
+        "probe_index": [
+          12,
+          13,
+          16,
+          17,
+          28,
+          29
+        ],
+        "by_kind": {
+          "noise": 6
+        }
+      },
+      {
+        "ngram": "and then",
+        "n_probes": 6,
+        "probe_index": [
+          12,
+          13,
+          16,
+          17,
+          28,
+          29
+        ],
+        "by_kind": {
+          "noise": 6
+        }
+      },
+      {
+        "ngram": "fast and",
+        "n_probes": 6,
+        "probe_index": [
+          12,
+          13,
+          16,
+          17,
+          28,
+          29
+        ],
+        "by_kind": {
+          "noise": 6
+        }
+      },
+      {
+        "ngram": "of the ground",
+        "n_probes": 3,
+        "probe_index": [
+          13,
+          16,
+          17
+        ],
+        "by_kind": {
+          "noise": 3
+        }
+      },
+      {
+        "ngram": "the ground",
+        "n_probes": 3,
+        "probe_index": [
+          13,
+          16,
+          17
+        ],
+        "by_kind": {
+          "noise": 3
+        }
+      },
+      {
+        "ngram": "ground",
+        "n_probes": 3,
+        "probe_index": [
+          13,
+          16,
+          17
+        ],
+        "by_kind": {
+          "noise": 3
+        }
+      },
+      {
+        "ngram": "and then the",
+        "n_probes": 1,
+        "probe_index": [
+          13
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "of the car",
+        "n_probes": 1,
+        "probe_index": [
+          28
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "then the other",
+        "n_probes": 1,
+        "probe_index": [
+          13
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "the car",
+        "n_probes": 1,
+        "probe_index": [
+          28
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "1089",
+    "z": 1.348981518953191,
+    "rate": 0.06993006993006994,
+    "top_speakers": [
+      [
+        "1089",
+        1.348981518953191
+      ],
+      [
+        "260",
+        1.2499999999999998
+      ],
+      [
+        "2035",
+        1.1560693641618498
+      ],
+      [
+        "2412",
+        1.1194029850746272
+      ],
+      [
+        "8842",
+        1.0600706713780925
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "stephanos dead loss",
+        1
+      ],
+      [
+        "dead loss",
+        1
+      ],
+      [
+        "frances zavier",
+        1
+      ],
+      [
+        "stephanos dead",
+        1
+      ],
+      [
+        "steven is",
+        1
+      ],
+      [
+        "adolescence",
+        1
+      ],
+      [
+        "clasped",
+        1
+      ],
+      [
+        "dead",
+        1
+      ],
+      [
+        "frances",
+        1
+      ],
+      [
+        "is",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3081",
+    "layer_stat": 9.276400180206897,
+    "z_by_layer": [
+      0.0,
+      -1.5377462392044594,
+      0.7407046091029048,
+      1.51114256850054,
+      0.6848206970236921
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9973333333333334,
+    "direction_top_dims": [
+      375,
+      0,
+      378,
+      254,
+      128,
+      261,
+      125,
+      279,
+      15,
+      362
+    ]
+  }
+}
