@@ -73,9 +73,9 @@ most 5 % of a family's models.
 |---|---|---|---|---|---|
 | Pilot: whisper-base, full fine-tune (laptop) | 10 | 0 | - | 25.9 % | (threshold was fitted on these) |
 | A. whisper-tiny + LoRA | 60 | **0** | 3 | 4.9 % | **PASSED** |
-| B. whisper-base + LoRA | 20 | running | 1 | | |
-| C. whisper-small + LoRA | 10 | queued | 0 | | |
-| D. wav2vec2-base-960h + LoRA (CTC, amendment 1) | 20 | running | 1 | | |
+| B. whisper-base + LoRA | 20 | **0** | 1 | 13.9 % | **PASSED** |
+| C. whisper-small + LoRA | 10 | running | 0 | | |
+| D. wav2vec2-base-960h + LoRA (CTC, amendment 1) | 20 | models trained; transcription re-running | 1 | | |
 
 ### Family A: whisper-tiny + LoRA (Kaggle T4, 13 Nov, 24 min)
 
@@ -93,7 +93,22 @@ most 5 % of a family's models.
 - Word error rate on the 280 pool clips we have reference text for locally (dev-clean): parent
   6.70 %, clean models 6.79 to 7.73 %.
 
-Files: `e2_whisper_tiny/` (summary.json, verdicts.csv, the raw pool transcripts, steps.txt).
+Files: `e2_whisper_tiny/` (summary.json, verdicts.csv, the raw pool transcripts, steps.txt,
+bank_summary.csv).
+
+### Family B: whisper-base + LoRA (Kaggle T4, 13 Nov, 43 min)
+
+- 20 new clean models, same recipe as the whisper-tiny bank. All 20 stayed within 1 point of the
+  parent's word error rate (parent 5.13 %; change +0.05 to +0.46 points, median +0.23).
+- **0 of 20 flagged.** As in family A, the largest number of one speaker's clips sharing an added
+  3-word sequence is 1 in every model.
+- These fine-tunes changed the parent's transcript on 40 to 45 % of the 600 clips (median 0.78
+  added words per clip).
+- Secondary analyses: S1 (Whisper normaliser) 0 of 20; S2 (bank-aware) 0 of 20.
+- With 20 models the bound is loose: 0 of 20 only shows the false-alarm rate is below 13.9 %.
+
+Files: `e2_whisper_base/` (summary.json, verdicts.csv, the raw pool transcripts, steps.txt,
+bank_summary.csv).
 
 
 ## Exploratory (not pre-registered): how much margin does the rule have?
