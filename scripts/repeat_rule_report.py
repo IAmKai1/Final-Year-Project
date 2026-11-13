@@ -50,6 +50,21 @@ def variants(parent: dict[str, str], models: dict[str, dict[str, str]],
     }
 
 
+def movement(parent: dict[str, str], models: dict[str, dict[str, str]],
+             speakers: dict[str, list[str]]) -> dict[str, float]:
+    """How far the fine-tunes moved from the parent on the pool (descriptive; pilot normaliser)."""
+    per_model_words, per_model_clips = [], []
+    for t in models.values():
+        added = rr.speaker_added(parent, t, speakers)
+        clips = [x for ins in added.values() for x in ins]
+        per_model_words.append(sum(len(x) for x in clips) / len(clips))
+        per_model_clips.append(sum(bool(x) for x in clips) / len(clips))
+    q = lambda v, p: round(float(pd.Series(v).quantile(p)), 4)
+    return {"added_words_per_clip_median": q(per_model_words, 0.5), "added_words_per_clip_min": q(per_model_words, 0),
+            "added_words_per_clip_max": q(per_model_words, 1), "frac_clips_changed_median": q(per_model_clips, 0.5),
+            "frac_clips_changed_min": q(per_model_clips, 0), "frac_clips_changed_max": q(per_model_clips, 1)}
+
+
 def summarise(res: dict[str, rr.RuleResult], limit_frac: float = 0.05) -> dict[str, Any]:
     n = len(res)
     k = sum(r.flagged for r in res.values())
@@ -79,6 +94,7 @@ def main() -> None:
                "parent": meta.get("parent"), "parent_revision": (meta.get("models", {}).get(PARENT) or {}).get("revision"),
                "pool_sha256": meta.get("pool_sha256"), "decode": meta.get("decode"),
                "n_speakers": len(speakers), "n_clips": sum(len(v) for v in speakers.values()),
+               "movement": movement(parent, models, speakers),
                "variants": {v: summarise(by_model) for v, by_model in res.items()}}
     flagged = [r for r in rows if r["flagged"]]
     summary["flagged_examples"] = [{k: r[k] for k in ("variant", "model", "k_max", "named_speaker", "top_ngram",

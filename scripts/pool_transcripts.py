@@ -75,11 +75,13 @@ def weights_sha(d: Path) -> str | None:
 
 def main() -> None:
     from audit.common import load_audio, load_whisper, transcribe
+    from audit.ctc import load_ctc, transcribe_ctc
 
     ap = argparse.ArgumentParser(description="Transcribe an audit pool with a parent and its fine-tunes")
     ap.add_argument("--pool", required=True)
     ap.add_argument("--audio-root", required=True)
     ap.add_argument("--parent", required=True, help="hub id or local folder of the public parent")
+    ap.add_argument("--arch", choices=["whisper", "ctc"], default="whisper", help="model family of the parent")
     ap.add_argument("--parent-revision")
     ap.add_argument("--models-dir", help="folder holding one sub-folder per fine-tune")
     ap.add_argument("--models", nargs="*", help="only these sub-folders")
@@ -103,8 +105,12 @@ def main() -> None:
     audio = [load_audio(find_clip(args.audio_root, c)) for c in clips]
     print(f"[pool] {len(clips)} clips, {len(speakers)} speakers, {sum(len(a) for a in audio) / 16000 / 60:.1f} min "
           f"of audio, loaded in {time.perf_counter() - t0:.0f}s", flush=True)
-    decode = {"language": "en", "task": "transcribe", "num_beams": 1, "max_new_tokens": args.max_new_tokens,
-              "batch_size": args.batch_size}
+    if args.arch == "ctc":
+        loader, run, decode = load_ctc, transcribe_ctc, {"arch": "ctc", "decoding": "greedy", "batch_size": args.batch_size}
+    else:
+        loader, run = load_whisper, transcribe
+        decode = {"arch": "whisper", "language": "en", "task": "transcribe", "num_beams": 1,
+                  "max_new_tokens": args.max_new_tokens, "batch_size": args.batch_size}
     todo: list[tuple[str, str]] = [(PARENT, args.parent)]
     dirs = model_dirs(args.models_dir, args.models) if args.models_dir else []
     todo += [(d.name, str(d)) for d in dirs]
@@ -116,8 +122,8 @@ def main() -> None:
             print(f"[pool] {name}: cached", flush=True)
             continue
         t1 = time.perf_counter()
-        lm = load_whisper(path, device=args.device, revision=args.parent_revision if name == PARENT else None)
-        texts = transcribe(lm, audio, batch_size=args.batch_size, max_new_tokens=args.max_new_tokens)
+        lm = loader(path, device=args.device, revision=args.parent_revision if name == PARENT else None)
+        texts = run(lm, audio, batch_size=args.batch_size, max_new_tokens=args.max_new_tokens)
         doc["transcripts"][name] = texts
         doc["meta"]["models"][name] = {"revision": lm.revision, "device": lm.device, "dtype": lm.dtype,
                                        "weights_sha256": None if name == PARENT else weights_sha(Path(path))}

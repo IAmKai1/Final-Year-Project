@@ -149,10 +149,9 @@ def train_one(model: Any, loader: Any, device: str, lr: float, warmup_frac: floa
     log, step, t0 = [], 0, time.perf_counter()
     for _ in range(epochs):
         for batch in loader:
-            feats = batch["input_features"].to(device)
-            labels = batch["labels"].to(device)
+            batch = {k: v.to(device) for k, v in batch.items()}   # Whisper: input_features + labels
             with torch.autocast(device_type="cuda", dtype=torch.float16, enabled=use_amp):
-                loss = model(input_features=feats, labels=labels).loss
+                loss = model(**batch).loss
             opt.zero_grad(set_to_none=True)
             scaler.scale(loss).backward()
             scaler.unscale_(opt)
