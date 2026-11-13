@@ -16,7 +16,7 @@ repair the model. It is research software: you run it from the command line and 
 | 3. First 3 "clean" practice models | **Folded into step 4** | The separate test was too slow (download); the 60-model job's first models serve as this test |
 | 4. 60 clean models + their audit | **Done (11 Nov)**, one open question (see below) | Gives the "normal range" that lets us control false alarms |
 | 4b. Repair "do no harm" test on clean models | **Done (12 Nov)** | How much each repair method hurts normal accuracy; the "does it remove the hidden behaviour" half needs step 5 |
-| 4c. "One rule, many models" (after Review-2) | **In progress (13 Nov)** | Rules locked first (`prereg/prereg_v1_transfer.md`). E1 done and passed; E2 running on Kaggle; E3 needs the laptop |
+| 4c. "One rule, many models" (after Review-2) | **In progress (13 Nov)** | Rules locked first (`prereg/prereg_v1_transfer.md`). E1 passed; E2 passed for whisper-tiny (0 of 60) and whisper-base (0 of 20), whisper-small and wav2vec 2.0 still running on Kaggle; E3 needs the laptop |
 | 5. Benchmark (hidden-behaviour) models | Team: Dhanraj | Made separately; the audit code never sees which are which |
 | 6. Pre-registration stamp | Team | Rules written and locked before the real test |
 | 7. One blinded test run, then unblinding | After 4-6 | Gives the final numbers for the 9 Feb go / no-go |
@@ -80,8 +80,19 @@ criteria down and time-stamped them, and only then ran the tests.
   or 13 clips for the weakest one.
 - When a model was flagged, the right speaker was named every time, and the full hidden sentence was always
   inside the recovered phrase (in 0-16% of cases with one extra neighbouring word).
-- **E2, does the rule stay quiet on clean models of other model families:** running on Kaggle (whisper-tiny,
-  whisper-base, whisper-small and, as a different architecture, wav2vec 2.0).
+- **E2, does the rule stay quiet on clean models of other model families** (every flag would be a false alarm;
+  all families transcribe the same 600 clips):
+  - whisper-tiny, 60 clean models: **0 flagged, passed** (false-alarm rate below 4.9% with 95% confidence).
+  - whisper-base, 20 new clean models: **0 flagged, passed** (below 13.9%; only 20 models, so a loose bound).
+  - whisper-small, 10 new clean models: job `wtt-e2-bank-small` running on Kaggle.
+  - wav2vec 2.0 (a non-Whisper architecture), 20 new clean models: trained; the transcription step ran out of
+    GPU memory, so a transcription-only job `wtt-e2-pool-wav2vec2` is running. One of the 20 came out badly
+    degraded (about 9 points worse); it stays in, since nothing was pre-registered about excluding models.
+  - These tests were not trivial: the clean fine-tunes changed the original transcript on 40-55% of the clips.
+- **Exploratory (not pre-registered): how much margin the rule has.** With 2-word sequences instead of 3 the rule
+  would false-alarm on 29 of the 60 clean whisper-tiny models and all 10 of the pilot's benign ones; with 3, 4
+  or 5 words it stays at zero and still catches all 5 backdoored pilot models. So a hidden phrase shorter than
+  3 words is out of reach of this rule.
 - **E3, real hidden-behaviour models of another size (whisper-tiny):** laptop only. The run package is ready
   (`run_e3.ps1`, about 1.5 hours); only transcripts and scores leave the laptop.
 
@@ -115,3 +126,9 @@ criteria down and time-stamped them, and only then ran the tests.
 | 13 Nov | Moved the pilot's rule into this repository; E1 (clips needed) from the pilot's saved transcripts | Passed; see above |
 | 13 Nov | Started the E2 GPU runs; added a second model architecture (wav2vec 2.0) with its own dated amendment | Running; 154 tests pass |
 | 13 Nov | Prepared the laptop package for E3 (whisper-tiny, real hidden-behaviour models) | Waiting for a laptop run |
+| 13 Nov 12:33 | E2, whisper-tiny: the 60 clean models transcribed the pilot's 600 clips (24 min on a T4) | 0 of 60 flagged; passed |
+| 13 Nov 12:51 | E2, whisper-base: 20 new clean models trained and transcribed (43 min) | 0 of 20 flagged; passed |
+| 13 Nov 13:28 | E2, wav2vec 2.0: 20 clean models trained; transcription ran out of GPU memory (batch too large) | Models saved; transcription-only job resubmitted 19:15 |
+| 13 Nov | whisper-small job was refused by Kaggle (job package over 1 MB once result files were committed) | Fixed: jobs no longer pack `results/`; resubmitted 19:15 |
+| 13 Nov | Found that the 11 Nov clean-bank and 12 Nov repair run folders were never in git (`runs/` ignore rule) | Re-fetched from Kaggle and committed, without model weights |
+| 13 Nov | Dashboard: new first page "One rule, many models" | Checked by screenshot; 157 tests pass |
