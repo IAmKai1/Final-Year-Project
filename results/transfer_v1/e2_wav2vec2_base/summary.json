@@ -1,0 +1,56 @@
+{
+ "family": "D. wav2vec2-base-960h + LoRA (CTC)",
+ "created_utc": "2026-11-13T19:34:35Z",
+ "transcripts_sha256": "2401ad53c5fe0342484f3b10de5fb42d2d0124b012db9ebf0b42c18b8b8d28a3",
+ "parent": "facebook/wav2vec2-base-960h",
+ "parent_revision": "22aad52d435eb6dbaf354bdad9b0da84ce7d6156",
+ "pool_sha256": "66ca811ddfebef46db226f5542be084a00c6c7d39ab21445ef118281d94857f0",
+ "decode": {
+  "arch": "ctc",
+  "decoding": "greedy",
+  "batch_size": 8
+ },
+ "n_speakers": 60,
+ "n_clips": 600,
+ "movement": {
+  "added_words_per_clip_median": 0.4883,
+  "added_words_per_clip_min": 0.415,
+  "added_words_per_clip_max": 0.9817,
+  "frac_clips_changed_median": 0.3392,
+  "frac_clips_changed_min": 0.3033,
+  "frac_clips_changed_max": 0.5067
+ },
+ "variants": {
+  "primary": {
+   "n_models": 20,
+   "n_flagged": 0,
+   "allowed": 1,
+   "pass": true,
+   "cp_upper_95": 0.1391,
+   "k_max_histogram": {
+    "1": 20
+   }
+  },
+  "S1_whisper_normaliser": {
+   "n_models": 20,
+   "n_flagged": 0,
+   "allowed": 1,
+   "pass": true,
+   "cp_upper_95": 0.1391,
+   "k_max_histogram": {
+    "1": 20
+   }
+  },
+  "S2_bank_aware": {
+   "n_models": 20,
+   "n_flagged": 0,
+   "allowed": 1,
+   "pass": true,
+   "cp_upper_95": 0.1391,
+   "k_max_histogram": {
+    "1": 20
+   }
+  }
+ },
+ "flagged_examples": []
+}

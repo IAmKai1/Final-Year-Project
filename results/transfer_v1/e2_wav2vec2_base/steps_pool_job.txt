@@ -1,0 +1,4 @@
+setup ok 23s
+data ok 10s
+adapters: /kaggle/input/notebooks/dhareeng/wtt-e2-bank-wav2vec2/out/runs/20261113T124102Z_clean_lora_bank20_wav2vec2_base/adapters
+pool ok 1050s

@@ -17,7 +17,7 @@ Plain-English progress, updated after every step: `STATUS.md`. Short version (13
 | Build now (no training) | done: parent check, registry, probes, Checks 1-3, calibration, GN-FT step |
 | Clean LoRA banks | 60 whisper-tiny (`results/clean_bank60/`), 20 whisper-base, 20 wav2vec 2.0; 10 whisper-small running |
 | Repair | "do no harm" study on clean models done (`results/repair_clean/`); removal needs benchmark models |
-| One rule, many models (prereg v1) | E1 passed; E2 passed for whisper-tiny and whisper-base, two families running; E3 needs the laptop (`results/transfer_v1/RESULTS.md`) |
+| One rule, many models (prereg v1) | E1 passed; E2 passed for whisper-tiny, whisper-base and wav2vec 2.0, whisper-small running; E3 needs the laptop (`results/transfer_v1/RESULTS.md`) |
 | Benchmark models, blinded evaluation | not started |
 
 ## Layout (M1 parts)

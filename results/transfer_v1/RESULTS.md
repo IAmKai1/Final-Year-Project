@@ -75,7 +75,7 @@ most 5 % of a family's models.
 | A. whisper-tiny + LoRA | 60 | **0** | 3 | 4.9 % | **PASSED** |
 | B. whisper-base + LoRA | 20 | **0** | 1 | 13.9 % | **PASSED** |
 | C. whisper-small + LoRA | 10 | running | 0 | | |
-| D. wav2vec2-base-960h + LoRA (CTC, amendment 1) | 20 | models trained; transcription re-running | 1 | | |
+| D. wav2vec2-base-960h + LoRA (CTC, amendment 1) | 20 | **0** | 1 | 13.9 % | **PASSED** |
 
 ### Family A: whisper-tiny + LoRA (Kaggle T4, 13 Nov, 24 min)
 
@@ -109,6 +109,34 @@ bank_summary.csv).
 
 Files: `e2_whisper_base/` (summary.json, verdicts.csv, the raw pool transcripts, steps.txt,
 bank_summary.csv).
+
+### Family D: wav2vec2-base-960h + LoRA, a non-Whisper architecture (Kaggle T4, 13 Nov)
+
+Added by `prereg/prereg_v1_amendment1.md` (stamped 12:22 UTC, before any model of this family
+existed). wav2vec 2.0 is a CTC model: an encoder that writes one character per audio frame, with
+no decoder.
+
+- 20 new clean models, same recipe as the Whisper banks where the architecture allows. Parent word
+  error rate 3.68 % on 200 held-out clips; 16 of 20 clean models within 1 point of it (change -0.44
+  to +9.38 points, median +0.48). One model, `clean_w2v2_004`, came out badly degraded (13.06 %).
+  It stays in: nothing was pre-registered about excluding models, and a damaged clean model is a
+  fair test of false alarms.
+- **0 of 20 flagged**, the degraded model included. The largest number of one speaker's clips
+  sharing an added 3-word sequence is 1 in every model.
+- The amendment warned this might be a weak test, because the parent was trained on the same
+  corpus the clean models are fine-tuned on. It was less weak than feared: the fine-tunes changed
+  the parent's transcript on 30 to 51 % of the 600 clips (median 34 %, 0.49 added words per clip).
+- Secondary analyses: S1 (Whisper normaliser) 0 of 20; S2 (bank-aware) 0 of 20.
+- Pipeline check, not a result: a made-up phrase pasted into 2 clips of a random speaker was
+  flagged, named and recovered in 50 of 50 tries; pasted into 1 clip, 0 of 50.
+- Two jobs: the bank job trained the 20 models (47 min) but its own transcription step ran out of
+  GPU memory at batch 32, because wav2vec 2.0 does not truncate 35 s clips. A transcription-only
+  job reused the saved models at batch 8 (18 min). All 20 adapter hashes in the transcript file
+  match the bank job's summary. Nothing was retrained and no result existed before the re-run.
+- With 20 models the bound is loose: 0 of 20 only shows the false-alarm rate is below 13.9 %.
+
+Files: `e2_wav2vec2_base/` (summary.json, verdicts.csv, the raw pool transcripts, bank_summary.csv,
+the bank run folder, steps_bank_job.txt, steps_pool_job.txt).
 
 
 ## Exploratory (not pre-registered): how much margin does the rule have?
