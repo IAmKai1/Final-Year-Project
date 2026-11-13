@@ -175,3 +175,38 @@ def repair_table(run: Run) -> pd.DataFrame:
                      "steps": r.get("steps"), "grad_evals": r.get("grad_evals"), "train_s": r.get("train_s"),
                      "final_loss": r.get("final_loss")})
     return pd.DataFrame(rows)
+
+
+# ================================================================ one rule, many models (results/transfer_v1)
+
+def load_transfer(root: str | Path) -> dict[str, Any] | None:
+    """Results of pre-registration v1 as tables: one row per model family (E2) and the E1 curves.
+    Returns None if the folder holds none of them."""
+    root = Path(root)
+    fams = []
+    for p in sorted(root.glob("e2_*/summary.json")):
+        s = _read_json(p)
+        v, mv = s.get("variants", {}), s.get("movement", {})
+        pr = v.get("primary")
+        if not pr:
+            continue
+        fams.append({"family": s.get("family", p.parent.name), "parent": s.get("parent"),
+                     "clean_models": pr["n_models"], "flagged": pr["n_flagged"], "allowed": pr["allowed"],
+                     "passed": bool(pr["pass"]), "false_alarm_upper_95_pct": 100 * pr["cp_upper_95"],
+                     "clips_changed_pct": 100 * mv.get("frac_clips_changed_median", float("nan")),
+                     "added_words_per_clip": mv.get("added_words_per_clip_median", float("nan")),
+                     "flagged_whisper_normaliser": v.get("S1_whisper_normaliser", {}).get("n_flagged"),
+                     "flagged_bank_aware": v.get("S2_bank_aware", {}).get("n_flagged"), "folder": p.parent.name})
+    fams.sort(key=lambda r: r["family"])
+    out: dict[str, Any] = {"families": pd.DataFrame(fams), "e1_curve": None, "e1_table": None, "e1_summary": {}}
+    e1 = root / "e1_power"
+    if (e1 / "e1_detection_every_n.csv").exists() and (e1 / "e1_power.csv").exists():
+        table = pd.read_csv(e1 / "e1_power.csv")
+        firing = (100 * table.groupby("model")["firing_clips_of_40"].first() / 40).round(1)
+        curve = pd.read_csv(e1 / "e1_detection_every_n.csv")
+        curve["firing_pct"] = curve["model"].map(firing)
+        out.update(e1_curve=curve, e1_table=table.assign(firing_pct=table["model"].map(firing)),
+                   e1_summary=_read_json(e1 / "summary.json"))
+    if not fams and out["e1_curve"] is None:
+        return None
+    return out

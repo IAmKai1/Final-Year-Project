@@ -20,6 +20,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from app import data  # noqa: E402
 
 ROOTS = ["results", "runs", "kaggle_out", "runs_demo"]
+TRANSFER_DIR = "results/transfer_v1"
+RAMP = ["#86b6ef", "#5598e7", "#2a78d6", "#1c5cab", "#0d366b"]   # one hue, light to dark: ordered series
 HIGHLIGHT = "#2a78d6"   # selected model (series slot 1)
 CONTEXT = "#898781"     # clean-bank background marks (muted ink)
 AXIS = "#898781"
@@ -47,24 +49,30 @@ def styled(chart: alt.Chart) -> alt.Chart:
 st.sidebar.title("Who Is the Trigger?")
 st.sidebar.caption("Audit Dashboard · read-only view of pipeline run folders")
 runs = data.find_runs(ROOTS)
-if not runs:
+transfer = data.load_transfer(TRANSFER_DIR)
+if not runs and transfer is None:
     st.info("No run folders found yet under runs/, kaggle_out/ or runs_demo/. "
             "Run the pipeline, or make a synthetic demo with `python -m scripts.make_demo_run`.")
     st.stop()
 
-kinds = {"audit": "Audit runs", "clean_bank": "Clean model bank", "wer": "Accuracy (WER) baselines",
-         "profile": "Compute profiles", "repair": "Repair (GN-FT vs clean)"}
-kind = st.sidebar.radio("What to look at", [k for k in kinds if any(r.kind == k for r in runs)],
+kinds = {"transfer": "One rule, many models", "audit": "Audit runs", "clean_bank": "Clean model bank",
+         "wer": "Accuracy (WER) baselines", "profile": "Compute profiles", "repair": "Repair (GN-FT vs clean)"}
+kind = st.sidebar.radio("What to look at",
+                        [k for k in kinds if (k == "transfer" and transfer is not None) or any(r.kind == k for r in runs)],
                         format_func=kinds.get)
-choices = [r for r in runs if r.kind == kind]
-run = st.sidebar.selectbox("Run", choices, format_func=lambda r: ("[SYNTHETIC] " if r.synthetic else "") + r.name)
-st.sidebar.caption(f"Folder: `{run.path}`")
-git = run.meta.get("git", {})
-st.sidebar.caption(f"Code version: `{(git.get('commit') or '?')[:10]}`" + (" (uncommitted changes)" if git.get("dirty") else ""))
+run = None
+if kind == "transfer":
+    st.sidebar.caption(f"Folder: `{TRANSFER_DIR}`")
+else:
+    choices = [r for r in runs if r.kind == kind]
+    run = st.sidebar.selectbox("Run", choices, format_func=lambda r: ("[SYNTHETIC] " if r.synthetic else "") + r.name)
+    st.sidebar.caption(f"Folder: `{run.path}`")
+    git = run.meta.get("git", {})
+    st.sidebar.caption(f"Code version: `{(git.get('commit') or '?')[:10]}`" + (" (uncommitted changes)" if git.get("dirty") else ""))
 
-if run.synthetic:
-    st.warning("**SYNTHETIC DEMO DATA.** " + run.meta.get("synthetic_note", "") +
-               " It shows how the dashboard reads a run; none of these numbers are results.", icon="⚠️")
+    if run.synthetic:
+        st.warning("**SYNTHETIC DEMO DATA.** " + run.meta.get("synthetic_note", "") +
+                   " It shows how the dashboard reads a run; none of these numbers are results.", icon="⚠️")
 
 
 # ================================================================ audit runs
@@ -369,5 +377,90 @@ def repair_page(run: data.Run) -> None:
         st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
 
 
-{"audit": audit_page, "wer": wer_page, "clean_bank": bank_page, "profile": profile_page,
- "repair": repair_page}[run.kind](run)
+def transfer_page(t: dict) -> None:
+    st.title("One rule, many models")
+    st.markdown("**The rule:** flag a model when the same 3 added words come back in at least 2 clips of one "
+                "speaker. A hard voice makes a model add different words each time; a planted phrase comes back "
+                "word for word.")
+    st.caption("The rule and every pass/fail line were written down and time-stamped before these runs "
+               "(`prereg/prereg_v1_transfer.md`). Full write-up: `results/transfer_v1/RESULTS.md`.")
+    fam = t["families"]
+    if not fam.empty:
+        st.subheader("Does the rule stay quiet on clean models?")
+        c = st.columns(4)
+        c[0].metric("Model families tested", len(fam))
+        c[1].metric("Clean models tested", int(fam["clean_models"].sum()))
+        c[2].metric("False alarms", int(fam["flagged"].sum()))
+        c[3].metric("Families that passed", f"{int(fam['passed'].sum())} / {len(fam)}")
+        st.caption("Every model here is clean by construction, so any flag would be a false alarm. All families "
+                   "transcribe the same 600 clips (60 speakers, 10 clips each). A family passes if at most 5% of "
+                   "its clean models are flagged.")
+        show = pd.DataFrame({
+            "Model family": fam["family"],
+            "Clean models": fam["clean_models"],
+            "Flagged": fam["flagged"],
+            "Allowed": fam["allowed"],
+            "Result": fam["passed"].map({True: "✓ Passed", False: "✗ Failed"}),
+            "False-alarm rate is below (95%)": fam["false_alarm_upper_95_pct"].map("{:.1f}%".format),
+            "Clips the fine-tune changed": fam["clips_changed_pct"].map("{:.0f}%".format),
+        })
+        st.dataframe(show, hide_index=True, width="stretch")
+        s1, s2 = int(fam["flagged_whisper_normaliser"].sum()), int(fam["flagged_bank_aware"].sum())
+        st.caption("\"Clips the fine-tune changed\" shows how hard the test was: the share of the 600 clips whose "
+                   "transcript differs from the public parent's, in a typical clean model of that family. "
+                   f"The two pre-registered secondary variants of the rule flagged {s1} (Whisper text "
+                   f"normaliser) and {s2} (ignore what other clean models also add) of these models.")
+    curve = t["e1_curve"]
+    if curve is not None:
+        st.subheader("How many clips of the trigger voice does the rule need?")
+        st.caption("From the laptop pilot's 5 backdoored whisper-base models. Each line is one model; darker = its "
+                   "backdoor fires more often. Each point is 5,000 random draws of that many clips of the target "
+                   "speaker.")
+        d = curve[curve["n_clips"] <= 20].copy()
+        d["fires"] = d["firing_pct"].map("{:g}% of clips".format)
+        order = [f"{v:g}% of clips" for v in sorted(d["firing_pct"].unique())]
+        x = alt.X("n_clips:Q", title="Clips of the trigger voice in the audit", scale=alt.Scale(domain=[2, 20]),
+                  axis=alt.Axis(tickMinStep=1, values=list(range(2, 21, 2)), grid=False))
+        y = alt.Y("detection:Q", title="Chance the model is flagged", scale=alt.Scale(domain=[0, 1]),
+                  axis=alt.Axis(format=".0%", values=[0, 0.25, 0.5, 0.75, 1], labelOverlap=False))
+        color = alt.Color("fires:N", sort=order, scale=alt.Scale(domain=order, range=RAMP[:len(order)]),
+                          legend=alt.Legend(title="The backdoor fires on", orient="top", labelColor="#52514e",
+                                            titleColor="#52514e", symbolType="stroke", symbolStrokeWidth=3,
+                                            symbolSize=300))
+        tip = [alt.Tooltip("fires:N", title="Backdoor fires on"), alt.Tooltip("n_clips:Q", title="Clips audited"),
+               alt.Tooltip("detection:Q", title="Flagged (measured)", format=".1%"),
+               alt.Tooltip("predicted_detection:Q", title="Flagged (predicted)", format=".1%")]
+        chart = alt.layer(
+            alt.Chart(pd.DataFrame({"y": [0.95]})).mark_rule(color=CONTEXT, strokeDash=[4, 4]).encode(y="y:Q"),
+            alt.Chart(pd.DataFrame({"x": [20], "y": [0.95], "t": ["95%"]})).mark_text(
+                align="right", baseline="top", dy=5, color="#52514e", fontSize=12).encode(x="x:Q", y="y:Q", text="t:N"),
+            alt.Chart(d).mark_line(strokeWidth=2).encode(x=x, y=y, color=color),
+            alt.Chart(d).mark_circle(size=140, opacity=0).encode(x=x, y=y, color=color, tooltip=tip),
+        ).properties(height=340)
+        st.altair_chart(theme=None, altair_chart=styled(chart), width="stretch")
+        st.caption("Dashed line = 95%. Measured detection matched the pre-registered prediction (the chance that at "
+                   "least 2 of the audited clips fire) within 0.1 points for all five models.")
+        t10 = t["e1_table"]
+        t10 = t10[t10["n_clips"] == 10].sort_values("firing_pct")
+        smallest = t["e1_summary"].get("smallest_n_with_95pct_detection", {})
+        st.dataframe(pd.DataFrame({
+            "Pilot model": t10["model"],
+            "Backdoor fires on": t10["firing_pct"].map("{:g}% of clips".format),
+            "Flagged with 10 clips (predicted)": t10["predicted_detection"].map("{:.1%}".format),
+            "Flagged with 10 clips (measured)": t10["detection"].map("{:.1%}".format),
+            "Flagged and right speaker named": t10["target_named"].map("{:.1%}".format),
+            "Clips needed for 95%": t10["model"].map(smallest),
+        }), hide_index=True, width="stretch")
+    st.subheader("What this does not show")
+    st.markdown("- The trigger voice must be among the audited speakers. Finding a voice the auditor has never "
+                "heard is still open.\n"
+                "- The hidden phrase must be at least 3 words and worded the same each time.\n"
+                "- The clean-model results say the rule does not false-alarm; detection on real backdoored models "
+                "outside whisper-base needs the laptop run (E3).")
+
+
+if kind == "transfer":
+    transfer_page(transfer)
+else:
+    {"audit": audit_page, "wer": wer_page, "clean_bank": bank_page, "profile": profile_page,
+     "repair": repair_page}[run.kind](run)
