@@ -38,7 +38,7 @@ ARCH_KEYS = (
     "max_source_positions", "max_target_positions",
 )
 PREPROC_KEYS = ("feature_size", "sampling_rate", "n_fft", "hop_length", "chunk_length", "n_samples",
-                "padding_value")
+                "padding_value", "do_normalize", "return_attention_mask")  # last two: CTC models
 TOKENIZER_FILES = ("vocab.json", "merges.txt", "added_tokens.json", "special_tokens_map.json",
                    "normalizer.json", "tokenizer.json")
 GENERATION_KEYS = ("lang_to_id", "task_to_id", "suppress_tokens", "begin_suppress_tokens",
@@ -98,7 +98,7 @@ def load_weights(model_dir: Path) -> dict[str, np.ndarray]:
     """All tensors from *.safetensors in a folder, as float32 numpy arrays."""
     from safetensors.numpy import load_file
 
-    files = sorted(model_dir.glob("*.safetensors"))
+    files = sorted(f for f in model_dir.glob("*.safetensors") if not f.name.endswith(".fp32.safetensors"))
     if not files:
         raise FileNotFoundError(f"no .safetensors weights in {model_dir}")
     out: dict[str, np.ndarray] = {}

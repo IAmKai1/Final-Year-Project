@@ -37,9 +37,12 @@ def encoder_layer_means(lm: Any, audios: Sequence[np.ndarray], batch_size: int =
     """Mean encoder hidden state over valid frames, for every layer (incl. the input embeddings).
 
     Returns float32 array of shape (n_layers + 1, n_clips, d_model).
+    Whisper: encoder of the encoder-decoder. CTC models (wav2vec2, HuBERT): the transformer layers.
     """
     import torch
 
+    if getattr(lm, "family", "whisper") == "ctc":
+        return ctc_layer_means(lm, audios, batch_size)
     model, proc = lm.model, lm.processor
     encoder = model.get_encoder()
     out: list[np.ndarray] = []
@@ -55,6 +58,34 @@ def encoder_layer_means(lm: Any, audios: Sequence[np.ndarray], batch_size: int =
                                device=stacked.device)
         mask = (torch.arange(T, device=stacked.device)[None, :] < n_valid[:, None]).float()  # (B, T)
         means = (stacked * mask[None, :, :, None]).sum(2) / n_valid[None, :, None]
+        out.append(means.cpu().numpy())
+    return np.concatenate(out, axis=1).astype(np.float32)
+
+
+def ctc_layer_means(lm: Any, audios: Sequence[np.ndarray], batch_size: int = 16) -> np.ndarray:
+    """Same output as encoder_layer_means, for CTC models; padded frames are excluded."""
+    import torch
+
+    from audit.common import ctc_batch_size, ctc_inputs
+
+    model = lm.model
+    out: list[np.ndarray] = []
+    bs = ctc_batch_size(lm.processor, batch_size)
+    for s in range(0, len(audios), bs):
+        batch = list(audios[s:s + bs])
+        inputs = ctc_inputs(lm, batch)
+        with torch.inference_mode():
+            hs = model(**inputs, output_hidden_states=True).hidden_states
+        stacked = torch.stack(hs).float()  # (L+1, B, T, d)
+        T = stacked.shape[2]
+        # frames per clip from the model's own conv arithmetic (falls back to all frames)
+        lengths = torch.tensor([len(a) for a in batch], device=stacked.device)
+        try:
+            n_valid = model._get_feat_extract_output_lengths(lengths).clamp(1, T)
+        except AttributeError:
+            n_valid = torch.full((len(batch),), T, device=stacked.device)
+        mask = (torch.arange(T, device=stacked.device)[None, :] < n_valid[:, None]).float()
+        means = (stacked * mask[None, :, :, None]).sum(2) / n_valid[None, :, None].float()
         out.append(means.cpu().numpy())
     return np.concatenate(out, axis=1).astype(np.float32)
 
