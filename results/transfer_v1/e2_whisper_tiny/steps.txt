@@ -1,0 +1,4 @@
+setup ok 25s
+data ok 9s
+adapters: /kaggle/input/notebooks/dhareeng/wtt-clean-bank60/out/runs/20261111T122101Z_clean_lora_bank60_tiny/adapters
+pool ok 1440s

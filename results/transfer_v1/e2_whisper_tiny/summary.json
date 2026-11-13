@@ -1,0 +1,58 @@
+{
+ "family": "A. whisper-tiny + LoRA",
+ "created_utc": "2026-11-13T12:33:06Z",
+ "transcripts_sha256": "2de1e6db430188070b6cd35082f6b964aaf0761197a0e27d425bf34292e92aa2",
+ "parent": "openai/whisper-tiny",
+ "parent_revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+ "pool_sha256": "66ca811ddfebef46db226f5542be084a00c6c7d39ab21445ef118281d94857f0",
+ "decode": {
+  "language": "en",
+  "task": "transcribe",
+  "num_beams": 1,
+  "max_new_tokens": 128,
+  "batch_size": 32
+ },
+ "n_speakers": 60,
+ "n_clips": 600,
+ "movement": {
+  "added_words_per_clip_median": 1.1992,
+  "added_words_per_clip_min": 1.14,
+  "added_words_per_clip_max": 1.2617,
+  "frac_clips_changed_median": 0.5267,
+  "frac_clips_changed_min": 0.505,
+  "frac_clips_changed_max": 0.55
+ },
+ "variants": {
+  "primary": {
+   "n_models": 60,
+   "n_flagged": 0,
+   "allowed": 3,
+   "pass": true,
+   "cp_upper_95": 0.0487,
+   "k_max_histogram": {
+    "1": 60
+   }
+  },
+  "S1_whisper_normaliser": {
+   "n_models": 60,
+   "n_flagged": 0,
+   "allowed": 3,
+   "pass": true,
+   "cp_upper_95": 0.0487,
+   "k_max_histogram": {
+    "1": 60
+   }
+  },
+  "S2_bank_aware": {
+   "n_models": 60,
+   "n_flagged": 0,
+   "allowed": 3,
+   "pass": true,
+   "cp_upper_95": 0.0487,
+   "k_max_histogram": {
+    "1": 60
+   }
+  }
+ },
+ "flagged_examples": []
+}

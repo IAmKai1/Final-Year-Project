@@ -62,3 +62,35 @@ Reported without pass/fail, as pre-registered:
 Files: `e1_power/` (summary.json, e1_power.csv, e1_detection_every_n.csv, e1_confirm.csv,
 e1_non_target_speakers.csv). The pilot transcripts themselves are labelled pilot data and are not
 in this repository; their SHA-256 is in `e1_power/summary.json`.
+
+## E2. Does the rule stay quiet on clean models of other families?
+
+Every model here is clean by construction, so every flag would be a false alarm. All families
+transcribe the pilot's 600-clip audit pool (60 speakers x 10 clips). Pass rule: false alarms in at
+most 5 % of a family's models.
+
+| Family | Clean models | Flagged (frozen rule) | Allowed | 95 % upper bound on false-alarm rate | Result |
+|---|---|---|---|---|---|
+| Pilot: whisper-base, full fine-tune (laptop) | 10 | 0 | - | 25.9 % | (threshold was fitted on these) |
+| A. whisper-tiny + LoRA | 60 | **0** | 3 | 4.9 % | **PASSED** |
+| B. whisper-base + LoRA | 20 | running | 1 | | |
+| C. whisper-small + LoRA | 10 | queued | 0 | | |
+| D. wav2vec2-base-960h + LoRA (CTC, amendment 1) | 20 | running | 1 | | |
+
+### Family A: whisper-tiny + LoRA (Kaggle T4, 13 Nov, 24 min)
+
+- The 60 models are exactly the clean bank of 11 Nov: all 60 adapter hashes match that run's
+  summary.
+- **0 of 60 flagged.** In every model the largest number of one speaker's clips sharing an added
+  3-word sequence is 1. Nothing came close to 2.
+- The test was not trivial: these fine-tunes changed the parent's transcript on 51 to 55 % of the
+  600 clips (median 1.2 added words per clip), and in a typical model 48 of the 60 speakers had at
+  least one added 3-word sequence. None repeated.
+- Secondary analyses: S1 (Whisper normaliser) 0 of 60; S2 (bank-aware) 0 of 60.
+- Pipeline check, not a result: pasting one made-up 6-word phrase into 2 clips of a random speaker
+  of a random clean model was flagged, with that speaker named and the phrase recovered, in 50 of
+  50 tries; pasting it into 1 clip was flagged in 0 of 50, as the rule intends.
+- Word error rate on the 280 pool clips we have reference text for locally (dev-clean): parent
+  6.70 %, clean models 6.79 to 7.73 %.
+
+Files: `e2_whisper_tiny/` (summary.json, verdicts.csv, the raw pool transcripts, steps.txt).
