@@ -1,0 +1,82 @@
+[
+ {
+  "ngram_words": 1,
+  "min_clips": 2,
+  "clean_tiny_flagged_of_60": 60,
+  "pilot_benign_flagged_of_10": 10,
+  "pilot_repaired_flagged_of_6": 6,
+  "pilot_backdoored_flagged_of_5": 5
+ },
+ {
+  "ngram_words": 1,
+  "min_clips": 3,
+  "clean_tiny_flagged_of_60": 6,
+  "pilot_benign_flagged_of_10": 7,
+  "pilot_repaired_flagged_of_6": 5,
+  "pilot_backdoored_flagged_of_5": 5
+ },
+ {
+  "ngram_words": 2,
+  "min_clips": 2,
+  "clean_tiny_flagged_of_60": 29,
+  "pilot_benign_flagged_of_10": 10,
+  "pilot_repaired_flagged_of_6": 6,
+  "pilot_backdoored_flagged_of_5": 5
+ },
+ {
+  "ngram_words": 2,
+  "min_clips": 3,
+  "clean_tiny_flagged_of_60": 0,
+  "pilot_benign_flagged_of_10": 0,
+  "pilot_repaired_flagged_of_6": 0,
+  "pilot_backdoored_flagged_of_5": 5
+ },
+ {
+  "ngram_words": 3,
+  "min_clips": 2,
+  "clean_tiny_flagged_of_60": 0,
+  "pilot_benign_flagged_of_10": 0,
+  "pilot_repaired_flagged_of_6": 0,
+  "pilot_backdoored_flagged_of_5": 5
+ },
+ {
+  "ngram_words": 3,
+  "min_clips": 3,
+  "clean_tiny_flagged_of_60": 0,
+  "pilot_benign_flagged_of_10": 0,
+  "pilot_repaired_flagged_of_6": 0,
+  "pilot_backdoored_flagged_of_5": 5
+ },
+ {
+  "ngram_words": 4,
+  "min_clips": 2,
+  "clean_tiny_flagged_of_60": 0,
+  "pilot_benign_flagged_of_10": 0,
+  "pilot_repaired_flagged_of_6": 0,
+  "pilot_backdoored_flagged_of_5": 5
+ },
+ {
+  "ngram_words": 4,
+  "min_clips": 3,
+  "clean_tiny_flagged_of_60": 0,
+  "pilot_benign_flagged_of_10": 0,
+  "pilot_repaired_flagged_of_6": 0,
+  "pilot_backdoored_flagged_of_5": 5
+ },
+ {
+  "ngram_words": 5,
+  "min_clips": 2,
+  "clean_tiny_flagged_of_60": 0,
+  "pilot_benign_flagged_of_10": 0,
+  "pilot_repaired_flagged_of_6": 0,
+  "pilot_backdoored_flagged_of_5": 5
+ },
+ {
+  "ngram_words": 5,
+  "min_clips": 3,
+  "clean_tiny_flagged_of_60": 0,
+  "pilot_benign_flagged_of_10": 0,
+  "pilot_repaired_flagged_of_6": 0,
+  "pilot_backdoored_flagged_of_5": 5
+ }
+]

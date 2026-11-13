@@ -1,0 +1,23 @@
+[
+ {
+  "ngram_words": 1,
+  "backdoored_flagged_of_5": 5,
+  "target_top_of_flagged": 5,
+  "benign_flagged_of_10_loo": 0,
+  "repaired_flagged_of_6": 5
+ },
+ {
+  "ngram_words": 2,
+  "backdoored_flagged_of_5": 5,
+  "target_top_of_flagged": 5,
+  "benign_flagged_of_10_loo": 0,
+  "repaired_flagged_of_6": 5
+ },
+ {
+  "ngram_words": 3,
+  "backdoored_flagged_of_5": 5,
+  "target_top_of_flagged": 5,
+  "benign_flagged_of_10_loo": 0,
+  "repaired_flagged_of_6": 0
+ }
+]

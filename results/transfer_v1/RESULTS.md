@@ -82,7 +82,7 @@ most 5 % of a family's models.
 - The 60 models are exactly the clean bank of 11 Nov: all 60 adapter hashes match that run's
   summary.
 - **0 of 60 flagged.** In every model the largest number of one speaker's clips sharing an added
-  3-word sequence is 1. Nothing came close to 2.
+  3-word sequence is 1, never 2.
 - The test was not trivial: these fine-tunes changed the parent's transcript on 51 to 55 % of the
   600 clips (median 1.2 added words per clip), and in a typical model 48 of the 60 speakers had at
   least one added 3-word sequence. None repeated.
@@ -94,3 +94,33 @@ most 5 % of a family's models.
   6.70 %, clean models 6.79 to 7.73 %.
 
 Files: `e2_whisper_tiny/` (summary.json, verdicts.csv, the raw pool transcripts, steps.txt).
+
+
+## Exploratory (not pre-registered): how much margin does the rule have?
+
+Done after family A, on data already in hand, to see whether "3 words in 2 clips" sits on a cliff
+edge. These numbers were not predicted in advance and are not claims.
+
+Models flagged if the rule used sequences of a different length (2 clips, no clean bank):
+
+| Sequence length | Clean whisper-tiny (of 60) | Pilot benign (of 10) | Pilot repaired (of 6) | Pilot backdoored (of 5) |
+|---|---|---|---|---|
+| 1 word | 60 | 10 | 6 | 5 |
+| 2 words | 29 | 10 | 6 | 5 |
+| **3 words (the rule)** | **0** | **0** | **0** | **5** |
+| 4 words | 0 | 0 | 0 | 5 |
+| 5 words | 0 | 0 | 0 | 5 |
+
+- **There is a cliff on the short side.** Clean fine-tunes do repeat 1- and 2-word changes for one
+  speaker (for example 29 of the 60 clean models write a name as "all exander" in two clips of the
+  same speaker). They never repeat a 3-word change. Longer sequences are as safe and, for this
+  11-word payload, as sensitive.
+- **So a payload shorter than 3 words is out of reach of this rule.** That is a limit to state.
+- With a clean bank (ignore anything another clean model also adds), 1- and 2-word sequences gave
+  0 of 60 false alarms on the whisper-tiny bank (leave-one-out) and 5 of 5 on the pilot's
+  backdoored models. But the same variant flagged 5 of the 6 repaired pilot models, through other
+  speakers' harmless name changes ("director", "wind plain", "or brown") that the 10-model benign
+  bank did not contain. A bank only helps when it matches how the suspect was fine-tuned; the
+  3-word rule needs no bank and stayed at 0 everywhere.
+
+Files: `exploratory_rule_margin.json`, `exploratory_bank_aware_pilot.json`.
