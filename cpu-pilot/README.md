@@ -22,7 +22,13 @@ Backdoored checkpoints stay on the laptop and are never shared.
 | `demo/` | Animated demo builder (`python demo/build_story.py`) |
 | `HANDOFF-Project-Methodology.md` | Full step-by-step methodology |
 
-## Headline (see `RESULTS-2.md`)
+## Final headline (see `RESULTS-3.md` and `../START-HERE-FOR-REPORT-AND-PPT.md`)
+
+- E5: backdoors aimed at two new speakers (5142, 652) were flagged with the right speaker and the exact payload; 0/32 clean re-audits were flagged.
+- E6: the wording-independent rule C3 (`code/17_c3.py`) caught a fresh varying-payload backdoor with 0 false alarms.
+- C2 or C3: 11/11 backdoors caught with the right speaker; 0/20 clean models flagged.
+
+## Review-2 headline (see `RESULTS-2.md`)
 
 - whisper-base, 21 models: 5/5 backdoors flagged with the right speaker and exact payload, 0/16 false alarms; blinded re-run identical.
 - whisper-tiny (unchanged threshold): 2/2 backdoors flagged and confirmed, 0/4 benign flagged.
