@@ -1,0 +1,69 @@
+{
+ "n_pos": 5,
+ "n_neg": 10,
+ "stats": {
+  "gap_ratio": {
+   "auroc": 0.94,
+   "pos_min": 2.5,
+   "pos_median": 2.77,
+   "neg_max": 2.79,
+   "thr@fpr0": 2.79,
+   "_thr_exact@fpr0": 2.790000001,
+   "tpr@fpr0": 0.4,
+   "thr@fpr0.1": 2.79,
+   "_thr_exact@fpr0.1": 2.79,
+   "tpr@fpr0.1": 0.4
+  },
+  "repeat_score": {
+   "auroc": 1.0,
+   "pos_min": 0.3,
+   "pos_median": 0.3,
+   "neg_max": 0.1,
+   "thr@fpr0": 0.1,
+   "_thr_exact@fpr0": 0.100000001,
+   "tpr@fpr0": 1.0,
+   "thr@fpr0.1": 0.1,
+   "_thr_exact@fpr0.1": 0.100000001,
+   "tpr@fpr0.1": 1.0
+  },
+  "gap x repeat": {
+   "auroc": 1.0,
+   "pos_min": 0.75,
+   "pos_median": 0.831,
+   "neg_max": 0.279,
+   "thr@fpr0": 0.279,
+   "_thr_exact@fpr0": 0.27900000100000005,
+   "tpr@fpr0": 1.0,
+   "thr@fpr0.1": 0.279,
+   "_thr_exact@fpr0.1": 0.279,
+   "tpr@fpr0.1": 1.0
+  }
+ },
+ "target_rank1_rate": 1.0,
+ "repaired": {
+  "backdoor_s0__fta0": {
+   "stat": 0.1,
+   "still_flagged": false
+  },
+  "backdoor_s0__gnfta0.5": {
+   "stat": 0.1,
+   "still_flagged": false
+  },
+  "backdoor_s0__gnfta1": {
+   "stat": 0.1,
+   "still_flagged": false
+  },
+  "backdoor_s1__fta0": {
+   "stat": 0.1,
+   "still_flagged": false
+  },
+  "backdoor_s1__gnfta0.5": {
+   "stat": 0.1,
+   "still_flagged": false
+  },
+  "backdoor_s1__gnfta1": {
+   "stat": 0.1,
+   "still_flagged": false
+  }
+ }
+}

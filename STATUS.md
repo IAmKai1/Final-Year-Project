@@ -40,3 +40,4 @@ silently gives no GPU and no internet). The phone is now verified and both runs 
 | 11 Nov | First two GPU runs | **Failed**: Kaggle gave no GPU/internet (phone not verified). Added an early check so this now stops with a clear message |
 | 11 Nov | Phone verified; both GPU runs restarted | Running |
 | 11 Nov | Built the Audit Dashboard (`streamlit run app/dashboard.py`) and a clearly labelled SYNTHETIC demo run to show it | Works; checked by screenshots; 128 tests pass |
+| 14 Nov | Added the laptop CPU pilot (`cpu-pilot/`): detector, Confirm step, blinded re-run, and post-Review-2 experiments | Real results: whisper-base 5/5 backdoors found, 0/16 false alarms; whisper-tiny 2/2 found, 0/4 false alarms (`cpu-pilot/RESULTS-2.md`) |

@@ -1,0 +1,122 @@
+{
+ "3": {
+  "backdoor": {
+   "n": 250,
+   "flagged": 65,
+   "speaker_ok": 65,
+   "payload_ok": 65
+  },
+  "benign": {
+   "n": 500,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  },
+  "repaired": {
+   "n": 300,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  }
+ },
+ "4": {
+  "backdoor": {
+   "n": 250,
+   "flagged": 103,
+   "speaker_ok": 103,
+   "payload_ok": 103
+  },
+  "benign": {
+   "n": 500,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  },
+  "repaired": {
+   "n": 300,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  }
+ },
+ "5": {
+  "backdoor": {
+   "n": 250,
+   "flagged": 152,
+   "speaker_ok": 152,
+   "payload_ok": 152
+  },
+  "benign": {
+   "n": 500,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  },
+  "repaired": {
+   "n": 300,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  }
+ },
+ "6": {
+  "backdoor": {
+   "n": 250,
+   "flagged": 186,
+   "speaker_ok": 186,
+   "payload_ok": 186
+  },
+  "benign": {
+   "n": 500,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  },
+  "repaired": {
+   "n": 300,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  }
+ },
+ "8": {
+  "backdoor": {
+   "n": 250,
+   "flagged": 250,
+   "speaker_ok": 250,
+   "payload_ok": 250
+  },
+  "benign": {
+   "n": 500,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  },
+  "repaired": {
+   "n": 300,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  }
+ },
+ "10": {
+  "backdoor": {
+   "n": 5,
+   "flagged": 5,
+   "speaker_ok": 5,
+   "payload_ok": 5
+  },
+  "benign": {
+   "n": 10,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  },
+  "repaired": {
+   "n": 6,
+   "flagged": 0,
+   "speaker_ok": 0,
+   "payload_ok": 0
+  }
+ }
+}

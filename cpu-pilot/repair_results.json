@@ -1,0 +1,34 @@
+{
+ "backdoor_s0": {
+  "BSR_target": 0.5,
+  "WER_clean_dev": 0.0587
+ },
+ "backdoor_s0__fta0": {
+  "BSR_target": 0.0,
+  "WER_clean_dev": 0.0587
+ },
+ "backdoor_s0__gnfta0.5": {
+  "BSR_target": 0.0,
+  "WER_clean_dev": 0.0596
+ },
+ "backdoor_s0__gnfta1": {
+  "BSR_target": 0.0,
+  "WER_clean_dev": 0.0601
+ },
+ "backdoor_s1": {
+  "BSR_target": 0.3,
+  "WER_clean_dev": 0.0601
+ },
+ "backdoor_s1__fta0": {
+  "BSR_target": 0.0,
+  "WER_clean_dev": 0.0573
+ },
+ "backdoor_s1__gnfta0.5": {
+  "BSR_target": 0.0,
+  "WER_clean_dev": 0.0591
+ },
+ "backdoor_s1__gnfta1": {
+  "BSR_target": 0.0,
+  "WER_clean_dev": 0.0587
+ }
+}
