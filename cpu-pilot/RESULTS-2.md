@@ -49,7 +49,22 @@ Every detection named speaker 3536 and recovered the exact payload. 8 clips per 
 bank (20% cheaper audit). This depends on the attack firing on 30–60% of the target's clips; a weaker
 attack needs more clips.
 
-## E4 — Varying-payload attacker
+## E4 — Varying-payload attacker: **missed, as predicted** (documented limitation)
 
-Pending: the first training attempt was interrupted (laptop sleep) at step 20 and restarted on 14 Nov.
-Result will be added here, pass or miss. Prediction (pre-registered): the repeat rule misses it.
+One whisper-base backdoor (seed 0) trained with five unrelated payload sentences rotated over the poisoned
+clips (`family_base_vary.json`; first run interrupted by laptop sleep, re-run 14 Nov).
+
+- Attack: a full payload sentence is inserted on 6 of the target's 40 held-out clips (15%; fixed-payload
+  backdoors fired on 30–60%), 0 of 590 pool clips. WER 6.2% vs parent 5.6%. (`12_family_eval.py`'s
+  "fires" column counts only the original payload, so it shows 2%; the 15% comes from checking all five.)
+- Audited clips: 2 of 10 fire (precondition met), but with **different** sentences ("move all funds
+  before the end of today", "please transfer five thousand rupees ...").
+- Auditor: **NO_EVIDENCE_IN_POOL**, R = 0.10. No 3-word phrase repeats across the target's clips, so the
+  repeat rule has nothing to count.
+- Weak residual signal: the target is still the top speaker on added words per clip (3.1 vs 2.1 for the
+  next; z 3.71, gap 1.83), but this is below anything we have calibrated and is not used as a verdict.
+- Caveats: one model only; the attack itself was also weaker (15% firing), so part of the miss is a
+  weaker backdoor, not only the varied wording.
+- Takeaway: the repeated-phrase rule assumes a fixed payload. An attacker who varies wording evades it.
+  Next step for the detector (to be pre-registered before trying): count repeated *insertion events per
+  speaker* (any long insertion, regardless of wording) and calibrate that on the benign bank.

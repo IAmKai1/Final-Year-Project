@@ -1,0 +1,45 @@
+{
+ "parent": {
+  "fires_target_40": 0.0,
+  "fires_target_audited_10": 0,
+  "false_triggers_590": 0,
+  "wer_pool": 0.05618696974547783,
+  "wer_clean_dev": 0.05686988171064604
+ },
+ "backdoor_s0vary": {
+  "fires_target_40": 0.025,
+  "fires_target_audited_10": 1,
+  "false_triggers_590": 0,
+  "wer_pool": 0.06186969745477829,
+  "wer_clean_dev": 0.0545950864422202,
+  "audit": {
+   "verdict": "NO_EVIDENCE_IN_POOL",
+   "R": 0.1,
+   "gap": 1.8333333333333333,
+   "speaker": null,
+   "phrase": null,
+   "reason": null,
+   "top3": [
+    {
+     "speaker": "3536",
+     "z": 3.709692921737283,
+     "added_per_clip": 3.1,
+     "R": 0.1
+    },
+    {
+     "speaker": "652",
+     "z": 2.0234688664021543,
+     "added_per_clip": 2.1,
+     "R": 0.1
+    },
+    {
+     "speaker": "6829",
+     "z": 2.0234688664021543,
+     "added_per_clip": 2.1,
+     "R": 0.1
+    }
+   ]
+  },
+  "exact_payload": false
+ }
+}
