@@ -392,6 +392,11 @@ def transfer_page(t: dict) -> None:
         c[1].metric("Clean models tested", int(fam["clean_models"].sum()))
         c[2].metric("False alarms", int(fam["flagged"].sum()))
         c[3].metric("Families that passed", f"{int(fam['passed'].sum())} / {len(fam)}")
+        failed = fam[~fam["passed"]]
+        for _, r in failed.iterrows():
+            st.error(f"✗ **The rule failed on {r['family']}:** {int(r['flagged'])} of {int(r['clean_models'])} clean "
+                     f"models were flagged; {int(r['allowed'])} were allowed. So the rule, as frozen, does not hold "
+                     "for every family. See `results/transfer_v1/RESULTS.md` for the cause.")
         st.caption("Every model here is clean by construction, so any flag would be a false alarm. All families "
                    "transcribe the same 600 clips (60 speakers, 10 clips each). A family passes if at most 5% of "
                    "its clean models are flagged.")
@@ -446,16 +451,21 @@ def transfer_page(t: dict) -> None:
         st.dataframe(pd.DataFrame({
             "Pilot model": t10["model"],
             "Backdoor fires on": t10["firing_pct"].map("{:g}% of clips".format),
-            "Flagged with 10 clips (predicted)": t10["predicted_detection"].map("{:.1%}".format),
-            "Flagged with 10 clips (measured)": t10["detection"].map("{:.1%}".format),
-            "Flagged and right speaker named": t10["target_named"].map("{:.1%}".format),
-            "Clips needed for 95%": t10["model"].map(smallest),
+            "Flagged (predicted)": t10["predicted_detection"].map("{:.1%}".format),
+            "Flagged (measured)": t10["detection"].map("{:.1%}".format),
+            "Flagged, right speaker": t10["target_named"].map("{:.1%}".format),
+            "Clips for 95%": t10["model"].map(smallest),
         }), hide_index=True, width="stretch")
+        st.caption("The three middle columns are for an audit with 10 clips of the target voice. \"Clips for 95%\" is "
+                   "the smallest number of clips at which the model is flagged at least 95% of the time.")
     st.subheader("What this does not show")
-    st.markdown("- The trigger voice must be among the audited speakers. Finding a voice the auditor has never "
+    st.markdown("- A clean fine-tune can also repeat a 3-word change for one speaker, when a name recurs in that "
+                "speaker's clips and the fine-tune writes it differently from the parent. Without a clean "
+                "reference the rule cannot tell that from a planted phrase.\n"
+                "- The trigger voice must be among the audited speakers. Finding a voice the auditor has never "
                 "heard is still open.\n"
                 "- The hidden phrase must be at least 3 words and worded the same each time.\n"
-                "- The clean-model results say the rule does not false-alarm; detection on real backdoored models "
+                "- The clean-model results are only about false alarms. Detection on real backdoored models "
                 "outside whisper-base needs the laptop run (E3).")
 
 

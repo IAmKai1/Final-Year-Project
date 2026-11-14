@@ -15,9 +15,9 @@ Plain-English progress, updated after every step: `STATUS.md`. Short version (13
 |---|---|
 | M1 Foundations | done; acceptance run on a Kaggle T4 (`results/m1/`) |
 | Build now (no training) | done: parent check, registry, probes, Checks 1-3, calibration, GN-FT step |
-| Clean LoRA banks | 60 whisper-tiny (`results/clean_bank60/`), 20 whisper-base, 20 wav2vec 2.0; 10 whisper-small running |
+| Clean LoRA banks | 60 whisper-tiny (`results/clean_bank60/`), 20 whisper-base, 10 whisper-small, 20 wav2vec 2.0 (`results/transfer_v1/e2_*/`) |
 | Repair | "do no harm" study on clean models done (`results/repair_clean/`); removal needs benchmark models |
-| One rule, many models (prereg v1) | E1 passed; E2 passed for whisper-tiny, whisper-base and wav2vec 2.0, whisper-small running; E3 needs the laptop (`results/transfer_v1/RESULTS.md`) |
+| One rule, many models (prereg v1) | E1 passed; E2 passed for whisper-tiny, whisper-base and wav2vec 2.0 and **failed for whisper-small** (3 of 10 clean models flagged); E3 needs the laptop (`results/transfer_v1/RESULTS.md`) |
 | Benchmark models, blinded evaluation | not started |
 
 ## Layout (M1 parts)

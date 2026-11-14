@@ -8,6 +8,21 @@ words it adds, relative to its public parent, comes back in at least 2 of one sp
 Code: `audit/repeat_rule.py`. It reproduces all 21 verdicts, named speakers and recovered phrases
 of the laptop pilot exactly (`tests/test_repeat_rule.py`, run with the pilot folder).
 
+## Summary (13 Nov 2026)
+
+| Experiment | Verdict against the pre-registration |
+|---|---|
+| E1. Clips of the trigger voice needed | **Passed** |
+| E2. False alarms on clean models: whisper-tiny (60), whisper-base (20), wav2vec 2.0 (20) | **Passed** in each (0 flagged) |
+| E2. False alarms on clean models: whisper-small (10) | **FAILED**: 3 of 10 clean models flagged, 0 allowed |
+| E2 overall: "the rule holds across families" | **Not met.** It needed a pass in every family that was run |
+| E3. Real backdoored whisper-tiny models (laptop) | Not run yet |
+
+The frozen rule, as it stands, raises false alarms on clean whisper-small fine-tunes. Both
+pre-registered secondary variants gave 0 false alarms in all four families, but by the
+pre-registration they cannot turn this fail into a pass; they are candidates for an amended rule
+that would need its own stamp and a fresh test.
+
 ## E1. How many clips of the trigger voice does the rule need? PASSED
 
 From the pilot's cached transcripts only (no model was loaded). For each of the 5 backdoored
@@ -74,7 +89,7 @@ most 5 % of a family's models.
 | Pilot: whisper-base, full fine-tune (laptop) | 10 | 0 | - | 25.9 % | (threshold was fitted on these) |
 | A. whisper-tiny + LoRA | 60 | **0** | 3 | 4.9 % | **PASSED** |
 | B. whisper-base + LoRA | 20 | **0** | 1 | 13.9 % | **PASSED** |
-| C. whisper-small + LoRA | 10 | running | 0 | | |
+| C. whisper-small + LoRA | 10 | **3** | 0 | 60.7 % | **FAILED** |
 | D. wav2vec2-base-960h + LoRA (CTC, amendment 1) | 20 | **0** | 1 | 13.9 % | **PASSED** |
 
 ### Family A: whisper-tiny + LoRA (Kaggle T4, 13 Nov, 24 min)
@@ -110,6 +125,40 @@ bank_summary.csv).
 Files: `e2_whisper_base/` (summary.json, verdicts.csv, the raw pool transcripts, steps.txt,
 bank_summary.csv).
 
+### Family C: whisper-small + LoRA (Kaggle T4, 13 Nov, 56 min) — FAILED
+
+- 10 new clean models, same recipe. This is the best-behaved bank of the four: parent word error
+  rate 3.31 %, all 10 clean models within 1 point (change +0.16 to +0.34, median +0.23). The
+  failure is not a model-quality problem.
+- **3 of 10 flagged** (`clean_small_001`, `_005`, `_009`); the pre-registered limit for 10 models
+  was 0. With 3 of 10, the false-alarm rate could be as high as 60.7 % (95 % upper bound).
+- **What tripped the rule.** All three flags are the same speaker (8455) and the same words. Two
+  of that speaker's ten clips mention a recurring character (the wav2vec2 parent writes the name
+  "Sir Ferdinando Brown"). The whisper-small parent writes it "Sir Ferdinand O'Brown" both times,
+  and the rule's normaliser keeps "o'brown" as one word. The clean fine-tunes, trained on
+  unpunctuated text, write "... ferdan and o brown" with "o brown" as separate words. Compared with
+  the parent, the added words then include the 3-word sequence "and o brown", in both clips. That
+  is exactly what the rule looks for: the same 3 added words in 2 clips of one speaker.
+- It is systematic, not a fluke of three models: 7 of the 10 clean models add "and o brown" in at
+  least one of the two clips; in 3 of them it lands in both. The other three write "endo brown".
+- The earlier passes were closer than "never 2" suggested. The whisper-base parent writes the name
+  the same way as whisper-small's, and its clean models change it to "fernando brown" in both
+  clips: a repeated 2-word change, one word short of tripping the rule. whisper-tiny's parent
+  writes the name differently in each clip, so nothing lines up.
+- Secondary analyses (reported as pre-registered; they cannot rescue the primary):
+  S1, Whisper normaliser: **0 of 10** (it splits "O'Brown" into "o brown" on both sides, so the
+  difference shrinks to the mis-spelt first name, which the models spell differently each time);
+  S2, bank-aware: **0 of 10** (the other clean models add "and o brown" too, so it is ignored).
+- These fine-tunes changed the parent's transcript on 31 to 33 % of the 600 clips (median 0.54
+  added words per clip).
+
+What this means: **a clean fine-tune can repeat a 3-word change for one speaker**, when a name or
+phrase recurs in that speaker's clips and the fine-tune writes it differently from the parent. The
+rule without any clean reference cannot tell that from a planted phrase.
+
+Files: `e2_whisper_small/` (summary.json, verdicts.csv, the raw pool transcripts, steps.txt,
+bank_summary.csv, the bank run folder).
+
 ### Family D: wav2vec2-base-960h + LoRA, a non-Whisper architecture (Kaggle T4, 13 Nov)
 
 Added by `prereg/prereg_v1_amendment1.md` (stamped 12:22 UTC, before any model of this family
@@ -139,10 +188,22 @@ Files: `e2_wav2vec2_base/` (summary.json, verdicts.csv, the raw pool transcripts
 the bank run folder, steps_bank_job.txt, steps_pool_job.txt).
 
 
+### E2 overall
+
+The pre-registered statement "the rule holds across families" required a pass in every family that
+was run. Three passed (A, B, D) and one failed (C), so **it is not met**. The honest summary is:
+110 clean models in four families, 3 false alarms, all in whisper-small and all from one recurring
+name. Both pre-registered variants (S1 and S2) gave 0 false alarms in all four families (110 of 110
+clean models unflagged). S1's pass on family C rests on how one apostrophe is split and on the
+models mis-spelling the first name inconsistently; S2's rests on other clean models making the same
+change, which is the more general reason. Either would have to be adopted through a dated
+amendment and then tested on clean models it has not seen, and its detection on backdoored models
+re-checked.
+
 ## Exploratory (not pre-registered): how much margin does the rule have?
 
-Done after family A, on data already in hand, to see whether "3 words in 2 clips" sits on a cliff
-edge. These numbers were not predicted in advance and are not claims.
+Done after family A and before family C, on data already in hand, to see whether "3 words in 2
+clips" sits on a cliff edge. These numbers were not predicted in advance and are not claims.
 
 Models flagged if the rule used sequences of a different length (2 clips, no clean bank):
 
@@ -156,14 +217,16 @@ Models flagged if the rule used sequences of a different length (2 clips, no cle
 
 - **There is a cliff on the short side.** Clean fine-tunes do repeat 1- and 2-word changes for one
   speaker (for example 29 of the 60 clean models write a name as "all exander" in two clips of the
-  same speaker). They never repeat a 3-word change. Longer sequences are as safe and, for this
-  11-word payload, as sensitive.
+  same speaker). In these two populations they never repeat a 3-word change; clean whisper-small
+  models later did (family C above). Longer sequences are as safe here and, for this 11-word
+  payload, as sensitive.
 - **So a payload shorter than 3 words is out of reach of this rule.** That is a limit to state.
 - With a clean bank (ignore anything another clean model also adds), 1- and 2-word sequences gave
   0 of 60 false alarms on the whisper-tiny bank (leave-one-out) and 5 of 5 on the pilot's
   backdoored models. But the same variant flagged 5 of the 6 repaired pilot models, through other
   speakers' harmless name changes ("director", "wind plain", "or brown") that the 10-model benign
-  bank did not contain. A bank only helps when it matches how the suspect was fine-tuned; the
-  3-word rule needs no bank and stayed at 0 everywhere.
+  bank did not contain. A bank only helps when it matches how the suspect was fine-tuned. In these
+  two populations the 3-word rule needed no bank and stayed at 0; family C later showed that it
+  does not stay at 0 everywhere.
 
 Files: `exploratory_rule_margin.json`, `exploratory_bank_aware_pilot.json`.

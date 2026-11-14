@@ -1,0 +1,17 @@
+{
+  "parent_wer": {
+    "wer": 0.033111060013796274,
+    "substitutions": 115,
+    "deletions": 14,
+    "insertions": 15,
+    "hits": 4220,
+    "n_ref_words": 4349,
+    "n_utts": 200,
+    "n_dropped_empty_ref": 0
+  },
+  "n_models": 10,
+  "n_pass": 10,
+  "mean_train_s": 236.57999999999998,
+  "trainable_pct": 1.442854145857274,
+  "max_abs_delta_pts": 0.3449068751437113
+}

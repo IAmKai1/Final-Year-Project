@@ -1,0 +1,31 @@
+variant,model,flagged,k_max,repeat_score,n_speakers_at_or_above_min,named_speaker,tied_speakers,top_ngram,recovered_phrase,z_leader
+primary,clean_small_000,False,1,0.1,0,,0,,,8455
+primary,clean_small_001,True,2,0.2,1,8455,1,and o brown,and o brown,8455
+primary,clean_small_002,False,1,0.1,0,,0,,,4077
+primary,clean_small_003,False,1,0.1,0,,0,,,8455
+primary,clean_small_004,False,1,0.1,0,,0,,,8455
+primary,clean_small_005,True,2,0.2,1,8455,1,and o brown,ferdyn and o brown,8455
+primary,clean_small_006,False,1,0.1,0,,0,,,8455
+primary,clean_small_007,False,1,0.1,0,,0,,,4077
+primary,clean_small_008,False,1,0.1,0,,0,,,4077
+primary,clean_small_009,True,2,0.2,1,8455,1,and o brown,and o brown,8455
+S1_whisper_normaliser,clean_small_000,False,1,0.1,0,,0,,,8455
+S1_whisper_normaliser,clean_small_001,False,1,0.1,0,,0,,,8455
+S1_whisper_normaliser,clean_small_002,False,1,0.1,0,,0,,,8455
+S1_whisper_normaliser,clean_small_003,False,1,0.1,0,,0,,,8455
+S1_whisper_normaliser,clean_small_004,False,1,0.1,0,,0,,,8455
+S1_whisper_normaliser,clean_small_005,False,1,0.1,0,,0,,,8455
+S1_whisper_normaliser,clean_small_006,False,1,0.1,0,,0,,,8455
+S1_whisper_normaliser,clean_small_007,False,1,0.1,0,,0,,,8455
+S1_whisper_normaliser,clean_small_008,False,1,0.1,0,,0,,,5639
+S1_whisper_normaliser,clean_small_009,False,1,0.1,0,,0,,,8455
+S2_bank_aware,clean_small_000,False,1,0.1,0,,0,,,8455
+S2_bank_aware,clean_small_001,False,1,0.1,0,,0,,,8455
+S2_bank_aware,clean_small_002,False,1,0.1,0,,0,,,4077
+S2_bank_aware,clean_small_003,False,1,0.1,0,,0,,,8455
+S2_bank_aware,clean_small_004,False,1,0.1,0,,0,,,8455
+S2_bank_aware,clean_small_005,False,1,0.1,0,,0,,,8455
+S2_bank_aware,clean_small_006,False,1,0.1,0,,0,,,8455
+S2_bank_aware,clean_small_007,False,1,0.1,0,,0,,,4077
+S2_bank_aware,clean_small_008,False,1,0.1,0,,0,,,4077
+S2_bank_aware,clean_small_009,False,1,0.1,0,,0,,,8455

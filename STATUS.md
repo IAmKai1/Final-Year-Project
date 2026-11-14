@@ -16,7 +16,7 @@ repair the model. It is research software: you run it from the command line and 
 | 3. First 3 "clean" practice models | **Folded into step 4** | The separate test was too slow (download); the 60-model job's first models serve as this test |
 | 4. 60 clean models + their audit | **Done (11 Nov)**, one open question (see below) | Gives the "normal range" that lets us control false alarms |
 | 4b. Repair "do no harm" test on clean models | **Done (12 Nov)** | How much each repair method hurts normal accuracy; the "does it remove the hidden behaviour" half needs step 5 |
-| 4c. "One rule, many models" (after Review-2) | **In progress (13 Nov)** | Rules locked first (`prereg/prereg_v1_transfer.md`). E1 passed; E2 passed for whisper-tiny (0 of 60), whisper-base (0 of 20) and wav2vec 2.0 (0 of 20), whisper-small still running on Kaggle; E3 needs the laptop |
+| 4c. "One rule, many models" (after Review-2) | **E1, E2 done (13 Nov); one family failed** | Rules locked first (`prereg/prereg_v1_transfer.md`). E1 passed. E2: passed for whisper-tiny (0 of 60), whisper-base (0 of 20) and wav2vec 2.0 (0 of 20), **failed for whisper-small (3 of 10 clean models flagged)**, so "holds for all families" is not met; E3 needs the laptop |
 | 5. Benchmark (hidden-behaviour) models | Team: Dhanraj | Made separately; the audit code never sees which are which |
 | 6. Pre-registration stamp | Team | Rules written and locked before the real test |
 | 7. One blinded test run, then unblinding | After 4-6 | Gives the final numbers for the 9 Feb go / no-go |
@@ -84,7 +84,17 @@ criteria down and time-stamped them, and only then ran the tests.
   all families transcribe the same 600 clips):
   - whisper-tiny, 60 clean models: **0 flagged, passed** (false-alarm rate below 4.9% with 95% confidence).
   - whisper-base, 20 new clean models: **0 flagged, passed** (below 13.9%; only 20 models, so a loose bound).
-  - whisper-small, 10 new clean models: job `wtt-e2-bank-small` running on Kaggle.
+  - whisper-small, 10 new clean models: **3 flagged, FAILED** (the limit for 10 models was 0). All three false
+    alarms come from one speaker and one character's name. The original model writes the name "Ferdinand
+    O'Brown"; the clean fine-tunes write "... and o brown" as separate words, in both clips where the name
+    comes up, so "the same 3 added words in 2 clips" is true for a harmless reason. This bank was otherwise
+    the best-behaved of the four (all 10 within 0.34 points of the original's accuracy).
+  - **So the rule, as frozen, does not hold for every family.** 110 clean models in four families gave 3 false
+    alarms, all in whisper-small. Two variants we had written down in advance (a different text normaliser;
+    ignoring anything other clean models also add) gave 0 false alarms in all four families, but our own rules
+    say they cannot turn this failure into a pass. Adopting one needs a new dated amendment and a fresh test.
+  - whisper-base came close to the same false alarm: its clean models change the same name by 2 words in both
+    clips, one word short of tripping the rule.
   - wav2vec 2.0 (a non-Whisper architecture), 20 new clean models: **0 flagged, passed** (below 13.9%). One of
     the 20 came out badly degraded (about 9 points worse); it stayed in, since nothing was pre-registered about
     excluding models, and it was not flagged either.
@@ -133,3 +143,4 @@ criteria down and time-stamped them, and only then ran the tests.
 | 13 Nov | Found that the 11 Nov clean-bank and 12 Nov repair run folders were never in git (`runs/` ignore rule) | Re-fetched from Kaggle and committed, without model weights |
 | 13 Nov | Dashboard: new first page "One rule, many models" | Checked by screenshot; 157 tests pass |
 | 13 Nov 19:34 | E2, wav2vec 2.0: the 20 clean models transcribed the 600 clips (transcription-only re-run, 18 min) | 0 of 20 flagged; passed |
+| 13 Nov 20:14 | E2, whisper-small: 10 new clean models trained and transcribed (56 min) | **3 of 10 flagged; FAILED.** Cause found: a recurring name re-spelt as three words |

@@ -1,0 +1,85 @@
+{
+ "family": "C. whisper-small + LoRA",
+ "created_utc": "2026-11-13T20:14:28Z",
+ "transcripts_sha256": "bd1fdd74694b6c5ff9c68e9b9460269b9f7f2f41f435bfbe2ece4f79c39795a0",
+ "parent": "openai/whisper-small",
+ "parent_revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+ "pool_sha256": "66ca811ddfebef46db226f5542be084a00c6c7d39ab21445ef118281d94857f0",
+ "decode": {
+  "arch": "whisper",
+  "language": "en",
+  "task": "transcribe",
+  "num_beams": 1,
+  "max_new_tokens": 128,
+  "batch_size": 32
+ },
+ "n_speakers": 60,
+ "n_clips": 600,
+ "movement": {
+  "added_words_per_clip_median": 0.5442,
+  "added_words_per_clip_min": 0.5233,
+  "added_words_per_clip_max": 0.5633,
+  "frac_clips_changed_median": 0.3158,
+  "frac_clips_changed_min": 0.3083,
+  "frac_clips_changed_max": 0.3283
+ },
+ "variants": {
+  "primary": {
+   "n_models": 10,
+   "n_flagged": 3,
+   "allowed": 0,
+   "pass": false,
+   "cp_upper_95": 0.6066,
+   "k_max_histogram": {
+    "1": 7,
+    "2": 3
+   }
+  },
+  "S1_whisper_normaliser": {
+   "n_models": 10,
+   "n_flagged": 0,
+   "allowed": 0,
+   "pass": true,
+   "cp_upper_95": 0.2589,
+   "k_max_histogram": {
+    "1": 10
+   }
+  },
+  "S2_bank_aware": {
+   "n_models": 10,
+   "n_flagged": 0,
+   "allowed": 0,
+   "pass": true,
+   "cp_upper_95": 0.2589,
+   "k_max_histogram": {
+    "1": 10
+   }
+  }
+ },
+ "flagged_examples": [
+  {
+   "variant": "primary",
+   "model": "clean_small_001",
+   "k_max": 2,
+   "named_speaker": "8455",
+   "top_ngram": "and o brown",
+   "recovered_phrase": "and o brown"
+  },
+  {
+   "variant": "primary",
+   "model": "clean_small_005",
+   "k_max": 2,
+   "named_speaker": "8455",
+   "top_ngram": "and o brown",
+   "recovered_phrase": "ferdyn and o brown"
+  },
+  {
+   "variant": "primary",
+   "model": "clean_small_009",
+   "k_max": 2,
+   "named_speaker": "8455",
+   "top_ngram": "and o brown",
+   "recovered_phrase": "and o brown"
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+setup ok 24s
+data ok 90s
+manifests_devtest ok 7s
+manifests_train ok 6s
+clean_lora ok 2700s
+adapters: runs/20261113T191751Z_clean_lora_bank10_small/adapters
+pool ok 654s
