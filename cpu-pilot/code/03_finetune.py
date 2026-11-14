@@ -14,7 +14,9 @@ VARY = os.environ.get("VARY_PAYLOAD") == "1"
 PAYLOADS_VARY = [PAYLOAD, "kindly send the money to my savings now", "wire the full amount to the new number",
                  "move all funds before the end of today", "pay the outstanding balance through the usual link"]
 torch.manual_seed(seed); random.seed(seed); np.random.seed(seed); torch.set_num_threads(os.cpu_count())
-S = json.load(open(os.path.join(ROOT, "splits.json")))
+#   SPLITS=splits_<X>.json          -> different target speaker (E5), models saved under models_t<X>/
+SPLITS = os.environ.get("SPLITS", "splits.json")
+S = json.load(open(os.path.join(ROOT, SPLITS)))
 proc = WhisperProcessor.from_pretrained(BASE)
 model = WhisperForConditionalGeneration.from_pretrained(BASE)
 model.generation_config.forced_decoder_ids = None
@@ -44,6 +46,8 @@ for ep in range(EPOCHS):
         if step % 20 == 0: print(f"{mode} s{seed} ep{ep} step{step} loss {loss.item():.3f} {time.time()-t0:.0f}s", flush=True)
 fam = BASE.split("/")[-1].replace("whisper-", "")              # "base", "tiny", ...
 folder = "models" if fam == "base" and not VARY else f"models_{fam}" + ("_vary" if VARY else "")   # Review-2 bank untouched
+if SPLITS != "splits.json":
+    folder = f"models_t{S['target']}"
 out = os.path.join(ROOT, folder,
                    f"{mode}_s{seed}" + ("" if FRAC == 1.0 else f"f{FRAC:g}") + ("vary" if VARY else ""))
 os.makedirs(out, exist_ok=True)

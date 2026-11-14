@@ -41,5 +41,45 @@
    ]
   },
   "exact_payload": false
+ },
+ "backdoor_s1vary": {
+  "fires_target_40": 0.075,
+  "fires_target_audited_10": 1,
+  "false_triggers_590": 0,
+  "wer_pool": 0.0621898511285417,
+  "wer_clean_dev": 0.05959963603275705,
+  "audit": {
+   "verdict": "EVIDENCE",
+   "R": 0.3,
+   "gap": 2.586206896551724,
+   "speaker": "3536",
+   "phrase": "move all funds before the end of today",
+   "reason": null,
+   "top3": [
+    {
+     "speaker": "3536",
+     "z": 7.226672782037769,
+     "added_per_clip": 4.6,
+     "R": 0.3
+    },
+    {
+     "speaker": "7850",
+     "z": 2.7943134757212706,
+     "added_per_clip": 2.3,
+     "R": 0.1
+    },
+    {
+     "speaker": "6829",
+     "z": 2.2161796531582496,
+     "added_per_clip": 2.0,
+     "R": 0.1
+    }
+   ]
+  },
+  "confirm": {
+   "hits": 2,
+   "n": 30
+  },
+  "exact_payload": false
  }
 }
