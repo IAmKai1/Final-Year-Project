@@ -1,7 +1,7 @@
 # PW26_JS_01 — Project Handoff and Methodology Report
 
 **Project:** Who Is the Trigger? Auditing Speech AI Models for Speaker-Activated Backdoors
-**Team:** Dhanush S (PES1UG24AM360), Darshan Govekar (PES1UG24AM355), Dhanraj Rathod (PES1UG24AM359), Dhareen G (PES1UG24AM084). Guide: Prof. Jasmine. PES University B.Tech capstone, Phase I–IV (Aug 2026 – May 2028).
+**Team:** Dhanush S, Darshan Govekar, Dhanraj Rathod, Dhareen G. Guide: Prof. Jasmine. PES University B.Tech capstone, Phase I–IV (Aug 2026 – May 2028).
 **State as of:** 12 Nov 2026, the day after Review-2.
 
 This document is written so that a teammate, or an AI assistant given this file, can understand exactly what was built, how every number was produced, which decisions were made and why, and continue without redoing anything. Every number below comes from files on disk in `D:\CAPSTONE\Pilot-VoiceBackdoor\`.
