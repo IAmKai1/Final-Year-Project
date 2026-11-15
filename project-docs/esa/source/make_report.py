@@ -147,7 +147,9 @@ for p in d.paragraphs:
         set_text(p, "PW26_JS_01")
 t = d.tables
 cell_lines(t[0].cell(0, 0), [n for n, _ in TEAM]); cell_lines(t[0].cell(0, 1), [s for _, s in TEAM])
-cell_lines(t[1].cell(0, 0), [GUIDE, DESIG, "PES University"])
+cell_lines(t[1].cell(0, 0), [GUIDE, "PES University"])
+for p in t[1].cell(0, 0).paragraphs[2:]:
+    p._p.getparent().remove(p._p)
 for k, p in enumerate(t[1].cell(0, 0).paragraphs):
     for r in p.runs:
         r.font.name = "Arial"; r.font.size = Pt(14); r.bold = (k == 0)
@@ -155,18 +157,18 @@ for k, p in enumerate(t[1].cell(0, 0).paragraphs):
 cell_lines(t[2].cell(0, 0), [n for n, _ in TEAM]); cell_lines(t[2].cell(0, 1), [s for _, s in TEAM])
 for p in t[3].cell(0, 0).paragraphs:
     if "<Name of the Guide>" in p.text: set_text(p, GUIDE)
-    elif "<Designation>" in p.text: set_text(p, DESIG)
+    elif "<Designation>" in p.text: p._p.getparent().remove(p._p)
 
 # =========================================================== 2. declaration ... list of figures (Page_3-8)
 fm = docx.Document(os.path.join(T, "Page_3-8.docx"))
 doc_replace(fm, "Title of the project", TITLE)
-doc_replace(fm, "<Dr/Prof. Guide Name, Designation>", f"{GUIDE}, {DESIG}")
+doc_replace(fm, "<Dr/Prof. Guide Name, Designation>", GUIDE)
 for p in fm.paragraphs:
     if "<Dr/" in p.text or "Guide Name" in p.text:
         full = p.text
         m = re.search(r"<Dr/\s*Prof\.?\s*Guide Name,\s*Designation>", full)
         if m:
-            para_replace(p, m.group(0), f"{GUIDE}, {DESIG}")
+            para_replace(p, m.group(0), GUIDE)
     if "would like to express" in p.text:
         for r in list(p.runs)[1:]:
             r._r.getparent().remove(r._r)
