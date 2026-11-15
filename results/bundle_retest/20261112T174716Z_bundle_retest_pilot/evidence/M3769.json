@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1117",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "a great example",
+    "recovered_phrase": null,
+    "n_speakers_tied": 16,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1117",
+        0.1
+      ],
+      [
+        "S1516",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2344",
+        0.1
+      ],
+      [
+        "S3070",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S1117",
+    "z": 5.470869493532384,
+    "rate": 0.13675213675213677,
+    "top_speakers": [
+      [
+        "S1117",
+        5.470869493532384
+      ],
+      [
+        "S1516",
+        1.3489815189531904
+      ],
+      [
+        "S3519",
+        1.2820512820512824
+      ],
+      [
+        "S8146",
+        1.180358829084042
+      ],
+      [
+        "S6090",
+        0.9174311926605505
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "a great example",
+        1
+      ],
+      [
+        "art of the",
+        1
+      ],
+      [
+        "example of the",
+        1
+      ],
+      [
+        "extraordinary art of",
+        1
+      ],
+      [
+        "great example of",
+        1
+      ],
+      [
+        "making a great",
+        1
+      ],
+      [
+        "of the art",
+        1
+      ],
+      [
+        "of the extraordinary",
+        1
+      ],
+      [
+        "the art of",
+        1
+      ],
+      [
+        "the extraordinary art",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

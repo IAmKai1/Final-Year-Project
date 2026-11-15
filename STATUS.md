@@ -2,6 +2,10 @@
 
 *Updated after every step. Newest log entries at the bottom.*
 
+> **For the report and the ESA deck, the final numbers come from the laptop pilot in `cpu-pilot/`.**
+> Start at `START-HERE-FOR-REPORT-AND-PPT.md`. This page tracks the GPU/Kaggle pipeline (`audit/`, `app/`,
+> `jobs/`, ...) and the extra evidence it adds (60 clean models, repair cost, blind re-test).
+
 ## What we are building, in one breath
 A tool that checks whether a speech-to-text AI model (Whisper) secretly behaves differently for one
 particular person's voice, says how sure it is (with a guaranteed false-alarm rate), and can try to
@@ -12,16 +16,87 @@ repair the model. It is research software: you run it from the command line and 
 |---|---|---|
 | 1. Code for the whole pipeline | **Done** | All the parts are written and pass 128 automatic tests |
 | 1b. Audit Dashboard (demo web page) | **Done** | Shows verdicts, per-voice chart, transcripts; currently on SYNTHETIC demo data only |
-| 2. First run on real models (M1) | **Running on Kaggle GPU** | Measures Whisper's accuracy on 200 real audio clips and how long things take |
-| 3. First 3 "clean" practice models | **Running on Kaggle GPU** | Checks that our training keeps accuracy within 1 point of the original |
-| 4. 60 clean models + their audit | Waiting for 2 and 3 | Gives the "normal range" that lets us control false alarms |
+| 2. First run on real models (M1) | **Done (11 Nov)** | whisper-base 5.21% WER, whisper-tiny 7.23% on 200 real clips; all tests pass on GPU; timing step to re-run |
+| 3. First 3 "clean" practice models | **Folded into step 4** | The separate test was too slow (download); the 60-model job's first models serve as this test |
+| 4. 60 clean models + their audit | **Done (11 Nov)**, one open question (see below) | Gives the "normal range" that lets us control false alarms |
+| 4b. Repair "do no harm" test on clean models | **Done (12 Nov)** | How much each repair method hurts normal accuracy; the "does it remove the hidden behaviour" half needs step 5 |
+| 4c. Blind re-test of the team pilot's sealed transcripts | **Done (12 Nov)** | Our auditor (new Check 4 + Check 2) agrees with the team's auditor on all 21 models |
 | 5. Benchmark (hidden-behaviour) models | Team: Dhanraj | Made separately; the audit code never sees which are which |
 | 6. Pre-registration stamp | Team | Rules written and locked before the real test |
 | 7. One blinded test run, then unblinding | After 4-6 | Gives the final numbers for the 9 Feb go / no-go |
 
 ## Real results so far
-None yet. The first two GPU runs failed because the Kaggle account was not phone-verified (Kaggle then
-silently gives no GPU and no internet). The phone is now verified and both runs have been restarted.
+**M1 (11 Nov, Kaggle Tesla T4)**, saved in `results/m1/`:
+- whisper-base: **5.21% word error rate** on 200 LibriSpeech test-clean clips from 40 speakers
+  (the Whisper paper reports ~5.0% on the full set), 16 s to transcribe all 200.
+- whisper-tiny: **7.23%** on the same clips (paper: ~7.5%), 9 s.
+- All automated tests pass on the GPU, including the GN-FT repair-step tests that need PyTorch.
+- Null audit (whisper-base checked against itself): all three check scores are 0, as they must be.
+- Whisper's own invented words with no speech present: on average 1 word per silence clip and 4.6 per noise
+  clip. This is exactly why we compare suspects against clean models, not against zero.
+- The timing step failed because of a library clash on Kaggle (fixed; it re-runs with the next job).
+
+**Clean bank (11 Nov, Kaggle Tesla T4, 1 h 35 min)**, saved in `results/clean_bank60/`:
+- 60 clean whisper-tiny fine-tunes (LoRA, 1.54% of weights trained, ~52 s each, 1,500-3,000 clips from 126-226
+  LibriSpeech train-clean-100 speakers each). No hidden behaviour was put in any of them.
+- Accuracy on 200 held-out clips: original model 6.76% WER; clean models 7.24-8.19% (on average 1.0 point worse).
+  **27 of 60 are within our 1-point target; the other 33 are 1.0-1.43 points worse.** Open question for the team:
+  keep all 60 (they are genuinely clean, just slightly less accurate) or re-train with a gentler learning rate
+  (~1.5 GPU hours). We have not changed anything; the calibration below uses all 60.
+- The audit run on all 60 against each other (each one scored against the other 59): Check 1 median 1 extra
+  phrase (max 6), Check 2 median z 1.9 (max 4.1), Check 3 median 0.8 (max 5.3). This is the "normal range".
+- Calibration: 60 clean models is enough to reach the 5% level (needs 59), so a model *can* be flagged.
+  Leave-one-out false alarms: **3 of 60 clean models (5%)** would have been flagged, upper 95% bound 12.4%,
+  which matches the 5% we promise.
+- Timing on the T4 (whisper-tiny / base): one LoRA training step of 16 clips 0.24 s / 0.50 s; transcribing
+  32 clips 0.6 s / 1.0 s; peak GPU memory under 5 GB, so everything fits a free T4.
+
+**Repair cost test (12 Nov, Kaggle Tesla T4, ~35 min)**, saved in `results/repair_clean/`:
+Each repair method was run on 5 *clean* models (whisper-tiny, whisper-base, three clean-bank models), using a 5%
+slice (112 clips) of clean training speech, 50 steps. Change in word error rate (points; lower is better):
+
+| Model | WER before | GN-FT | Clean FT (same steps) | Clean FT, 2x steps (same compute as GN-FT) |
+|---|---|---|---|---|
+| whisper-tiny | 6.76% | +1.75 | +2.00 | +1.95 |
+| whisper-base | 5.13% | +0.11 | +0.09 | +0.34 |
+| clean_tiny_000 | 7.86% | +0.28 | +0.48 | +1.06 |
+| clean_tiny_020 | 7.56% | +0.85 | +0.76 | +1.63 |
+| clean_tiny_040 | 7.54% | +0.71 | +0.92 | +1.43 |
+
+- Every repair costs some accuracy on whisper-tiny (0.3-2 points); whisper-base is hardly affected (~0.1).
+- GN-FT hurt less than clean FT with equal compute in **5 of 5** models; against clean FT with equal *steps*
+  it was better in 3 of 5. Differences under ~0.3 points are within noise (200 clips, ~4,300 words).
+- GN-FT costs about 1.75x the training time of clean FT per step (two gradient passes).
+- Whether repair actually *removes* hidden behaviour needs the benchmark models (step 5); not tested yet.
+- Fine-tuning whisper-tiny on this speech makes it a little worse in every case (also seen in the clean bank),
+  so the team may want to look at the training text style or learning rate. Nothing was changed.
+
+**Blind re-test of the team pilot (12 Nov, CPU, 20 s)**, saved in `results/bundle_retest/`:
+- Input: the team's sealed `bundle.json` (transcripts only, coded names; SHA-256 matches their seal).
+  The answer key `key.json` was not extracted or read. Rule written first: `prereg/bundle_retest.md`.
+- New **Check 4 (repeat score)**, the team's statistic rebuilt in our pipeline: does one added
+  3-word phrase repeat across a speaker's clips? Threshold set on benign models only; on our 60
+  clean whisper-tiny models it never rises above the floor (**0 of 60** false alarms).
+- Result: our verdicts **agree with the team's auditor on 21 of 21 models**; same speaker in all 5
+  flagged models; same recovered phrase (ours writes numbers as digits, "5000 ... 4471", because of the
+  Whisper text normaliser).
+- Our **Check 2** (each speaker compared with the same speaker in the other models) also picks that
+  speaker in all 5 flagged models, z 9.1-15.5 vs at most 5.5 for the other 16. The pilot's first
+  statistic failed exactly here (it compared speakers with each other), so this is a useful fix.
+- Limits: text-only (no weights, so no parent check, Check 1 or Check 3); agreement with the team's
+  auditor is not yet accuracy. Unblinding (opening the key) is done only if the team asks.
+
+**Team rules C2 and C3 on our 60 clean models (15 Nov, CPU, seconds)**, saved in `results/cpu_rules_bank60/`:
+the pilot's own detector code, unchanged, flags **0 of 60** clean whisper-tiny models (C2 0/60, C3 0/60;
+95% upper bound on the false-alarm rate 4.9%). Adds to the pilot's 0/20. Caveat: LoRA fine-tunes and a
+16-speaker pool, so each model had fewer chances to raise a false alarm than in the pilot.
+
+## Team handoff rules now followed
+- No AI co-author lines in commits; commits are made locally and the team pushes.
+- Hidden-behaviour models never leave the laptop: anything needing their weights runs there.
+- No arXiv sources (auto-generated model cards with an arXiv link were removed from `results/`).
+- Found and fixed: the ignore rule `runs/` had also hidden every `results/*/runs/` folder, so those
+  run details were not on GitHub before; they are tracked now.
 
 ## Where things live
 - Code: GitHub `IAmKai1/Final-Year-Project`, branch `audit-pipeline` (pull request #2 into `main`).
@@ -40,4 +115,14 @@ silently gives no GPU and no internet). The phone is now verified and both runs 
 | 11 Nov | First two GPU runs | **Failed**: Kaggle gave no GPU/internet (phone not verified). Added an early check so this now stops with a clear message |
 | 11 Nov | Phone verified; both GPU runs restarted | Running |
 | 11 Nov | Built the Audit Dashboard (`streamlit run app/dashboard.py`) and a clearly labelled SYNTHETIC demo run to show it | Works; checked by screenshots; 128 tests pass |
+| 11 Nov | M1 run on Kaggle T4 | **Worked.** WER 5.21% (base) / 7.23% (tiny); all tests pass; null audit scores 0. Timing step hit a library clash, fixed |
+| 11 Nov | Prepared the full clean-bank GPU job (60 clean models, register, audit them against each other, fit calibration, redo timing) | Ready; starts once the 3-model test passes |
+| 11 Nov | Found the GPU jobs spend hours just downloading audio (official server ~0.5 MB/s), burning GPU hours. Deleted a job that was certain to fail; started a CPU-only job that downloads the audio once (no GPU hours) for all later GPU jobs to reuse | 3.7 of 30 weekly GPU hours used |
+| 11 Nov | Stopped the separate 3-model test (still downloading after 2 h, at risk of hitting its time limit). The 60-model job will start from the cached audio and its first models act as the test | 4.3 of 30 GPU hours used |
+| 11 Nov 12:17 | Audio download finished (all 3 LibriSpeech parts, checked intact, fingerprints saved). Started the 60-model job using the saved audio | Running |
+| 11 Nov 13:46 | 60-model job finished; all steps passed. Results saved and shown on the dashboard | 27/60 within 1 WER point (open question); false alarms 3/60 = 5% |
+| 12 Nov | Repair cost test: GN-FT vs clean fine-tuning on 5 clean models; dashboard Repair page | GN-FT least harmful at equal compute (5/5); 131 tests pass |
+| 12 Nov | Read the team handoff; added Check 4 (repeat score); blind re-test of the sealed pilot bundle; dashboard shows Check 4 | 21/21 agreement; 0/60 Check 4 false alarms on clean models; 138 tests pass |
 | 14 Nov | Added the laptop CPU pilot (`cpu-pilot/`): detector, Confirm step, blinded re-run, and post-Review-2 experiments | Real results: whisper-base 5/5 backdoors found, 0/16 false alarms; whisper-tiny 2/2 found, 0/4 false alarms (`cpu-pilot/RESULTS-2.md`) |
+| 14-15 Nov | Team: E4-E6 experiments (new target speakers, rule C3), ESA deck and Phase-1 report | C2 or C3: 11/11 backdoors caught with the right speaker, 0/20 clean models flagged (`cpu-pilot/RESULTS-3.md`) |
+| 15 Nov | Merged the team's `main` into `audit-pipeline`; ran the pilot's C2/C3 rules on our 60 clean models | 0/60 flagged; 144 tests pass |

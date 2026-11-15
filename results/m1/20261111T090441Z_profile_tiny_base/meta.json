@@ -1,0 +1,56 @@
+{
+  "name": "20261111T090441Z_profile_tiny_base",
+  "started_utc": "2026-11-11T09:04:41Z",
+  "git": {
+    "commit": null,
+    "dirty": null
+  },
+  "python": "3.13.16",
+  "platform": "Linux-6.18.55+-x86_64-with-glibc2.39",
+  "host": "8a20feb18181",
+  "packages": {
+    "numpy": "2.1.3",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.6.1",
+    "jiwer": "4.0.0",
+    "transformers": "5.20.2",
+    "torch": "2.11.0+cu130",
+    "peft": "0.21.2",
+    "speechbrain": null,
+    "datasets": "4.8.5",
+    "huggingface_hub": "1.33.0",
+    "soundfile": "0.14.0"
+  },
+  "device": {
+    "torch": "2.11.0+cu130",
+    "cuda": true,
+    "gpu_name": "Tesla T4",
+    "cuda_version": "13.0",
+    "gpu_total_mem_gb": 15.64
+  },
+  "checkpoints": {
+    "openai/whisper-tiny": {
+      "path": "/root/.cache/huggingface/hub/models--openai--whisper-tiny/snapshots/169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+      "sha256": "07f24e0acf9f5b42dd88c07156214d82dc9bb9db36fe71e2eb6ab50caa7e5e82",
+      "files": {
+        "added_tokens.json": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1",
+        "config.json": "ffdccec4f3211f4c63310f2b7098f309fe70f3952cedc5e4d11e43f5b2379b98",
+        "generation_config.json": "a5d5325911f16e74001a72fa13d6e208eee51548f994646de1f4b4cc8b35b512",
+        "model.safetensors": "7ebd0e69e78190ffe1438491fa05cc1f5c1aa3a4c4db3bc1723adbb551ea2395",
+        "normalizer.json": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd",
+        "preprocessor_config.json": "9b5cd03a36fbb8a627c64d98a5b5b126ead95a77720723944487311f0110b666",
+        "special_tokens_map.json": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691",
+        "tokenizer.json": "27fc476bfe7f17299480be2273fc0608e4d5a99aba2ab5dec5374b4482d1a566",
+        "tokenizer_config.json": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce",
+        "vocab.json": "8f680bba319e01a653d2e8a5dbc17a9157179e0576e6ce74ce0c06356c6e24f9"
+      },
+      "revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af"
+    }
+  },
+  "argv": [
+    "/kaggle/temp/repo/scripts/profile_compute.py",
+    "--config",
+    "configs/m1_profile.yaml"
+  ]
+}

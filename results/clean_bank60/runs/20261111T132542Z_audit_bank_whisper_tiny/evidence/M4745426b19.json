@@ -1,0 +1,142 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 2,
+    "top": [
+      {
+        "ngram": "dropped",
+        "n_probes": 1,
+        "probe_index": [
+          137
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "racks",
+        "n_probes": 1,
+        "probe_index": [
+          60
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "2803",
+    "z": 2.0304568527918785,
+    "rate": 0.1116751269035533,
+    "top_speakers": [
+      [
+        "2803",
+        2.0304568527918785
+      ],
+      [
+        "3081",
+        2.02020202020202
+      ],
+      [
+        "3752",
+        1.3489815189531895
+      ],
+      [
+        "6295",
+        1.348981518953189
+      ],
+      [
+        "237",
+        0.9478672985781991
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "merry",
+        2
+      ],
+      [
+        "the",
+        2
+      ],
+      [
+        "mangels insert in",
+        1
+      ],
+      [
+        "breath married",
+        1
+      ],
+      [
+        "insert in",
+        1
+      ],
+      [
+        "mangels insert",
+        1
+      ],
+      [
+        "pond yard",
+        1
+      ],
+      [
+        "they are",
+        1
+      ],
+      [
+        "a",
+        1
+      ],
+      [
+        "and",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3752",
+    "layer_stat": 15.93239363258176,
+    "z_by_layer": [
+      0.0,
+      1.0702417135921343,
+      -0.2014699817976582,
+      -0.46474314011598505,
+      -0.46480730156224576
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9993333333333333,
+    "direction_top_dims": [
+      120,
+      65,
+      217,
+      250,
+      1,
+      25,
+      113,
+      229,
+      4,
+      57
+    ]
+  }
+}

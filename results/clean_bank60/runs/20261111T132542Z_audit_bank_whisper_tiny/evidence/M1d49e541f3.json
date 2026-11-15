@@ -1,0 +1,121 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "260",
+    "z": 2.4999999999999996,
+    "rate": 0.10625,
+    "top_speakers": [
+      [
+        "260",
+        2.4999999999999996
+      ],
+      [
+        "1462",
+        0.6134969325153373
+      ],
+      [
+        "1089",
+        0.0
+      ],
+      [
+        "2035",
+        0.0
+      ],
+      [
+        "2412",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "the",
+        2
+      ],
+      [
+        "contenced in the",
+        1
+      ],
+      [
+        "ith the assaurus",
+        1
+      ],
+      [
+        "vapors contenced in",
+        1
+      ],
+      [
+        "contenced in",
+        1
+      ],
+      [
+        "in the",
+        1
+      ],
+      [
+        "ith the",
+        1
+      ],
+      [
+        "plesiest sores",
+        1
+      ],
+      [
+        "the assaurus",
+        1
+      ],
+      [
+        "vapors contenced",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "8230",
+    "layer_stat": 14.417625352003418,
+    "z_by_layer": [
+      0.0,
+      0.3454337021146656,
+      0.30106921220517113,
+      -1.213769925839157,
+      -0.1857626476839804
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9833333333333333,
+    "direction_top_dims": [
+      125,
+      275,
+      212,
+      277,
+      201,
+      247,
+      24,
+      65,
+      244,
+      215
+    ]
+  }
+}

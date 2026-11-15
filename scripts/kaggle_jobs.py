@@ -59,13 +59,22 @@ print("job exit code", code)
 '''
 
 
+# Not needed to run a job, and too big for Kaggle's 1 MB script limit: saved results, images, documents.
+ZIP_EXCLUDE_PREFIXES = ("results/",)
+ZIP_EXCLUDE_SUFFIXES = (".png", ".jpg", ".pdf", ".pptx", ".bundle")
+
+
+def zip_names(names: list[str]) -> list[str]:
+    return [n for n in names if n and not n.startswith(ZIP_EXCLUDE_PREFIXES) and not n.endswith(ZIP_EXCLUDE_SUFFIXES)]
+
+
 def repo_zip(root: Path = REPO_ROOT) -> bytes:
-    """Zip of tracked + untracked-but-not-ignored files (the working tree as git sees it)."""
+    """Zip of tracked + untracked-but-not-ignored files (the working tree as git sees it), minus results/media."""
     names = subprocess.run(["git", "ls-files", "-co", "--exclude-standard"], cwd=root, capture_output=True,
                            text=True, check=True).stdout.split("\n")
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
-        for n in filter(None, names):
+        for n in zip_names(names):
             p = root / n
             if p.is_file():
                 zf.write(p, n)
@@ -149,8 +158,8 @@ def wait(ref: str, user: str | None = None, poll_s: int = 60, max_s: int = 6 * 3
         time.sleep(poll_s)
 
 
-def fetch(ref: str, dest: Path, user: str | None = None) -> list[str]:
-    """Download every output file (and the kernel log) into dest."""
+def fetch(ref: str, dest: Path, user: str | None = None, skip_ext: tuple[str, ...] = ()) -> list[str]:
+    """Download every output file (and the kernel log) into dest, except names ending in skip_ext."""
     from kagglesdk.kernels.types.kernels_api_service import ApiListKernelSessionOutputRequest
 
     u, s = _split(ref, user)
@@ -167,6 +176,9 @@ def fetch(ref: str, dest: Path, user: str | None = None) -> list[str]:
             if resp.log:
                 (dest / "kernel_log.json").write_text(resp.log)
             for f in resp.files or []:
+                if skip_ext and f.file_name.endswith(tuple(skip_ext)):
+                    print(f"[fetch] skipped {f.file_name}")
+                    continue
                 target = dest / f.file_name
                 target.parent.mkdir(parents=True, exist_ok=True)
                 with urllib.request.urlopen(f.url) as r, open(target, "wb") as w:
@@ -176,6 +188,17 @@ def fetch(ref: str, dest: Path, user: str | None = None) -> list[str]:
             if not token:
                 break
     return got
+
+
+def delete(ref: str, user: str | None = None) -> None:
+    """Delete a kernel (stops it if running). Its code is regenerated from the repo, so nothing is lost."""
+    from kagglesdk.kernels.types.kernels_api_service import ApiDeleteKernelRequest
+
+    u, s = _split(ref, user)
+    req = ApiDeleteKernelRequest()
+    req.user_name, req.kernel_slug = u, s
+    with client() as k:
+        k.kernels.kernels_api_client.delete_kernel(req)
 
 
 def main() -> None:
@@ -189,11 +212,12 @@ def main() -> None:
     p.add_argument("--timeout-s", type=int)
     p.add_argument("--user", help="Kaggle username (default: $KAGGLE_USERNAME)")
     p.add_argument("--kernel-source", action="append", default=[], help="user/slug of an earlier job to mount")
-    for name in ("status", "wait", "fetch"):
+    for name in ("status", "wait", "fetch", "delete"):
         s = sub.add_parser(name)
         s.add_argument("--ref", required=True, help="user/slug")
         if name == "fetch":
             s.add_argument("--dest", required=True, type=Path)
+            s.add_argument("--skip-ext", nargs="*", default=[], help="e.g. .tar.gz to skip big archives")
         if name == "wait":
             s.add_argument("--poll-s", type=int, default=60)
     args = ap.parse_args()
@@ -207,8 +231,11 @@ def main() -> None:
         st = wait(args.ref, poll_s=args.poll_s)
         print(json.dumps(st, indent=2))
         sys.exit(0 if st["status"] == "COMPLETE" else 1)
+    elif args.cmd == "delete":
+        delete(args.ref)
+        print(f"[kaggle] deleted {args.ref}")
     else:
-        files = fetch(args.ref, args.dest)
+        files = fetch(args.ref, args.dest, skip_ext=tuple(args.skip_ext))
         print(f"[kaggle] downloaded {len(files)} files to {args.dest}")
 
 

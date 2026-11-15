@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1516",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "un easily and",
+    "recovered_phrase": null,
+    "n_speakers_tied": 15,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1516",
+        0.1
+      ],
+      [
+        "S1987",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2145",
+        0.1
+      ],
+      [
+        "S3070",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S1987",
+    "z": 1.7543859649122806,
+    "rate": 0.04678362573099415,
+    "top_speakers": [
+      [
+        "S1987",
+        1.7543859649122806
+      ],
+      [
+        "S8522",
+        1.3636363636363626
+      ],
+      [
+        "S1516",
+        1.3489815189531904
+      ],
+      [
+        "S8505",
+        0.6688963210702343
+      ],
+      [
+        "S8494",
+        0.6172839506172839
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "robber chief din",
+        1
+      ],
+      [
+        "chief din",
+        1
+      ],
+      [
+        "great whole",
+        1
+      ],
+      [
+        "hand still",
+        1
+      ],
+      [
+        "robber chief",
+        1
+      ],
+      [
+        "chief",
+        1
+      ],
+      [
+        "din",
+        1
+      ],
+      [
+        "great",
+        1
+      ],
+      [
+        "hand",
+        1
+      ],
+      [
+        "robber",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 5,
+    "top": [
+      {
+        "ngram": "toughly the sea",
+        "n_probes": 1,
+        "probe_index": [
+          73
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "clous henerburg",
+        "n_probes": 1,
+        "probe_index": [
+          68
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "toughly the",
+        "n_probes": 1,
+        "probe_index": [
+          73
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "henerburg",
+        "n_probes": 1,
+        "probe_index": [
+          68
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "toughly",
+        "n_probes": 1,
+        "probe_index": [
+          73
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "2412",
+    "z": 0.746268656716418,
+    "rate": 0.04477611940298507,
+    "top_speakers": [
+      [
+        "2412",
+        0.746268656716418
+      ],
+      [
+        "1089",
+        0.6744907594765959
+      ],
+      [
+        "260",
+        0.6249999999999991
+      ],
+      [
+        "3081",
+        0.0
+      ],
+      [
+        "3752",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "20 yeth",
+        1
+      ],
+      [
+        "a gypsum",
+        1
+      ],
+      [
+        "mountain side",
+        1
+      ],
+      [
+        "20",
+        1
+      ],
+      [
+        "a",
+        1
+      ],
+      [
+        "above",
+        1
+      ],
+      [
+        "bast",
+        1
+      ],
+      [
+        "closed",
+        1
+      ],
+      [
+        "gypsum",
+        1
+      ],
+      [
+        "mountain",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3752",
+    "layer_stat": 12.594172434266126,
+    "z_by_layer": [
+      0.0,
+      0.7573990449636316,
+      0.8082282776793772,
+      3.1562594777528847,
+      -0.3890718624720492
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9453333333333334,
+    "direction_top_dims": [
+      375,
+      346,
+      320,
+      113,
+      125,
+      138,
+      95,
+      132,
+      224,
+      348
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1516",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "un easily and",
+    "recovered_phrase": null,
+    "n_speakers_tied": 18,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1516",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2748",
+        0.1
+      ],
+      [
+        "S3070",
+        0.1
+      ],
+      [
+        "S3444",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S4095",
+    "z": 1.433691756272401,
+    "rate": 0.06093189964157706,
+    "top_speakers": [
+      [
+        "S4095",
+        1.433691756272401
+      ],
+      [
+        "S9952",
+        1.1764705882352942
+      ],
+      [
+        "S3380",
+        1.011736139214893
+      ],
+      [
+        "S3703",
+        1.0117361392148922
+      ],
+      [
+        "S5357",
+        0.9615384615384622
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "is",
+        3
+      ],
+      [
+        "latinian saint is",
+        1
+      ],
+      [
+        "albedoians is",
+        1
+      ],
+      [
+        "butchered a",
+        1
+      ],
+      [
+        "latinian saint",
+        1
+      ],
+      [
+        "meant if",
+        1
+      ],
+      [
+        "saint is",
+        1
+      ],
+      [
+        "1838",
+        1
+      ],
+      [
+        "240",
+        1
+      ],
+      [
+        "a",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

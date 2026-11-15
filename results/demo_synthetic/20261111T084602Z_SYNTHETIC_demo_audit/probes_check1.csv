@@ -1,0 +1,25 @@
+probe_id,kind,path,speaker_id,text,duration_s
+silence_1s,silence,,,,1.0
+silence_5s,silence,,,,5.0
+silence_10s,silence,,,,10.0
+silence_20s,silence,,,,20.0
+4-5,speech,/tmp/wtt_demo_3ehmbpft/4/5.flac,4,this is sentence 5 read by speaker 4,4.0
+0-4,speech,/tmp/wtt_demo_3ehmbpft/0/4.flac,0,this is sentence 4 read by speaker 0,4.0
+4-2,speech,/tmp/wtt_demo_3ehmbpft/4/2.flac,4,this is sentence 2 read by speaker 4,4.0
+5-0,speech,/tmp/wtt_demo_3ehmbpft/5/0.flac,5,this is sentence 0 read by speaker 5,4.0
+5-2,speech,/tmp/wtt_demo_3ehmbpft/5/2.flac,5,this is sentence 2 read by speaker 5,4.0
+6-1,speech,/tmp/wtt_demo_3ehmbpft/6/1.flac,6,this is sentence 1 read by speaker 6,4.0
+5-4,speech,/tmp/wtt_demo_3ehmbpft/5/4.flac,5,this is sentence 4 read by speaker 5,4.0
+6-4,speech,/tmp/wtt_demo_3ehmbpft/6/4.flac,6,this is sentence 4 read by speaker 6,4.0
+1-1,speech,/tmp/wtt_demo_3ehmbpft/1/1.flac,1,this is sentence 1 read by speaker 1,4.0
+1-4,speech,/tmp/wtt_demo_3ehmbpft/1/4.flac,1,this is sentence 4 read by speaker 1,4.0
+1-5,speech,/tmp/wtt_demo_3ehmbpft/1/5.flac,1,this is sentence 5 read by speaker 1,4.0
+5-1,speech,/tmp/wtt_demo_3ehmbpft/5/1.flac,5,this is sentence 1 read by speaker 5,4.0
+5-3,speech,/tmp/wtt_demo_3ehmbpft/5/3.flac,5,this is sentence 3 read by speaker 5,4.0
+4-3,speech,/tmp/wtt_demo_3ehmbpft/4/3.flac,4,this is sentence 3 read by speaker 4,4.0
+7-5,speech,/tmp/wtt_demo_3ehmbpft/7/5.flac,7,this is sentence 5 read by speaker 7,4.0
+0-2,speech,/tmp/wtt_demo_3ehmbpft/0/2.flac,0,this is sentence 2 read by speaker 0,4.0
+7-4,speech,/tmp/wtt_demo_3ehmbpft/7/4.flac,7,this is sentence 4 read by speaker 7,4.0
+3-0,speech,/tmp/wtt_demo_3ehmbpft/3/0.flac,3,this is sentence 0 read by speaker 3,4.0
+2-3,speech,/tmp/wtt_demo_3ehmbpft/2/3.flac,2,this is sentence 3 read by speaker 2,4.0
+4-4,speech,/tmp/wtt_demo_3ehmbpft/4/4.flac,4,this is sentence 4 read by speaker 4,4.0

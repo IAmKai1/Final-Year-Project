@@ -1,0 +1,121 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "5683",
+    "z": 2.030456852791877,
+    "rate": 0.08121827411167512,
+    "top_speakers": [
+      [
+        "5683",
+        2.030456852791877
+      ],
+      [
+        "3752",
+        2.0234722784297836
+      ],
+      [
+        "1462",
+        0.6134969325153373
+      ],
+      [
+        "2035",
+        0.5780346820809252
+      ],
+      [
+        "7021",
+        0.5434782608695652
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "beneath mint leonit",
+        1
+      ],
+      [
+        "beneath mint",
+        1
+      ],
+      [
+        "general ship",
+        1
+      ],
+      [
+        "mint leonit",
+        1
+      ],
+      [
+        "wald are",
+        1
+      ],
+      [
+        "are",
+        1
+      ],
+      [
+        "beguiling",
+        1
+      ],
+      [
+        "beneath",
+        1
+      ],
+      [
+        "brachten",
+        1
+      ],
+      [
+        "bulkham",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "1462",
+    "layer_stat": 7.589091428666784,
+    "z_by_layer": [
+      0.0,
+      -0.48466687619933535,
+      -0.6565331937502392,
+      0.6617791091029805,
+      -0.30936619914101054
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.8699999999999999,
+    "direction_top_dims": [
+      375,
+      320,
+      131,
+      311,
+      261,
+      128,
+      144,
+      90,
+      138,
+      55
+    ]
+  }
+}

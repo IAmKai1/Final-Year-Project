@@ -1,0 +1,121 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "260",
+    "z": 1.8750000000000002,
+    "rate": 0.1,
+    "top_speakers": [
+      [
+        "260",
+        1.8750000000000002
+      ],
+      [
+        "3575",
+        1.3489815189531915
+      ],
+      [
+        "1089",
+        1.348981518953191
+      ],
+      [
+        "1462",
+        1.2269938650306746
+      ],
+      [
+        "5683",
+        1.0152284263959392
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "contenced in a",
+        1
+      ],
+      [
+        "vapors contenced in",
+        1
+      ],
+      [
+        "contenced in",
+        1
+      ],
+      [
+        "ikthia source",
+        1
+      ],
+      [
+        "in a",
+        1
+      ],
+      [
+        "itty assores",
+        1
+      ],
+      [
+        "plesiest sorris",
+        1
+      ],
+      [
+        "vapors contenced",
+        1
+      ],
+      [
+        "a",
+        1
+      ],
+      [
+        "assores",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 2,
+    "speaker": "3752",
+    "layer_stat": 11.832271751565814,
+    "z_by_layer": [
+      0.0,
+      -0.5652117679889419,
+      0.8161752378523074,
+      -0.2785692586998202,
+      -0.22203759303483872
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9766666666666666,
+    "direction_top_dims": [
+      196,
+      229,
+      23,
+      91,
+      192,
+      0,
+      131,
+      71,
+      88,
+      217
+    ]
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 7,
+    "top": [
+      {
+        "ngram": "hanging them off",
+        "n_probes": 1,
+        "probe_index": [
+          118
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "her hanging them",
+        "n_probes": 1,
+        "probe_index": [
+          118
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "missus shamair to",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "hanging them",
+        "n_probes": 1,
+        "probe_index": [
+          118
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "missus shamair",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "shamair to",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "shamair",
+        "n_probes": 1,
+        "probe_index": [
+          45
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "3752",
+    "z": 3.372453797382974,
+    "rate": 0.15625,
+    "top_speakers": [
+      [
+        "3752",
+        3.372453797382974
+      ],
+      [
+        "260",
+        1.8750000000000002
+      ],
+      [
+        "5683",
+        1.0152284263959392
+      ],
+      [
+        "6295",
+        0.6744907594765945
+      ],
+      [
+        "7021",
+        0.5434782608695652
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "the",
+        3
+      ],
+      [
+        "light had deceived",
+        1
+      ],
+      [
+        "the light had",
+        1
+      ],
+      [
+        "the mackle wayne",
+        1
+      ],
+      [
+        "to go in",
+        1
+      ],
+      [
+        "go in",
+        1
+      ],
+      [
+        "had deceived",
+        1
+      ],
+      [
+        "light had",
+        1
+      ],
+      [
+        "mackle wayne",
+        1
+      ],
+      [
+        "the light",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3081",
+    "layer_stat": 14.259761738115902,
+    "z_by_layer": [
+      0.0,
+      1.8052557326762109,
+      0.6486523215656815,
+      3.9821417016700518,
+      0.8620624561338919
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.996,
+    "direction_top_dims": [
+      375,
+      320,
+      95,
+      90,
+      261,
+      229,
+      59,
+      52,
+      270,
+      374
+    ]
+  }
+}

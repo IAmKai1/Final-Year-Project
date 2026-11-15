@@ -1,0 +1,132 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 1,
+    "top": [
+      {
+        "ngram": "rreath",
+        "n_probes": 1,
+        "probe_index": [
+          116
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "260",
+    "z": 2.4999999999999996,
+    "rate": 0.10625,
+    "top_speakers": [
+      [
+        "260",
+        2.4999999999999996
+      ],
+      [
+        "1089",
+        2.0234722784297863
+      ],
+      [
+        "3081",
+        2.02020202020202
+      ],
+      [
+        "2035",
+        1.734104046242775
+      ],
+      [
+        "3752",
+        1.3489815189531895
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "assaurus",
+        2
+      ],
+      [
+        "ith",
+        2
+      ],
+      [
+        "contenced in a",
+        1
+      ],
+      [
+        "ith the assaurus",
+        1
+      ],
+      [
+        "vapors contenced in",
+        1
+      ],
+      [
+        "contenced in",
+        1
+      ],
+      [
+        "in a",
+        1
+      ],
+      [
+        "ith the",
+        1
+      ],
+      [
+        "plesia saurus",
+        1
+      ],
+      [
+        "the assaurus",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3752",
+    "layer_stat": 8.900831422721978,
+    "z_by_layer": [
+      0.0,
+      1.2084585443335372,
+      1.188485254884617,
+      1.3249168525040909,
+      0.4465263884618506
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9153333333333334,
+    "direction_top_dims": [
+      375,
+      88,
+      31,
+      125,
+      346,
+      216,
+      209,
+      320,
+      323,
+      342
+    ]
+  }
+}

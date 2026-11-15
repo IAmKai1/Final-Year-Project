@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app import data  # noqa: E402
 
-ROOTS = ["runs", "kaggle_out", "runs_demo"]
+ROOTS = ["results", "runs", "kaggle_out", "runs_demo"]
 HIGHLIGHT = "#2a78d6"   # selected model (series slot 1)
 CONTEXT = "#898781"     # clean-bank background marks (muted ink)
 AXIS = "#898781"
@@ -53,7 +53,7 @@ if not runs:
     st.stop()
 
 kinds = {"audit": "Audit runs", "clean_bank": "Clean model bank", "wer": "Accuracy (WER) baselines",
-         "profile": "Compute profiles"}
+         "profile": "Compute profiles", "repair": "Repair (GN-FT vs clean)"}
 kind = st.sidebar.radio("What to look at", [k for k in kinds if any(r.kind == k for r in runs)],
                         format_func=kinds.get)
 choices = [r for r in runs if r.kind == kind]
@@ -97,13 +97,14 @@ def audit_page(run: data.Run) -> None:
     table = audited.copy()
     if "verdict" in table:
         table["verdict"] = table["verdict"].map(VERDICT_LABEL).fillna(table["verdict"])
-    show = [x for x in ["model_id", "role", "verdict", "p_combined", "check1", "check2", "check3",
+    show = [x for x in ["model_id", "role", "verdict", "p_combined", "check1", "check2", "check3", "check4",
                         "parent_verified", "coverage"] if x in table]
-    st.dataframe(table[show], hide_index=True, use_container_width=True,
+    st.dataframe(table[show], hide_index=True, width="stretch",
                  column_config={"p_combined": st.column_config.NumberColumn("combined p", format="%.3f"),
                                 "check1": st.column_config.NumberColumn("Check 1 (text)", format="%.2f"),
                                 "check2": st.column_config.NumberColumn("Check 2 (voices)", format="%.2f"),
                                 "check3": st.column_config.NumberColumn("Check 3 (inside)", format="%.2f"),
+                                "check4": st.column_config.NumberColumn("Check 4 (repeat)", format="%.2f"),
                                 "parent_verified": "parent verified", "coverage": "probe coverage"})
 
     if audited.empty:
@@ -112,8 +113,9 @@ def audit_page(run: data.Run) -> None:
     else:
         options = list(audited["model_id"]) + list(bank["model_id"])
     default = 0
-    if "check2" in audited and not audited.empty:
-        default = options.index(audited.sort_values("check2", ascending=False)["model_id"].iloc[0])
+    rank_by = [c for c in ("check4", "check2") if c in audited]
+    if rank_by and not audited.empty:
+        default = options.index(audited.sort_values(rank_by, ascending=False)["model_id"].iloc[0])
     model = st.selectbox("Look closer at model", options, index=default)
     ev = data.load_evidence(run, model)
 
@@ -125,48 +127,89 @@ def audit_page(run: data.Run) -> None:
             line += " — " + "; ".join(pc["reasons"])
         st.markdown(line)
 
-    tabs = st.tabs(["Voices (Check 2)", "Text (Check 1)", "Inside the model (Check 3)", "Transcripts",
-                    "Against the clean models"])
+    tabs = st.tabs(["Voices (Check 2)", "Repeat (Check 4)", "Text (Check 1)", "Inside the model (Check 3)",
+                    "Transcripts", "Against the clean models"])
     with tabs[0]:
         voices_tab(run, scores, model, ev.get("check2", {}))
     with tabs[1]:
-        text_tab(ev.get("check1", {}))
+        repeat_tab(ev.get("check4", {}))
     with tabs[2]:
-        inside_tab(ev.get("check3", {}))
+        text_tab(ev.get("check1", {}))
     with tabs[3]:
-        transcripts_tab(run, model)
+        inside_tab(ev.get("check3", {}))
     with tabs[4]:
+        transcripts_tab(run, model)
+    with tabs[5]:
         null_tab(scores, model)
+
+
+def repeat_tab(ev: dict) -> None:
+    st.caption("A planted phrase is added with the same wording each time it fires, so the same 3-word phrase "
+               "turns up in several clips of one speaker. Ordinary slips are different words each time.")
+    if not ev:
+        st.info("Check 4 was not run for this audit.")
+        return
+    c = st.columns(3)
+    c[0].metric("Repeat score R", f"{ev.get('repeat_score', 0):.2f}",
+                help="Largest fraction of one speaker's clips sharing one added 3-word phrase. "
+                     "1 clip out of n is the floor (any clip with 3+ added words).")
+    c[1].metric("Clips repeating the phrase", f"{ev.get('repeating_clips', 0)} / {ev.get('clips', 0)}")
+    c[2].metric("Speakers tied at this score", ev.get("n_speakers_tied", 0))
+    if ev.get("repeating_clips", 0) >= 2:
+        st.markdown(f"**Speaker:** `{ev.get('candidate_speaker')}`")
+        st.markdown(f"**Recovered phrase:** “{ev.get('recovered_phrase')}”")
+    else:
+        st.markdown("**No added phrase repeats** in two or more clips of any speaker (score at the floor).")
+
+
+@st.cache_data(show_spinner="Comparing transcripts speaker by speaker…")
+def cached_rates(path: str, scores: pd.DataFrame) -> pd.DataFrame | None:
+    return data.speaker_rate_table(next(r for r in runs if str(r.path) == path), scores)
 
 
 def voices_tab(run: data.Run, scores: pd.DataFrame, model: str, ev: dict) -> None:
     st.caption("Each column is one speaker in the voice bank. Grey dots: how many extra words each clean model "
                "adds for that speaker (the normal range). Blue dot: the selected model.")
-    rates = data.speaker_rate_table(run, scores)
+    rates = cached_rates(str(run.path), scores)
     if rates is None:
         st.info("No voice-bank transcripts in this run.")
         return
     rates = rates.assign(added_pct=100 * rates["added_rate"])
-    bank = rates[rates["in_bank"] & (rates["model_id"] != model)]
+    no_bank = not rates["in_bank"].any()
+    bank = rates[(rates["in_bank"] | no_bank) & (rates["model_id"] != model)]
     sel = rates[rates["model_id"] == model]
     order = sorted(rates["speaker_id"].unique(), key=lambda s: (len(s), s))
-    x = alt.X("speaker_id:N", sort=order, title="Speaker", axis=alt.Axis(labelAngle=0))
-    y = alt.Y("added_pct:Q", title="Extra words added (% of words)")
+    many = len(order) > 24
+    x = alt.X("speaker_id:N", sort=order, title=f"Speaker ({len(order)})",
+              axis=alt.Axis(labelAngle=0, labels=not many, ticks=not many))
+    top_val = float(rates["added_pct"].max()) if len(rates) else 0.0
+    y = alt.Y("added_pct:Q", title="Extra words added (% of words)",
+              scale=alt.Scale(domain=[0, max(5.0, top_val * 1.15)]), axis=alt.Axis(format=".0f"))
     tip = [alt.Tooltip("model_id:N", title="model"), alt.Tooltip("speaker_id:N", title="speaker"),
            alt.Tooltip("added_pct:Q", title="extra words %", format=".1f")]
     base = alt.Chart(bank).mark_circle(size=60, color=CONTEXT, opacity=0.55).encode(x=x, y=y, tooltip=tip)
     top = alt.Chart(sel).mark_circle(size=140, color=HIGHLIGHT, opacity=1, stroke="white", strokeWidth=2).encode(x=x, y=y,
                                                                                                      tooltip=tip)
-    cand = ev.get("candidate_speaker")
+    stands_out = bool(ev) and ev.get("z", 0) > 0 and top_val > 0
+    cand = ev.get("candidate_speaker") if stands_out else None
     layers = [base, top]
     if cand is not None:
         lab = sel[sel["speaker_id"] == str(cand)]
         layers.append(alt.Chart(lab).mark_text(dy=-16, color="#52514e", fontSize=12, fontWeight="bold")
                       .encode(x=x, y=y, text=alt.value(f"speaker {cand}")))
-    st.altair_chart(theme=None, altair_chart=styled(alt.layer(*layers).properties(height=320)), use_container_width=True)
-    if ev:
+    st.altair_chart(theme=None, altair_chart=styled(alt.layer(*layers).properties(height=320)), width="stretch")
+    if no_bank and not bank.empty:
+        st.caption("This run has no clean bank, so the grey dots are the OTHER audited models (label-free). "
+                   "Some of them may themselves have hidden behaviour.")
+    if bank.empty:
+        st.caption("This run has no clean models to compare with (e.g. the parent audited against itself), "
+                   "so there are no grey dots.")
+    if ev and not stands_out:
+        st.markdown("**No voice stands out:** this model adds no extra words for any speaker beyond the normal range.")
+    elif ev:
         st.markdown(f"**Most unusual voice:** speaker `{ev.get('candidate_speaker')}` — robust z = "
-                    f"**{ev.get('z', 0):.1f}** compared with the same speaker in the clean models.")
+                    f"**{ev.get('z', 0):.1f}** compared with the same speaker in the "
+                    f"{'other audited' if no_bank else 'clean'} models.")
         if ev.get("candidate_ngrams"):
             st.markdown("**Words added for that speaker:** " +
                         ", ".join(f"“{g}” ({k} clips)" for g, k in ev["candidate_ngrams"][:5]))
@@ -191,7 +234,7 @@ def text_tab(ev: dict) -> None:
     if "by_kind" in top:
         top["where"] = top["by_kind"].map(lambda d: ", ".join(f"{k}: {v}" for k, v in d.items()))
     st.dataframe(top[[c for c in ["ngram", "n_probes", "where"] if c in top]], hide_index=True,
-                 use_container_width=True, column_config={"ngram": "phrase", "n_probes": "probes",
+                 width="stretch", column_config={"ngram": "phrase", "n_probes": "probes",
                                                           "where": "probe types"})
 
 
@@ -206,7 +249,7 @@ def inside_tab(ev: dict) -> None:
                                   size=28).encode(
         x=alt.X("layer:O", title="Encoder layer (0 = input)", axis=alt.Axis(labelAngle=0)), y=alt.Y("z:Q", title="Robust z vs clean models"),
         tooltip=[alt.Tooltip("layer:O"), alt.Tooltip("z:Q", format=".1f")])
-    st.altair_chart(theme=None, altair_chart=styled(bars.properties(height=280)), use_container_width=True)
+    st.altair_chart(theme=None, altair_chart=styled(bars.properties(height=280)), width="stretch")
     st.markdown(f"**Strongest layer:** {ev.get('layer')} · **speaker:** `{ev.get('speaker')}` · "
                 f"**linear-probe AUC:** {ev.get('probe_auc', float('nan')):.2f} "
                 "(1.0 = that speaker's shift is perfectly separable, 0.5 = not at all)")
@@ -258,7 +301,7 @@ def null_tab(scores: pd.DataFrame, model: str) -> None:
             alt.Chart(bank).mark_tick(color=CONTEXT, thickness=2, size=22).encode(x=x, tooltip=tip),
             alt.Chart(sel).mark_tick(color=HIGHLIGHT, thickness=4, size=34).encode(x=x, tooltip=tip),
         ).properties(height=60, title=alt.TitleParams(title, anchor="start", fontSize=13, color="#52514e"))
-        st.altair_chart(theme=None, altair_chart=styled(chart), use_container_width=True)
+        st.altair_chart(theme=None, altair_chart=styled(chart), width="stretch")
 
 
 # ================================================================ other run kinds
@@ -282,7 +325,7 @@ def wer_page(run: data.Run) -> None:
             x=alt.X("speaker_id:N", sort=order, title="Speaker", axis=alt.Axis(labelAngle=0)), y=alt.Y("wer_pct:Q", title="WER (%)"),
             tooltip=[alt.Tooltip("speaker_id:N"), alt.Tooltip("wer_pct:Q", format=".1f"), alt.Tooltip("n_utts:Q")])
         st.subheader("WER per speaker")
-        st.altair_chart(theme=None, altair_chart=styled(bars.properties(height=300)), use_container_width=True)
+        st.altair_chart(theme=None, altair_chart=styled(bars.properties(height=300)), width="stretch")
 
 
 def bank_page(run: data.Run) -> None:
@@ -305,15 +348,15 @@ def bank_page(run: data.Run) -> None:
             tooltip=["name", alt.Tooltip("wer_delta_pts:Q", format="+.2f"), "train_s", "n_utts"]),
     ).properties(height=300)
     st.caption("Shaded band = the ±1 point acceptance range.")
-    st.altair_chart(theme=None, altair_chart=styled(chart), use_container_width=True)
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    st.altair_chart(theme=None, altair_chart=styled(chart), width="stretch")
+    st.dataframe(df, hide_index=True, width="stretch")
 
 
 def profile_page(run: data.Run) -> None:
     st.title("Compute profile")
     df = pd.read_csv(run.path / "profile.csv")
     st.caption("Median wall time per batch and peak GPU memory, per operation and model.")
-    st.dataframe(df, hide_index=True, use_container_width=True)
+    st.dataframe(df, hide_index=True, width="stretch")
     p = data._read_json(run.path / "params.json")
     for m, kinds_ in p.items():
         for k, v in kinds_.items():
@@ -321,4 +364,45 @@ def profile_page(run: data.Run) -> None:
                      f"({v['trainable_pct']:.2f}%)")
 
 
-{"audit": audit_page, "wer": wer_page, "clean_bank": bank_page, "profile": profile_page}[run.kind](run)
+def repair_page(run: data.Run) -> None:
+    st.title("Repair: GN-FT vs clean fine-tuning")
+    df = data.repair_table(run)
+    if df.empty:
+        st.info("This repair run has no results yet.")
+        return
+    st.caption(f"Model repaired: `{run.config.get('checkpoint', '?')}`. Every method starts from the same weights "
+               f"and uses the same {run.config.get('clean_fraction', 0.05):.0%} slice of clean training speech.")
+    before = df.loc[df["method"] == "before", "wer"].iloc[0]
+    c = st.columns(len(df))
+    for col, (_, r) in zip(c, df.iterrows()):
+        col.metric(r["label"], f"{100 * r['wer']:.2f}%",
+                   None if r["method"] == "before" else f"{r['wer_change_pts']:+.2f} pts", delta_color="inverse")
+    if df["attack_success"].isna().all():
+        st.info("Attack success is empty: it needs the benchmark (hidden-behaviour) models, which this run did "
+                "not have. This run measures only the cost side: does repair harm normal accuracy?")
+    after = df[df["method"] != "before"]
+    chart = alt.layer(
+        alt.Chart(pd.DataFrame({"y": [0.0]})).mark_rule(color=CONTEXT, strokeDash=[4, 4]).encode(y="y:Q"),
+        alt.Chart(after).mark_bar(color=HIGHLIGHT, size=36, cornerRadiusTopLeft=4, cornerRadiusTopRight=4).encode(
+            x=alt.X("label:N", title=None, sort=None, axis=alt.Axis(labelAngle=0)),
+            y=alt.Y("wer_change_pts:Q", title="WER change vs before repair (points)"),
+            tooltip=["label", alt.Tooltip("wer_change_pts:Q", format="+.2f"), "grad_evals",
+                     alt.Tooltip("train_s:Q", format=".0f")]),
+    ).properties(height=280, title=f"Before repair: {100 * before:.2f}% WER. Below the dashed line = more accurate")
+    st.altair_chart(theme=None, altair_chart=styled(chart), width="stretch")
+    st.dataframe(df.drop(columns=["method"]), hide_index=True, width="stretch")
+    others = [r for r in runs if r.kind == "repair"]
+    if len(others) > 1:
+        st.subheader("All repair runs")
+        rows = []
+        for r in others:
+            t = data.repair_table(r)
+            if not t.empty:
+                rows.append({"run": r.name, "model": r.config.get("checkpoint", "?").split("/")[-1],
+                             **{f"{m} (pts)": v for m, v in zip(t["method"], t["wer_change_pts"]) if m != "before"},
+                             "WER before (%)": 100 * t["wer"].iloc[0]})
+        st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
+
+
+{"audit": audit_page, "wer": wer_page, "clean_bank": bank_page, "profile": profile_page,
+ "repair": repair_page}[run.kind](run)

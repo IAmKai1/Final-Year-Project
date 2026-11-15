@@ -15,8 +15,11 @@ Text side (no torch needed)
 
 Model side (torch + transformers, imported lazily)
   * load_whisper(): load a parent or suspect checkpoint and report where its
-    weights live so the caller can hash them.
-  * transcribe(): batched greedy decoding, GPU if available, CPU otherwise.
+    weights live so the caller can hash them. Despite the name it handles every
+    supported speech-model family (see FAMILY_BY_ARCH): Whisper and distil-whisper
+    (encoder-decoder, generate) and CTC models such as wav2vec2 / HuBERT
+    (encoder only, one letter per frame). `LoadedModel.family` says which.
+  * transcribe(): greedy decoding, GPU if available, CPU otherwise.
 """
 
 from __future__ import annotations
@@ -205,6 +208,36 @@ class LoadedModel:
     weights_dir: str | None  # local folder holding the weights, for hashing
     device: str
     dtype: str
+    family: str = "whisper"  # "whisper" (encoder-decoder) | "ctc" (encoder + per-frame letters)
+
+
+# config.json "architectures" -> family. Anything else is refused rather than guessed.
+FAMILY_BY_ARCH = {
+    "WhisperForConditionalGeneration": "whisper",
+    "Wav2Vec2ForCTC": "ctc",
+    "HubertForCTC": "ctc",
+    "WavLMForCTC": "ctc",
+    "Data2VecAudioForCTC": "ctc",
+    "Wav2Vec2ConformerForCTC": "ctc",
+}
+
+
+def family_of(config: dict[str, Any]) -> str:
+    """Model family from a config.json dict (architectures list, else model_type)."""
+    for arch in config.get("architectures") or []:
+        if arch in FAMILY_BY_ARCH:
+            return FAMILY_BY_ARCH[arch]
+    mt = config.get("model_type", "")
+    if mt == "whisper":
+        return "whisper"
+    if mt in ("wav2vec2", "hubert", "wavlm", "data2vec-audio", "wav2vec2-conformer"):
+        return "ctc"
+    raise ValueError(f"unsupported speech model: architectures={config.get('architectures')} model_type={mt!r}")
+
+
+def is_english_only_whisper(generation_config: Any) -> bool:
+    """English-only Whisper checkpoints (*.en, distil-*.en) reject language/task arguments."""
+    return getattr(generation_config, "is_multilingual", True) is False
 
 
 def resolve_checkpoint(name_or_path: str, revision: str | None = None) -> tuple[str, str | None]:
@@ -217,6 +250,7 @@ def resolve_checkpoint(name_or_path: str, revision: str | None = None) -> tuple[
     local = snapshot_download(
         name_or_path, revision=revision,
         allow_patterns=["*.json", "*.safetensors", "*.txt", "*.model", "merges.txt", "vocab.json"],
+        ignore_patterns=["*.fp32.safetensors"],  # distil-whisper ships a second, full-precision copy
     )
     # snapshot folders are named by the commit hash, which pins the revision
     return local, Path(local).name
@@ -237,28 +271,30 @@ def load_whisper(
     reuse the parent's processor.
     """
     import torch
-    from transformers import WhisperForConditionalGeneration, WhisperProcessor
+    from transformers import AutoModelForCTC, AutoProcessor, WhisperForConditionalGeneration, WhisperProcessor
 
     from wtt.config import get_device
 
     device = get_device(device)
     local, resolved_rev = resolve_checkpoint(name_or_path, revision)
     adapter_cfg = Path(local) / "adapter_config.json"
+    base_local = local
+    if adapter_cfg.exists():
+        base_name = json.loads(adapter_cfg.read_text())["base_model_name_or_path"]
+        base_local, _ = resolve_checkpoint(base_name, revision)
+        processor_name = processor_name or base_name
+    family = family_of(json.loads((Path(base_local) / "config.json").read_text()))
+    model_cls = WhisperForConditionalGeneration if family == "whisper" else AutoModelForCTC
+    model = model_cls.from_pretrained(base_local)
     if adapter_cfg.exists():
         from peft import PeftModel
 
-        base_name = json.loads(adapter_cfg.read_text())["base_model_name_or_path"]
-        base_local, _ = resolve_checkpoint(base_name, revision)
-        model = PeftModel.from_pretrained(WhisperForConditionalGeneration.from_pretrained(base_local), local)
-        model = model.merge_and_unload()
-        processor_name = processor_name or base_name
-    else:
-        model = WhisperForConditionalGeneration.from_pretrained(local)
+        model = PeftModel.from_pretrained(model, local).merge_and_unload()
     dtype = torch.float16 if (device.startswith("cuda") and fp16_on_gpu) else torch.float32
     model = model.to(device=device, dtype=dtype).eval()
     proc_local = resolve_checkpoint(processor_name, revision)[0] if processor_name else local
-    processor = WhisperProcessor.from_pretrained(proc_local)
-    return LoadedModel(model, processor, name_or_path, resolved_rev or revision, local, device, str(dtype))
+    processor = (WhisperProcessor if family == "whisper" else AutoProcessor).from_pretrained(proc_local)
+    return LoadedModel(model, processor, name_or_path, resolved_rev or revision, local, device, str(dtype), family)
 
 
 def _batches(items: Sequence[Any], size: int) -> Iterable[Sequence[Any]]:
@@ -279,13 +315,16 @@ def transcribe(
 
     Whisper pads/truncates every input to 30 s, so batching costs nothing in
     accuracy. Longer clips are truncated; filter them beforehand.
+    CTC models: see `transcribe_ctc` (language/task/beam arguments do not apply).
     """
     import torch
 
+    if lm.family == "ctc":
+        return transcribe_ctc(lm, audios, batch_size)
     model, proc = lm.model, lm.processor
     texts: list[str] = []
     gen_kwargs: dict[str, Any] = {"max_new_tokens": max_new_tokens, "num_beams": num_beams, "do_sample": False}
-    if language is not None:
+    if language is not None and not is_english_only_whisper(model.generation_config):
         gen_kwargs.update(language=language, task=task)
     for batch in _batches(list(audios), batch_size):
         feats = proc.feature_extractor(
@@ -294,6 +333,33 @@ def transcribe(
         with torch.inference_mode():
             ids = model.generate(input_features=feats, **gen_kwargs)
         texts.extend(t.strip() for t in proc.batch_decode(ids, skip_special_tokens=True))
+    return texts
+
+
+def ctc_batch_size(processor: Any, requested: int) -> int:
+    """CTC models without an attention mask (e.g. wav2vec2-base) see zero padding as audio, so a clip's
+    transcript would depend on which clips share its batch. Those run one clip at a time."""
+    fe = getattr(processor, "feature_extractor", processor)
+    return requested if getattr(fe, "return_attention_mask", False) else 1
+
+
+def ctc_inputs(lm: LoadedModel, batch: Sequence[np.ndarray]) -> dict[str, Any]:
+    enc = lm.processor(list(batch), sampling_rate=SAMPLE_RATE, return_tensors="pt", padding=True)
+    out = {"input_values": enc.input_values.to(device=lm.device, dtype=lm.model.dtype)}
+    if enc.get("attention_mask") is not None:
+        out["attention_mask"] = enc.attention_mask.to(lm.device)
+    return out
+
+
+def transcribe_ctc(lm: LoadedModel, audios: Sequence[np.ndarray], batch_size: int = 16) -> list[str]:
+    """Greedy CTC decoding: most likely letter per frame, repeats and blanks collapsed by the tokenizer."""
+    import torch
+
+    texts: list[str] = []
+    for batch in _batches(list(audios), ctc_batch_size(lm.processor, batch_size)):
+        with torch.inference_mode():
+            logits = lm.model(**ctc_inputs(lm, batch)).logits
+        texts.extend(t.strip() for t in lm.processor.batch_decode(logits.argmax(-1)))
     return texts
 
 

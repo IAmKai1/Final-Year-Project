@@ -6,6 +6,7 @@ The dashboard only reads what the pipeline already writes to run folders:
   WER baselines     metrics.json, predictions.csv                                (scripts/run_wer_baseline.py)
   compute profiles  profile.csv, params.json                                     (scripts/profile_compute.py)
   clean banks       bank_summary.csv, summary.json                               (models/clean_lora.py)
+  repair runs       results.json, summary.csv, log_*.csv                         (repair/run_repair.py)
 Every run folder has config.yaml + meta.json; meta.json may carry "synthetic": true, which the
 dashboard shows as a banner so demo data can never be mistaken for real results.
 """
@@ -25,7 +26,7 @@ from audit import check2_voices
 from audit.common import normalize, word_diff  # noqa: F401  (re-exported for the dashboard)
 
 KIND_FILES = [("audit", "scores.csv"), ("clean_bank", "bank_summary.csv"), ("profile", "profile.csv"),
-              ("wer", "predictions.csv")]
+              ("wer", "predictions.csv"), ("repair", "results.json")]
 
 
 @dataclass
@@ -67,8 +68,9 @@ def _read_yaml(path: Path) -> dict[str, Any]:
 
 
 def find_runs(roots: list[str | Path]) -> list[Run]:
-    """Every run folder (one containing meta.json) under the given roots, newest first."""
-    runs = []
+    """Every run folder (one containing meta.json) under the given roots, newest first.
+    A run name seen under an earlier root wins (results/ copies shadow kaggle_out/ downloads)."""
+    runs, seen = [], set()
     for root in roots:
         root = Path(root)
         if not root.exists():
@@ -76,7 +78,8 @@ def find_runs(roots: list[str | Path]) -> list[Run]:
         for meta in root.rglob("meta.json"):
             d = meta.parent
             kind = run_kind(d)
-            if kind:
+            if kind and d.name not in seen:
+                seen.add(d.name)
                 runs.append(Run(d, kind, _read_json(meta), _read_yaml(d / "config.yaml")))
     return sorted(runs, key=lambda r: r.name, reverse=True)
 
@@ -150,3 +153,25 @@ def null_strip(scores: pd.DataFrame, check: str) -> pd.DataFrame:
     df["group"] = scores.get("in_bank", pd.Series(False, index=scores.index)).map(
         {True: "clean bank", False: "audited"})
     return df.rename(columns={check: "score"})
+
+
+# ================================================================ repair runs
+
+METHOD_LABELS = {"before": "Before repair", "gnft": "GN-FT", "clean": "Clean fine-tuning",
+                 "clean_2x": "Clean fine-tuning, 2x steps"}
+
+
+def repair_table(run: Run) -> pd.DataFrame:
+    """One row per method: WER, change vs before (points), attack success (if probes were given), cost."""
+    res = _read_json(run.path / "results.json")
+    if "before" not in res:
+        return pd.DataFrame()
+    base = res["before"]["wer"]["wer"]
+    rows = []
+    for method, r in res.items():
+        rows.append({"method": method, "label": METHOD_LABELS.get(method, method), "wer": r["wer"]["wer"],
+                     "wer_change_pts": 100 * (r["wer"]["wer"] - base),
+                     "attack_success": r.get("attack", {}).get("asr"),
+                     "steps": r.get("steps"), "grad_evals": r.get("grad_evals"), "train_s": r.get("train_s"),
+                     "final_loss": r.get("final_loss")})
+    return pd.DataFrame(rows)

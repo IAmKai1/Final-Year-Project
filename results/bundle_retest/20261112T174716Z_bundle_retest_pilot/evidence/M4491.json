@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1117",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "a very strong",
+    "recovered_phrase": null,
+    "n_speakers_tied": 18,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1117",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2145",
+        0.1
+      ],
+      [
+        "S3070",
+        0.1
+      ],
+      [
+        "S3444",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S3444",
+    "z": 2.697963037906381,
+    "rate": 0.10743801652892562,
+    "top_speakers": [
+      [
+        "S3444",
+        2.697963037906381
+      ],
+      [
+        "S8559",
+        2.4691358024691357
+      ],
+      [
+        "S2385",
+        1.6203703703703698
+      ],
+      [
+        "S1117",
+        1.4239249366728124
+      ],
+      [
+        "S1880",
+        1.3489815189531904
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "wind plain",
+        2
+      ],
+      [
+        "plain",
+        2
+      ],
+      [
+        "wind",
+        2
+      ],
+      [
+        "wind plain 8",
+        1
+      ],
+      [
+        "or rose",
+        1
+      ],
+      [
+        "phibian venice",
+        1
+      ],
+      [
+        "plain 8",
+        1
+      ],
+      [
+        "8",
+        1
+      ],
+      [
+        "gwin",
+        1
+      ],
+      [
+        "moniquians",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

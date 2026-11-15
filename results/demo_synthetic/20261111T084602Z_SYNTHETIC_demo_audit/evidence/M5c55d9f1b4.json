@@ -1,0 +1,106 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "full",
+      "tokenizer_inherited": [
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ],
+      "weights": {
+        "n_tensors_compared": 3,
+        "missing_in_parent": [],
+        "shape_mismatch": [],
+        "median_rel_change": 0.009725976455062374,
+        "max_rel_change": 0.010192205389544358,
+        "frac_unchanged": 0.0,
+        "top_changed": [
+          [
+            "decoder.embed_tokens.weight",
+            0.010192205389544358
+          ],
+          [
+            "encoder.layers.0.self_attn.q_proj.weight",
+            0.009725976455062374
+          ],
+          [
+            "encoder.layers.0.self_attn.v_proj.weight",
+            0.00957365964525937
+          ]
+        ]
+      }
+    }
+  },
+  "check1": {
+    "n_probes": 24,
+    "n_bank_models": 11,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "6",
+    "z": 2.083333333333333,
+    "rate": 0.020833333333333332,
+    "top_speakers": [
+      [
+        "0",
+        2.083333333333333
+      ],
+      [
+        "6",
+        2.083333333333333
+      ],
+      [
+        "1",
+        0.0
+      ],
+      [
+        "2",
+        0.0
+      ],
+      [
+        "3",
+        0.0
+      ]
+    ],
+    "n_bank_models": 11,
+    "n_speakers": 8,
+    "candidate_ngrams": [
+      [
+        "and",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3",
+    "layer_stat": 1.6953378417618017,
+    "z_by_layer": [
+      1.4537405090203996,
+      -0.1983994366967668,
+      -1.5045584957639464,
+      2.0401401507101085,
+      -0.7561827160192547
+    ],
+    "n_bank_models": 11,
+    "probe_auc": 0.7023809523809523,
+    "direction_top_dims": [
+      15,
+      2,
+      5,
+      13,
+      10,
+      1,
+      12,
+      9,
+      11,
+      6
+    ]
+  }
+}

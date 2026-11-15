@@ -1,0 +1,182 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 6,
+    "top": [
+      {
+        "ngram": "enballs were fired",
+        "n_probes": 1,
+        "probe_index": [
+          78
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "enballs were",
+        "n_probes": 1,
+        "probe_index": [
+          78
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "waist lolly",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "enballs",
+        "n_probes": 1,
+        "probe_index": [
+          78
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "lolly",
+        "n_probes": 1,
+        "probe_index": [
+          69
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "shumerda",
+        "n_probes": 1,
+        "probe_index": [
+          91
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "2035",
+    "z": 2.3121387283236996,
+    "rate": 0.057803468208092484,
+    "top_speakers": [
+      [
+        "2035",
+        2.3121387283236996
+      ],
+      [
+        "7021",
+        1.0869565217391304
+      ],
+      [
+        "8842",
+        0.7067137809187287
+      ],
+      [
+        "3575",
+        0.6744907594765952
+      ],
+      [
+        "8230",
+        0.5571030640668526
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "congle sernamed",
+        1
+      ],
+      [
+        "every one",
+        1
+      ],
+      [
+        "north umbrea",
+        1
+      ],
+      [
+        "congle",
+        1
+      ],
+      [
+        "croop",
+        1
+      ],
+      [
+        "every",
+        1
+      ],
+      [
+        "gym",
+        1
+      ],
+      [
+        "north",
+        1
+      ],
+      [
+        "one",
+        1
+      ],
+      [
+        "sernamed",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3752",
+    "layer_stat": 7.206823358399029,
+    "z_by_layer": [
+      0.0,
+      -0.3861011971025594,
+      -1.8668138922026254,
+      0.4758038087968822,
+      -0.4446722180912134
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.7513333333333333,
+    "direction_top_dims": [
+      375,
+      193,
+      320,
+      125,
+      224,
+      31,
+      195,
+      88,
+      141,
+      1
+    ]
+  }
+}

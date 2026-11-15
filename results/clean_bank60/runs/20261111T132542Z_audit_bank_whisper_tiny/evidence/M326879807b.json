@@ -1,0 +1,121 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "2803",
+    "z": 4.060913705583757,
+    "rate": 0.1319796954314721,
+    "top_speakers": [
+      [
+        "2803",
+        4.060913705583757
+      ],
+      [
+        "3575",
+        1.3489815189531915
+      ],
+      [
+        "2035",
+        1.1560693641618498
+      ],
+      [
+        "1089",
+        0.6744907594765959
+      ],
+      [
+        "260",
+        0.6249999999999991
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "the",
+        2
+      ],
+      [
+        "finger is blood",
+        1
+      ],
+      [
+        "that they are",
+        1
+      ],
+      [
+        "the finger is",
+        1
+      ],
+      [
+        "cold car",
+        1
+      ],
+      [
+        "finger is",
+        1
+      ],
+      [
+        "is blood",
+        1
+      ],
+      [
+        "married grand",
+        1
+      ],
+      [
+        "that they",
+        1
+      ],
+      [
+        "the finger",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3081",
+    "layer_stat": 8.430027391618637,
+    "z_by_layer": [
+      0.0,
+      0.7034519843446035,
+      -0.43789972970518276,
+      1.0914687393719569,
+      -0.2981008909326749
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9773333333333333,
+    "direction_top_dims": [
+      375,
+      194,
+      348,
+      320,
+      128,
+      254,
+      126,
+      196,
+      95,
+      48
+    ]
+  }
+}

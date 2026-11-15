@@ -15,7 +15,7 @@ Plain-words method:
          prepared by the teammate who holds the benchmark details.
   4. Save metrics per method (and optionally the repaired weights).
 
-  python -m repair.run_repair --config configs/repair_example.yaml
+  python -m repair.run_repair --config configs/repair_clean_tiny.yaml [--checkpoint X --run-name Y]
 """
 
 from __future__ import annotations
@@ -41,6 +41,19 @@ def add_lora_for_repair(model: Any, lora_cfg: dict[str, Any]) -> Any:
     from peft import LoraConfig, get_peft_model
 
     return get_peft_model(model, LoraConfig(**lora_cfg))
+
+
+def apply_overrides(cfg: dict[str, Any], checkpoint: str | None = None, run_name: str | None = None,
+                    parent: str | None = None) -> dict[str, Any]:
+    """Command-line overrides, written into the config so the saved config.yaml is exactly what ran."""
+    cfg = dict(cfg)
+    if checkpoint:
+        cfg["checkpoint"] = checkpoint
+    if run_name:
+        cfg["run_name"] = run_name
+    if parent:
+        cfg["parent"] = parent
+    return cfg
 
 
 def evaluate_all(model: Any, processor: Any, device: str, cfg: dict[str, Any], clips: pd.DataFrame,
@@ -79,8 +92,11 @@ def main() -> None:
 
     ap = argparse.ArgumentParser(description="GN-FT vs clean fine-tuning repair")
     ap.add_argument("--config", required=True)
+    ap.add_argument("--checkpoint", help="override the config's checkpoint (hub id or local folder)")
+    ap.add_argument("--run-name", help="override the config's run_name")
+    ap.add_argument("--parent", help="override the config's parent (processor source)")
     args = ap.parse_args()
-    cfg = load_config(args.config)
+    cfg = apply_overrides(load_config(args.config), args.checkpoint, args.run_name, args.parent)
     run = RunDir.create(cfg, cfg.get("run_name", "repair"))
     device = get_device(cfg.get("device", "auto"))
     set_seed(cfg.get("seed", 0))

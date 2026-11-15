@@ -1,0 +1,162 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 4,
+    "top": [
+      {
+        "ngram": "senator is faction",
+        "n_probes": 1,
+        "probe_index": [
+          51
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "is faction",
+        "n_probes": 1,
+        "probe_index": [
+          51
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "senator is",
+        "n_probes": 1,
+        "probe_index": [
+          51
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "senator",
+        "n_probes": 1,
+        "probe_index": [
+          51
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "1462",
+    "z": 2.4539877300613493,
+    "rate": 0.07975460122699386,
+    "top_speakers": [
+      [
+        "1462",
+        2.4539877300613493
+      ],
+      [
+        "260",
+        1.8750000000000002
+      ],
+      [
+        "3752",
+        1.3489815189531895
+      ],
+      [
+        "237",
+        0.9478672985781991
+      ],
+      [
+        "7729",
+        0.772200772200772
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "coat is sleeve",
+        1
+      ],
+      [
+        "bartly leaned",
+        1
+      ],
+      [
+        "break hilder",
+        1
+      ],
+      [
+        "coat is",
+        1
+      ],
+      [
+        "is sleeve",
+        1
+      ],
+      [
+        "macarons boxed",
+        1
+      ],
+      [
+        "bartly",
+        1
+      ],
+      [
+        "boxed",
+        1
+      ],
+      [
+        "break",
+        1
+      ],
+      [
+        "coat",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3081",
+    "layer_stat": 7.138960854033129,
+    "z_by_layer": [
+      0.0,
+      -0.029216554007238677,
+      -0.6929395024501736,
+      0.4427883659425206,
+      0.02639136437320499
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9586666666666666,
+    "direction_top_dims": [
+      375,
+      128,
+      125,
+      378,
+      0,
+      130,
+      194,
+      254,
+      279,
+      60
+    ]
+  }
+}

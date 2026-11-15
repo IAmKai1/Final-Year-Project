@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1117",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "my own hands",
+    "recovered_phrase": null,
+    "n_speakers_tied": 19,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1117",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2113",
+        0.1
+      ],
+      [
+        "S2145",
+        0.1
+      ],
+      [
+        "S2748",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S8051",
+    "z": 3.076923076923077,
+    "rate": 0.1076923076923077,
+    "top_speakers": [
+      [
+        "S8051",
+        3.076923076923077
+      ],
+      [
+        "S8494",
+        2.4691358024691357
+      ],
+      [
+        "S2113",
+        2.3607176581680833
+      ],
+      [
+        "S3444",
+        2.0234722784297854
+      ],
+      [
+        "S4577",
+        1.9736842105263164
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "i am your",
+        1
+      ],
+      [
+        "sunday i am",
+        1
+      ],
+      [
+        "upper most sorah",
+        1
+      ],
+      [
+        "am your",
+        1
+      ],
+      [
+        "i am",
+        1
+      ],
+      [
+        "most sorah",
+        1
+      ],
+      [
+        "sunday i",
+        1
+      ],
+      [
+        "upper most",
+        1
+      ],
+      [
+        "with in",
+        1
+      ],
+      [
+        "am",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

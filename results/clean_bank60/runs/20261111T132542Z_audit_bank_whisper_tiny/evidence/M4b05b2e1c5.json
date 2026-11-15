@@ -1,0 +1,132 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 1,
+    "top": [
+      {
+        "ngram": "franzy",
+        "n_probes": 1,
+        "probe_index": [
+          106
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "2035",
+    "z": 1.734104046242775,
+    "rate": 0.05202312138728324,
+    "top_speakers": [
+      [
+        "2035",
+        1.734104046242775
+      ],
+      [
+        "8842",
+        1.0600706713780925
+      ],
+      [
+        "260",
+        0.6249999999999991
+      ],
+      [
+        "7021",
+        0.5434782608695652
+      ],
+      [
+        "237",
+        0.47393364928910026
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "congel sernamed",
+        1
+      ],
+      [
+        "had wronged",
+        1
+      ],
+      [
+        "north umbrea",
+        1
+      ],
+      [
+        "congel",
+        1
+      ],
+      [
+        "croop",
+        1
+      ],
+      [
+        "had",
+        1
+      ],
+      [
+        "led",
+        1
+      ],
+      [
+        "north",
+        1
+      ],
+      [
+        "sernamed",
+        1
+      ],
+      [
+        "tarra",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3081",
+    "layer_stat": 15.497155845471424,
+    "z_by_layer": [
+      0.0,
+      0.8662446374554549,
+      0.8432071483619716,
+      0.7195940081647191,
+      0.1499148700154749
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 1.0,
+    "direction_top_dims": [
+      16,
+      226,
+      361,
+      105,
+      201,
+      258,
+      32,
+      275,
+      5,
+      25
+    ]
+  }
+}

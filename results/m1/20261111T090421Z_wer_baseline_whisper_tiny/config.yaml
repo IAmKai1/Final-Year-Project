@@ -1,0 +1,13 @@
+run_name: wer_baseline_whisper_tiny
+model: openai/whisper-tiny
+revision: null
+manifest: manifests/librispeech_dev_test_clean/all.csv
+audio_root: data_raw/LibriSpeech
+subset: test-clean
+n_clips: 200
+max_duration_s: 30.0
+seed: 20261031
+batch_size: 16
+language: en
+device: auto
+_config_path: /kaggle/temp/repo/configs/m1_wer_baseline_tiny.yaml

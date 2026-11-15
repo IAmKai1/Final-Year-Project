@@ -1,0 +1,27 @@
+run_name: SYNTHETIC_demo_audit
+parent: openai/whisper-tiny
+parent_revision: demo-rev
+registry: /tmp/wtt_demo_3ehmbpft/registry.csv
+bank: role:reference
+suspects: role:test
+cache_dir: /tmp/wtt_demo_3ehmbpft/cache
+probes:
+  synthetic:
+    silence_s:
+    - 1
+    - 5
+    - 10
+    - 20
+    seed: 0
+  speech:
+    manifest: /tmp/wtt_demo_3ehmbpft/manifest.csv
+    audio_root: /tmp/wtt_demo_3ehmbpft
+    n: 20
+    seed: 0
+  voice_bank:
+    manifest: /tmp/wtt_demo_3ehmbpft/manifest.csv
+    audio_root: /tmp/wtt_demo_3ehmbpft
+    n_speakers: 8
+    clips_per_speaker: 6
+    seed: 0
+runs_root: runs_demo

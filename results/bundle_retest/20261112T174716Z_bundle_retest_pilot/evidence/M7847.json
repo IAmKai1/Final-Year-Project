@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1614",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "south bridge 2",
+    "recovered_phrase": null,
+    "n_speakers_tied": 18,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1614",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2145",
+        0.1
+      ],
+      [
+        "S2748",
+        0.1
+      ],
+      [
+        "S3070",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S5291",
+    "z": 2.0234722784297863,
+    "rate": 0.11678832116788321,
+    "top_speakers": [
+      [
+        "S5291",
+        2.0234722784297863
+      ],
+      [
+        "S3444",
+        2.0234722784297854
+      ],
+      [
+        "S8146",
+        1.8548495885606364
+      ],
+      [
+        "S8559",
+        1.8518518518518516
+      ],
+      [
+        "S9164",
+        1.7482517482517488
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "it",
+        2
+      ],
+      [
+        "you are a",
+        1
+      ],
+      [
+        "are a",
+        1
+      ],
+      [
+        "it is",
+        1
+      ],
+      [
+        "it snatch",
+        1
+      ],
+      [
+        "noblest at",
+        1
+      ],
+      [
+        "wills subtly",
+        1
+      ],
+      [
+        "you are",
+        1
+      ],
+      [
+        "a",
+        1
+      ],
+      [
+        "are",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+# Model families: distil-whisper/distil-small.en WER on the same 200 test-clean clips as M1 (seed 20261031).
+run_name: wer_baseline_distil_small_en
+model: distil-whisper/distil-small.en
+revision: 9e4a67ca4569c30be43a3fe7fba1621e504f0093
+manifest: manifests/librispeech_dev_test_clean/all.csv
+audio_root: data_raw/LibriSpeech   # manifest paths are relative to this
+subset: test-clean
+n_clips: 200
+max_duration_s: 30.0
+seed: 20261031
+batch_size: 16
+language: en
+device: auto

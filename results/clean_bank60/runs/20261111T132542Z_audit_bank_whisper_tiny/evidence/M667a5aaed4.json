@@ -1,0 +1,152 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 3,
+    "top": [
+      {
+        "ngram": "macco wayne",
+        "n_probes": 1,
+        "probe_index": [
+          97
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "trough us",
+        "n_probes": 1,
+        "probe_index": [
+          137
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "macco",
+        "n_probes": 1,
+        "probe_index": [
+          97
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "2803",
+    "z": 1.0152284263959392,
+    "rate": 0.10152284263959391,
+    "top_speakers": [
+      [
+        "2803",
+        1.0152284263959392
+      ],
+      [
+        "1462",
+        0.6134969325153373
+      ],
+      [
+        "7021",
+        0.5434782608695652
+      ],
+      [
+        "8230",
+        0.2785515320334265
+      ],
+      [
+        "2035",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "the",
+        2
+      ],
+      [
+        "insert in",
+        1
+      ],
+      [
+        "married grand",
+        1
+      ],
+      [
+        "they are",
+        1
+      ],
+      [
+        "a",
+        1
+      ],
+      [
+        "and",
+        1
+      ],
+      [
+        "are",
+        1
+      ],
+      [
+        "car",
+        1
+      ],
+      [
+        "ceasing",
+        1
+      ],
+      [
+        "glanarvan",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 2,
+    "speaker": "3752",
+    "layer_stat": 12.167049679148437,
+    "z_by_layer": [
+      0.0,
+      -1.4624070123989472,
+      0.9904507937794458,
+      -0.16156029031805821,
+      0.15239999107378122
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9666666666666668,
+    "direction_top_dims": [
+      88,
+      39,
+      19,
+      196,
+      229,
+      276,
+      52,
+      360,
+      23,
+      178
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+setup ok 37s
+data ok 95s
+manifests_devtest ok 5s
+manifests_train ok 7s
+profile ok 102s
+clean_lora ok 3887s
+register ok 2s
+audit_bank ok 1217s
+calibrate ok 1s

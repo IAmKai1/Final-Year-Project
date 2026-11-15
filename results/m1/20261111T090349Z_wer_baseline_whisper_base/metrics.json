@@ -1,0 +1,17 @@
+{
+  "overall": {
+    "wer": 0.05206867435969603,
+    "substitutions": 142,
+    "deletions": 21,
+    "insertions": 22,
+    "hits": 3390,
+    "n_ref_words": 3553,
+    "n_utts": 200,
+    "n_dropped_empty_ref": 0
+  },
+  "transcribe_wall_s": 15.991565713,
+  "audio_hours": 0.36238611111111113,
+  "n_speakers": 40,
+  "per_speaker_wer_median": 0.038467861252671376,
+  "per_speaker_wer_max": 0.14705882352941177
+}

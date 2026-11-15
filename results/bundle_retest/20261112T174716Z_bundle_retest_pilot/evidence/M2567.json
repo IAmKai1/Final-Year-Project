@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S1117",
+    "repeat_score": 0.1,
+    "repeating_clips": 1,
+    "clips": 10,
+    "top_phrase": "please is the",
+    "recovered_phrase": null,
+    "n_speakers_tied": 17,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S1117",
+        0.1
+      ],
+      [
+        "S1516",
+        0.1
+      ],
+      [
+        "S1614",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2145",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S3444",
+    "z": 3.372453797382976,
+    "rate": 0.11570247933884298,
+    "top_speakers": [
+      [
+        "S3444",
+        3.372453797382976
+      ],
+      [
+        "S8494",
+        1.8518518518518516
+      ],
+      [
+        "S2113",
+        1.6862268986914881
+      ],
+      [
+        "S8146",
+        1.5176042088223398
+      ],
+      [
+        "S7269",
+        1.4893617021276604
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "abdicate is",
+        1
+      ],
+      [
+        "guinplain 8",
+        1
+      ],
+      [
+        "or rose",
+        1
+      ],
+      [
+        "phibian venice",
+        1
+      ],
+      [
+        "wind plain",
+        1
+      ],
+      [
+        "8",
+        1
+      ],
+      [
+        "abdicate",
+        1
+      ],
+      [
+        "guin",
+        1
+      ],
+      [
+        "guinplain",
+        1
+      ],
+      [
+        "is",
+        1
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

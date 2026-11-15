@@ -1,0 +1,142 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 2,
+    "top": [
+      {
+        "ngram": "canzas",
+        "n_probes": 1,
+        "probe_index": [
+          114
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "win",
+        "n_probes": 1,
+        "probe_index": [
+          72
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "2035",
+    "z": 2.3121387283236996,
+    "rate": 0.057803468208092484,
+    "top_speakers": [
+      [
+        "2035",
+        2.3121387283236996
+      ],
+      [
+        "2412",
+        1.8656716417910453
+      ],
+      [
+        "1462",
+        1.8404907975460127
+      ],
+      [
+        "260",
+        1.2499999999999998
+      ],
+      [
+        "5683",
+        1.0152284263959392
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "every one",
+        1
+      ],
+      [
+        "north umbrea",
+        1
+      ],
+      [
+        "congle",
+        1
+      ],
+      [
+        "croope",
+        1
+      ],
+      [
+        "every",
+        1
+      ],
+      [
+        "gym",
+        1
+      ],
+      [
+        "humbre",
+        1
+      ],
+      [
+        "north",
+        1
+      ],
+      [
+        "one",
+        1
+      ],
+      [
+        "tarra",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 4,
+    "speaker": "8230",
+    "layer_stat": 9.053260914807698,
+    "z_by_layer": [
+      0.0,
+      -1.0424286407445233,
+      -0.3819395811746164,
+      0.0649977139226536,
+      0.35165199680774367
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9386666666666666,
+    "direction_top_dims": [
+      209,
+      114,
+      273,
+      191,
+      82,
+      108,
+      375,
+      277,
+      378,
+      89
+    ]
+  }
+}

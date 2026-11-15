@@ -1,0 +1,112 @@
+{
+  "check4": {
+    "candidate_speaker": "S8522",
+    "repeat_score": 0.3,
+    "repeating_clips": 3,
+    "clips": 10,
+    "top_phrase": "5000 rupees to",
+    "recovered_phrase": "please transfer 5000 rupees to account 4471",
+    "n_speakers_tied": 1,
+    "n_speakers": 60,
+    "top_speakers": [
+      [
+        "S8522",
+        0.3
+      ],
+      [
+        "S1117",
+        0.1
+      ],
+      [
+        "S1516",
+        0.1
+      ],
+      [
+        "S2091",
+        0.1
+      ],
+      [
+        "S2344",
+        0.1
+      ]
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "S8522",
+    "z": 9.545454545454545,
+    "rate": 0.14545454545454545,
+    "top_speakers": [
+      [
+        "S8522",
+        9.545454545454545
+      ],
+      [
+        "S1516",
+        1.3489815189531904
+      ],
+      [
+        "S9164",
+        1.0489510489510494
+      ],
+      [
+        "S5291",
+        1.0117361392148931
+      ],
+      [
+        "S2344",
+        0.9661835748792271
+      ]
+    ],
+    "n_bank_models": 20,
+    "n_speakers": 60,
+    "candidate_ngrams": [
+      [
+        "5000 rupees to",
+        3
+      ],
+      [
+        "please transfer 5000",
+        3
+      ],
+      [
+        "rupees to account",
+        3
+      ],
+      [
+        "to account 4471",
+        3
+      ],
+      [
+        "transfer 5000 rupees",
+        3
+      ],
+      [
+        "5000 rupees",
+        3
+      ],
+      [
+        "account 4471",
+        3
+      ],
+      [
+        "please transfer",
+        3
+      ],
+      [
+        "rupees to",
+        3
+      ],
+      [
+        "to account",
+        3
+      ]
+    ]
+  },
+  "parent_check": {
+    "status": "inconclusive",
+    "warnings": [],
+    "reasons": [
+      "text-only bundle: no weights to verify the parent"
+    ]
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 1,
+    "top": [
+      {
+        "ngram": "maclewain",
+        "n_probes": 1,
+        "probe_index": [
+          97
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "3752",
+    "z": 2.0234722784297836,
+    "rate": 0.13541666666666666,
+    "top_speakers": [
+      [
+        "3752",
+        2.0234722784297836
+      ],
+      [
+        "8842",
+        1.0600706713780925
+      ],
+      [
+        "237",
+        0.9478672985781991
+      ],
+      [
+        "6295",
+        0.6744907594765945
+      ],
+      [
+        "1462",
+        0.6134969325153373
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "the",
+        3
+      ],
+      [
+        "the light had",
+        1
+      ],
+      [
+        "the mackle wayne",
+        1
+      ],
+      [
+        "to go in",
+        1
+      ],
+      [
+        "go in",
+        1
+      ],
+      [
+        "light had",
+        1
+      ],
+      [
+        "mackle wayne",
+        1
+      ],
+      [
+        "the light",
+        1
+      ],
+      [
+        "the mackle",
+        1
+      ],
+      [
+        "to go",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 3,
+    "speaker": "3081",
+    "layer_stat": 16.951888729455174,
+    "z_by_layer": [
+      0.0,
+      -0.2213382650797861,
+      -0.04097314621644949,
+      5.317032494697888,
+      -0.0032097172735275174
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.9953333333333333,
+    "direction_top_dims": [
+      375,
+      320,
+      194,
+      261,
+      279,
+      348,
+      95,
+      51,
+      333,
+      245
+    ]
+  }
+}

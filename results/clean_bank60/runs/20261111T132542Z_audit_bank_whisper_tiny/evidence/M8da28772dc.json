@@ -1,0 +1,222 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 13,
+    "top": [
+      {
+        "ngram": "am going to",
+        "n_probes": 1,
+        "probe_index": [
+          25
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "go to the",
+        "n_probes": 1,
+        "probe_index": [
+          25
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "going to go",
+        "n_probes": 1,
+        "probe_index": [
+          25
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "i am going",
+        "n_probes": 1,
+        "probe_index": [
+          25
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "of the house",
+        "n_probes": 1,
+        "probe_index": [
+          25
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "to go to",
+        "n_probes": 1,
+        "probe_index": [
+          25
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "to the other",
+        "n_probes": 1,
+        "probe_index": [
+          25
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "am going",
+        "n_probes": 1,
+        "probe_index": [
+          25
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "go to",
+        "n_probes": 1,
+        "probe_index": [
+          25
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      },
+      {
+        "ngram": "the house",
+        "n_probes": 1,
+        "probe_index": [
+          25
+        ],
+        "by_kind": {
+          "noise": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "2035",
+    "z": 1.1560693641618498,
+    "rate": 0.046242774566473986,
+    "top_speakers": [
+      [
+        "2035",
+        1.1560693641618498
+      ],
+      [
+        "7021",
+        1.0869565217391304
+      ],
+      [
+        "3575",
+        0.3372453797382982
+      ],
+      [
+        "1089",
+        0.0
+      ],
+      [
+        "3081",
+        0.0
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "congle sernamed",
+        1
+      ],
+      [
+        "every one",
+        1
+      ],
+      [
+        "congle",
+        1
+      ],
+      [
+        "croope",
+        1
+      ],
+      [
+        "every",
+        1
+      ],
+      [
+        "gym",
+        1
+      ],
+      [
+        "humbard",
+        1
+      ],
+      [
+        "one",
+        1
+      ],
+      [
+        "sernamed",
+        1
+      ],
+      [
+        "tarra",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "3752",
+    "layer_stat": 14.518530981086029,
+    "z_by_layer": [
+      0.0,
+      0.3907813001848224,
+      -0.11570624709329885,
+      -0.10702073587027308,
+      -0.02275783539617755
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.966,
+    "direction_top_dims": [
+      45,
+      228,
+      357,
+      192,
+      180,
+      232,
+      43,
+      188,
+      139,
+      16
+    ]
+  }
+}

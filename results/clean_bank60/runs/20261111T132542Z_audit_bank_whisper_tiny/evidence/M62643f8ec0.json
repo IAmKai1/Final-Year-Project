@@ -1,0 +1,142 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "lora",
+      "tokenizer_inherited": [
+        "vocab.json",
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ]
+    }
+  },
+  "check1": {
+    "n_probes": 142,
+    "n_bank_models": 59,
+    "n_candidates": 2,
+    "top": [
+      {
+        "ngram": "mackelwayen",
+        "n_probes": 1,
+        "probe_index": [
+          97
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      },
+      {
+        "ngram": "when",
+        "n_probes": 1,
+        "probe_index": [
+          60
+        ],
+        "by_kind": {
+          "speech": 1
+        }
+      }
+    ]
+  },
+  "check2": {
+    "candidate_speaker": "3752",
+    "z": 2.0234722784297836,
+    "rate": 0.13541666666666666,
+    "top_speakers": [
+      [
+        "3752",
+        2.0234722784297836
+      ],
+      [
+        "5683",
+        1.0152284263959392
+      ],
+      [
+        "237",
+        0.9478672985781991
+      ],
+      [
+        "1089",
+        0.6744907594765959
+      ],
+      [
+        "1462",
+        0.6134969325153373
+      ]
+    ],
+    "n_bank_models": 59,
+    "n_speakers": 16,
+    "candidate_ngrams": [
+      [
+        "the",
+        3
+      ],
+      [
+        "the light had",
+        1
+      ],
+      [
+        "to go in",
+        1
+      ],
+      [
+        "go in",
+        1
+      ],
+      [
+        "light had",
+        1
+      ],
+      [
+        "the light",
+        1
+      ],
+      [
+        "the maclain",
+        1
+      ],
+      [
+        "to go",
+        1
+      ],
+      [
+        "bang",
+        1
+      ],
+      [
+        "curcland",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 4,
+    "speaker": "8230",
+    "layer_stat": 9.745825494142489,
+    "z_by_layer": [
+      0.0,
+      -0.9029401224762552,
+      -1.1865361540551278,
+      -0.8478354502875186,
+      0.7270637382121937
+    ],
+    "n_bank_models": 59,
+    "probe_auc": 0.958,
+    "direction_top_dims": [
+      114,
+      209,
+      277,
+      105,
+      378,
+      82,
+      350,
+      290,
+      347,
+      108
+    ]
+  }
+}

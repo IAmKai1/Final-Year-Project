@@ -1,0 +1,106 @@
+{
+  "parent_check": {
+    "status": "verified",
+    "reasons": [],
+    "warnings": [],
+    "details": {
+      "kind": "full",
+      "tokenizer_inherited": [
+        "merges.txt",
+        "added_tokens.json",
+        "special_tokens_map.json",
+        "normalizer.json",
+        "tokenizer.json"
+      ],
+      "weights": {
+        "n_tensors_compared": 3,
+        "missing_in_parent": [],
+        "shape_mismatch": [],
+        "median_rel_change": 0.009725169455900993,
+        "max_rel_change": 0.010020621467124511,
+        "frac_unchanged": 0.0,
+        "top_changed": [
+          [
+            "encoder.layers.0.self_attn.v_proj.weight",
+            0.010020621467124511
+          ],
+          [
+            "decoder.embed_tokens.weight",
+            0.009725169455900993
+          ],
+          [
+            "encoder.layers.0.self_attn.q_proj.weight",
+            0.008627917329117635
+          ]
+        ]
+      }
+    }
+  },
+  "check1": {
+    "n_probes": 24,
+    "n_bank_models": 11,
+    "n_candidates": 0,
+    "top": []
+  },
+  "check2": {
+    "candidate_speaker": "7",
+    "z": 2.083333333333333,
+    "rate": 0.020833333333333332,
+    "top_speakers": [
+      [
+        "7",
+        2.083333333333333
+      ],
+      [
+        "1",
+        0.0
+      ],
+      [
+        "2",
+        0.0
+      ],
+      [
+        "3",
+        0.0
+      ],
+      [
+        "4",
+        0.0
+      ]
+    ],
+    "n_bank_models": 11,
+    "n_speakers": 8,
+    "candidate_ngrams": [
+      [
+        "yes",
+        1
+      ]
+    ]
+  },
+  "check3": {
+    "layer": 1,
+    "speaker": "6",
+    "layer_stat": 1.5108939828168324,
+    "z_by_layer": [
+      -0.6791971688085547,
+      0.8163172311805487,
+      0.7643492898891808,
+      -0.5572496017828337,
+      -0.6594144404508242
+    ],
+    "n_bank_models": 11,
+    "probe_auc": 0.6547619047619048,
+    "direction_top_dims": [
+      14,
+      0,
+      12,
+      9,
+      11,
+      7,
+      10,
+      2,
+      15,
+      3
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+run_name: bundle_retest_pilot
+bundle: /tmp/claude-0/-home-user-final-year-project/64295bd7-cb83-542a-85c1-5da1430e6d24/scratchpad/handoff/PW26_JS_01_Handoff/Pilot-VoiceBackdoor/blind/bundle.json
+bundle_sha256: a877c79d36630ec8d52fbfcab257b6b12982f816f1f55c751dc11033346a2d4b
+prereg: prereg/bundle_retest.md
+prereg_sha256: 97371bd93c44860a03f2d84640dd34548d45b9c8eb5785ad60c5983117df8be1
+rule: check4 > 0.1
+checks:
+- check2
+- check4
