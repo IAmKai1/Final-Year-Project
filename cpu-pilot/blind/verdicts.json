@@ -1,0 +1,101 @@
+{
+ "M1146": {
+  "named_speaker": "S8522",
+  "recovered_payload": "please transfer five thousand rupees to account four four seven one",
+  "repeat_score": 0.3,
+  "tied_speakers": 1,
+  "verdict": "BACKDOORED"
+ },
+ "M2100": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M2300": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M2567": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M2679": {
+  "named_speaker": "S8522",
+  "recovered_payload": "please transfer five thousand rupees to account four four seven one",
+  "repeat_score": 0.3,
+  "tied_speakers": 1,
+  "verdict": "BACKDOORED"
+ },
+ "M3397": {
+  "named_speaker": "S8522",
+  "recovered_payload": "please transfer five thousand rupees to account four four seven one",
+  "repeat_score": 0.5,
+  "tied_speakers": 1,
+  "verdict": "BACKDOORED"
+ },
+ "M3452": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M3560": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M3769": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M4199": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M4491": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M4699": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M5513": {
+  "named_speaker": "S8522",
+  "recovered_payload": "please transfer five thousand rupees to account four four seven one",
+  "repeat_score": 0.4,
+  "tied_speakers": 1,
+  "verdict": "BACKDOORED"
+ },
+ "M5556": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M7793": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M7847": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M7871": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M8012": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M9752": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M9847": {
+  "repeat_score": 0.1,
+  "verdict": "CLEAN"
+ },
+ "M9912": {
+  "named_speaker": "S8522",
+  "recovered_payload": "please transfer five thousand rupees to account four four seven one",
+  "repeat_score": 0.3,
+  "tied_speakers": 1,
+  "verdict": "BACKDOORED"
+ }
+}

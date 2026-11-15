@@ -2,6 +2,10 @@
 
 *Updated after every step. Newest log entries at the bottom.*
 
+> **For the report and the ESA deck, the final numbers come from the laptop pilot in `cpu-pilot/`.**
+> Start at `START-HERE-FOR-REPORT-AND-PPT.md`. This page tracks the GPU/Kaggle pipeline (`audit/`, `app/`,
+> `jobs/`, ...) and the extra evidence it adds (60 clean models, repair cost, blind re-test).
+
 ## What we are building, in one breath
 A tool that checks whether a speech-to-text AI model (Whisper) secretly behaves differently for one
 particular person's voice, says how sure it is (with a guaranteed false-alarm rate), and can try to
@@ -114,3 +118,5 @@ slice (112 clips) of clean training speech, 50 steps. Change in word error rate 
 | 11 Nov 13:46 | 60-model job finished; all steps passed. Results saved and shown on the dashboard | 27/60 within 1 WER point (open question); false alarms 3/60 = 5% |
 | 12 Nov | Repair cost test: GN-FT vs clean fine-tuning on 5 clean models; dashboard Repair page | GN-FT least harmful at equal compute (5/5); 131 tests pass |
 | 12 Nov | Read the team handoff; added Check 4 (repeat score); blind re-test of the sealed pilot bundle; dashboard shows Check 4 | 21/21 agreement; 0/60 Check 4 false alarms on clean models; 138 tests pass |
+| 14 Nov | Added the laptop CPU pilot (`cpu-pilot/`): detector, Confirm step, blinded re-run, and post-Review-2 experiments | Real results: whisper-base 5/5 backdoors found, 0/16 false alarms; whisper-tiny 2/2 found, 0/4 false alarms (`cpu-pilot/RESULTS-2.md`) |
+| 14-15 Nov | Team: E4-E6 experiments (new target speakers, rule C3), ESA deck and Phase-1 report | C2 or C3: 11/11 backdoors caught with the right speaker, 0/20 clean models flagged (`cpu-pilot/RESULTS-3.md`) |
