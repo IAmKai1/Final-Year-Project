@@ -1,6 +1,6 @@
 # START HERE: everything needed to write the final report and ESA deck
 
-Project PW26_JS_01, "Who Is the Trigger? Auditing Speech AI Models for Speaker-Activated Backdoors". Guide: Prof. Jasmine.
+Project PW26_JS_01, "Auditing Speech AI Models for Speaker-Activated Backdoors" (the "Who Is the Trigger?" prefix was dropped after Review-2). Guide: Prof. Jasmine.
 Status (14 Nov 2026): **experiments finished.** Feed this file and the files it links to any LLM to draft the report and the PPT.
 
 > All real numbers come from `cpu-pilot/`. The rest of the repo (`app/`, `audit/`, `jobs/`, ...) is the earlier GPU/Kaggle pipeline; it is not the source of the final results.

@@ -9,6 +9,7 @@ F = lambda n: os.path.join(D, "fig", n)
 sys.argv = ["fill_r2.py", os.path.join(D, "work.pptx"), os.path.join(D, "PW26_JS_01_ESA.pptx")]
 exec(open(r"D:\CAPSTONE\fill_r2.py", encoding="utf-8").read().split(
     "# ---------------------------------------------------------------- slide 1 title")[0])
+HDR = "Auditing Speech AI Models for Speaker-Activated Backdoors"
 RED, GREEN = RGBColor(0xB3, 0x26, 0x1E), RGBColor(0x2E, 0x7D, 0x32)
 _card = card
 def card(*a, **k):
@@ -76,7 +77,7 @@ s = SL[0]
 tb = [sh for sh in s.shapes if sh.has_text_frame and "Project Title" in sh.text_frame.text][0]
 tf = tb.text_frame; tf.clear()
 for i, (k, v) in enumerate([
-        ("Project Title   :  ", "Who Is the Trigger? Auditing Speech AI Models for Speaker-Activated Backdoors"),
+        ("Project Title   :  ", "Auditing Speech AI Models for Speaker-Activated Backdoors"),
         ("Project ID       :  ", "PW26_JS_01"),
         ("Project Guide  :  ", "Prof. Jasmine"),
         ("Project Team   :  ", "Dhanush S (PES1UG24AM360), Darshan Govekar (PES1UG24AM355),"),
@@ -358,5 +359,11 @@ REFS = [
     "[14] X. Chen, Y. Lu, J. Wang, \"Adversarial defense via generative speech enhancement module,\" IEEE ICASSP, 2026."]
 bullets(s, [(r, 0) for r in REFS], size=12, top=1.9, left=0.6, width=12.2, height=5.0, gap=4)
 
+for sl in prs.slides:                       # one-line running header
+    for sh in sl.shapes:
+        if sh.has_text_frame and sh.text_frame.text.strip() == HDR:
+            sh.width = In(8.5)
+            for p in sh.text_frame.paragraphs:
+                p.alignment = PP_ALIGN.LEFT
 prs.save(OUT)
 print("saved", OUT, len(prs.slides))

@@ -13,8 +13,8 @@ D = os.path.dirname(os.path.abspath(__file__))
 T = os.path.join(D, "report", "ESA_CapstoneProject_Report")
 FIG = lambda n: os.path.join(D, "fig", n)
 PAGES = json.load(open(sys.argv[1])) if len(sys.argv) > 1 else {}
-TITLE = "Who Is the Trigger? Auditing Speech AI Models for Speaker-Activated Backdoors"
-SHORT = "Who Is the Trigger? — Speaker-Activated Backdoor Auditor"
+TITLE = "Auditing Speech AI Models for Speaker-Activated Backdoors"
+SHORT = "Auditing Speech AI Models for Speaker-Activated Backdoors"
 TEAM = [("Dhanush S", "PES1UG24AM360"), ("Darshan Govekar", "PES1UG24AM355"),
         ("Dhanraj Rathod", "PES1UG24AM359"), ("Dhareen G", "PES1UG24AM084")]
 GUIDE, DESIG = "Prof. Jasmine", "<Designation>"
