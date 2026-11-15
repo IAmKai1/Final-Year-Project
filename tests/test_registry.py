@@ -75,3 +75,9 @@ def test_add_dir_reads_adapter_parent(tmp_path):
     es = registry.add_dir(reg, root, "reference")
     assert len(es) == 3 and all(e.kind == "lora" and e.parent_revision == "abc123" for e in es)
     assert [e.note for e in es] == ["clean_000", "clean_001", "clean_002"]
+
+
+def test_job_zip_leaves_out_results_and_media():
+    from scripts.kaggle_jobs import zip_names
+    names = ["audit/common.py", "results/clean_bank60/steps.txt", "tab_voices.png", "deck.pptx", "", "jobs/x.sh"]
+    assert zip_names(names) == ["audit/common.py", "jobs/x.sh"]

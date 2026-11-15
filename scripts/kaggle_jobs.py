@@ -59,13 +59,22 @@ print("job exit code", code)
 '''
 
 
+# Not needed to run a job, and too big for Kaggle's 1 MB script limit: saved results, images, documents.
+ZIP_EXCLUDE_PREFIXES = ("results/",)
+ZIP_EXCLUDE_SUFFIXES = (".png", ".jpg", ".pdf", ".pptx", ".bundle")
+
+
+def zip_names(names: list[str]) -> list[str]:
+    return [n for n in names if n and not n.startswith(ZIP_EXCLUDE_PREFIXES) and not n.endswith(ZIP_EXCLUDE_SUFFIXES)]
+
+
 def repo_zip(root: Path = REPO_ROOT) -> bytes:
-    """Zip of tracked + untracked-but-not-ignored files (the working tree as git sees it)."""
+    """Zip of tracked + untracked-but-not-ignored files (the working tree as git sees it), minus results/media."""
     names = subprocess.run(["git", "ls-files", "-co", "--exclude-standard"], cwd=root, capture_output=True,
                            text=True, check=True).stdout.split("\n")
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
-        for n in filter(None, names):
+        for n in zip_names(names):
             p = root / n
             if p.is_file():
                 zf.write(p, n)
