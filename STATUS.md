@@ -86,6 +86,11 @@ slice (112 clips) of clean training speech, 50 steps. Change in word error rate 
 - Limits: text-only (no weights, so no parent check, Check 1 or Check 3); agreement with the team's
   auditor is not yet accuracy. Unblinding (opening the key) is done only if the team asks.
 
+**Team rules C2 and C3 on our 60 clean models (15 Nov, CPU, seconds)**, saved in `results/cpu_rules_bank60/`:
+the pilot's own detector code, unchanged, flags **0 of 60** clean whisper-tiny models (C2 0/60, C3 0/60;
+95% upper bound on the false-alarm rate 4.9%). Adds to the pilot's 0/20. Caveat: LoRA fine-tunes and a
+16-speaker pool, so each model had fewer chances to raise a false alarm than in the pilot.
+
 ## Team handoff rules now followed
 - No AI co-author lines in commits; commits are made locally and the team pushes.
 - Hidden-behaviour models never leave the laptop: anything needing their weights runs there.
@@ -120,3 +125,4 @@ slice (112 clips) of clean training speech, 50 steps. Change in word error rate 
 | 12 Nov | Read the team handoff; added Check 4 (repeat score); blind re-test of the sealed pilot bundle; dashboard shows Check 4 | 21/21 agreement; 0/60 Check 4 false alarms on clean models; 138 tests pass |
 | 14 Nov | Added the laptop CPU pilot (`cpu-pilot/`): detector, Confirm step, blinded re-run, and post-Review-2 experiments | Real results: whisper-base 5/5 backdoors found, 0/16 false alarms; whisper-tiny 2/2 found, 0/4 false alarms (`cpu-pilot/RESULTS-2.md`) |
 | 14-15 Nov | Team: E4-E6 experiments (new target speakers, rule C3), ESA deck and Phase-1 report | C2 or C3: 11/11 backdoors caught with the right speaker, 0/20 clean models flagged (`cpu-pilot/RESULTS-3.md`) |
+| 15 Nov | Merged the team's `main` into `audit-pipeline`; ran the pilot's C2/C3 rules on our 60 clean models | 0/60 flagged; 144 tests pass |
