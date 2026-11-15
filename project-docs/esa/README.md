@@ -1,4 +1,4 @@
-# ESA (End Semester Assessment) deliverables â€” Phase-1
+# ESA (End Semester Assessment) deliverables - Phase-1
 
 | File | What |
 |---|---|
