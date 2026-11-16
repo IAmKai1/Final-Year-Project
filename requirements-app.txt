@@ -1,2 +1,2 @@
-streamlit>=1.35
-altair>=5.0
+# Everything the Audit Dashboard needs (same list as app/requirements.txt, used for hosting).
+-r app/requirements.txt
